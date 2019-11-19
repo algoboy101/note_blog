@@ -689,7 +689,7 @@ comments:
   style: tabs
   # Choose a comment system to be displayed by default.
   # Available values: changyan | disqus | disqusjs | gitalk | livere | valine
-  active: valine
+  active:
   # Setting `true` means remembering the comment system selected by the visitor.
   storage: true
   # Modify texts or order for any navs, here are some examples.
@@ -735,17 +735,15 @@ changyan:
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
   enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version
-  appid: 6imUgkJBy7GmdW1Dus2aO43g-gzGzoHsz
-  appkey: CY0B6REdC1675u79Py9NxwsS
-  # appid: vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz # Your leancloud application appid
-  # appkey: KNlyr54S3RIstdjHBJUQomdF # Your leancloud application appkey
+  appid: vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz # Your leancloud application appid
+  appkey: KNlyr54S3RIstdjHBJUQomdF # Your leancloud application appkey
   notify: false # Mail notifier. See: https://github.com/xCss/Valine/wiki
   verify: false # Verification code
-  placeholder: Just go go # Comment box placeholder
+  placeholder: 赞一个 # Comment box placeholder
   avatar: mm # Gravatar style
   guest_info: nick,mail # Custom comment header
-  pageSize: 10 # Pagination size
-  language: zh-CN # Language, available values: en, zh-cn
+  pageSize: 20 # Pagination size
+  language: zh-cn # Language, available values: en, zh-cn
   visitor: true # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
   comment_count: true # If false, comment count will only be displayed in post page, not in home page
   recordIP: true # Whether to record the commenter IP
@@ -844,12 +842,12 @@ firestore:
 # Show Views / Visitors of the website / page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi
 busuanzi_count:
-  enable: false
+  enable: true
   total_visitors: true
   total_visitors_icon: user
   total_views: true
   total_views_icon: eye
-  post_views: true
+  post_views: false
   post_views_icon: eye
 
 
