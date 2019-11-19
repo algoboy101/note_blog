@@ -432,10 +432,8 @@ tagcloud:
 # Google Calendar
 # Share your recent schedule to others via calendar page.
 calendar:
-  calendar_id: 960611500693-u856vtk0099s47opltft0ccaoi4p7cea.apps.googleusercontent.com # Your Google account E-Mail
-  # calendar_id: xuezhisd@gmail.com # Your Google account E-Mail
-  api_key: CfyMi5o68yg_e55HAoghWDKd
-  # api_key: AIzaSyBSlC_5Obx1oJalhEK1z_lSzJ_z7AMy-Zw
+  calendar_id: # Your Google account E-Mail
+  # api_key: 
   orderBy: startTime
   offsetMax: 24 # Time Range
   offsetMin: 4 # Time Range
@@ -578,7 +576,7 @@ disable_baidu_transformation: false
 canonical: true
 
 # Change headers hierarchy on site-subtitle (will be main site description) and on all post / page titles for better SEO-optimization.
-seo: false
+seo: true
 
 # If true, site-subtitle will be added to index page.
 # Remember to set up your site-subtitle in Hexo `_config.yml` (e.g. subtitle: Subtitle)
@@ -590,7 +588,7 @@ exturl: false
 # 通过HTML Tag的方式验证网站站长身份，我已通过文件验证，此处不需要设置
 # Google Webmaster tools verification.
 # See: https://www.google.com/webmasters
-google_site_verification:
+google_site_verification: 8MClfGIKqlhvS7lCIUORoPlPQW5ZS-acECTz66SI-q0
 
 # Bing Webmaster tools verification.
 # See: https://www.bing.com/webmaster
