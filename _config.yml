@@ -31,9 +31,12 @@ url: http://blog.xuezhisd.top
 root: /
 #文章链接地址格式 
 # permalink: :year/:month/:day/:title/
-permalink: :lang/:title.html
+permalink: post/:lang/:title.html
+#permalink: post/:id_:title.html
 # permalink: :title/
 permalink_defaults:
+  lang: zh-cn
+  #lang: en
 pretty_urls:
   trailing_index: true # Set to false to remove trailing index.html from permalinks
 
@@ -203,3 +206,4 @@ baidusitemap:
 # deploy with hexo-admin-edit
 admin:
   deployCommand: "./deploy.sh"
+
