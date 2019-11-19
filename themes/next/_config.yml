@@ -432,8 +432,8 @@ tagcloud:
 # Google Calendar
 # Share your recent schedule to others via calendar page.
 calendar:
-  # calendar_id: 960611500693-u856vtk0099s47opltft0ccaoi4p7cea.apps.googleusercontent.com # Your Google account E-Mail
-  calendar_id: xuezhisd@gmail.com # Your Google account E-Mail
+  calendar_id: 960611500693-u856vtk0099s47opltft0ccaoi4p7cea.apps.googleusercontent.com # Your Google account E-Mail
+  # calendar_id: xuezhisd@gmail.com # Your Google account E-Mail
   api_key: CfyMi5o68yg_e55HAoghWDKd
   # api_key: AIzaSyBSlC_5Obx1oJalhEK1z_lSzJ_z7AMy-Zw
   orderBy: startTime
