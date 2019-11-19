@@ -17,7 +17,7 @@ cache:
   enable: true
 
 # Remove unnecessary files after hexo generate.
-minify: false
+minify: true
 
 # Define custom file paths.
 # Create your custom files in site directory `source/_data` and uncomment needed files below.
@@ -138,11 +138,17 @@ scheme: Mist
 # External url should start with http:// or https://
 menu:
   home: / || home
-  about: /about/ || user
+  # about: /about/ || user
+  about: 
+    default: /about/ || user
+    # tags: /tags/ || user
+    # archives: /archives/ || home
+    # about1: /about1/ || user
+    # about2: /about2/ || home
   tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
-  # schedule: /schedule/ || calendar
+  schedule: /schedule/ || calendar
   sitemap: /sitemap.xml || sitemap
   # commonweal: /404/ || heartbeat
 # Enable / Disable menu icons / item badges.
@@ -358,6 +364,9 @@ reward:
   #wechatpay: /images/wechatpay.png
   #alipay: /images/alipay.png
   #bitcoin: /images/bitcoin.png
+  # paypal: /images/paypal.png
+  # monero: /images/monero.png
+
 
 
 # ---------------------------------------------------------------
@@ -369,9 +378,9 @@ related_posts:
   enable: true
   # title: 推送
   title: # Custom header, leave empty to use the default one
-  display_in_home: true
+  display_in_home: false
   params:
-    maxCount: 5
+    maxCount: 3
     #PPMixingRate: 0.0
     #isDate: false
     #isImage: false
@@ -410,8 +419,10 @@ tagcloud:
   # max: 30 # Maxium font size in px
   min: 10 # Minimun font size in px
   max: 80 # Maxium font size in px
-  start: "#ccc" # Start color (hex, rgba, hsla or color keywords)
-  end: "#111" # End color (hex, rgba, hsla or color keywords)
+  start: "#000" # Start color (hex, rgba, hsla or color keywords)
+  end: "#FFFFFF" # End color (hex, rgba, hsla or color keywords)
+  # start: "#ccc" # Start color (hex, rgba, hsla or color keywords)
+  # end: "#111" # End color (hex, rgba, hsla or color keywords)
   amount: 200 # Amount of tags, change it if you have more than 200 tags
 
 
@@ -421,8 +432,10 @@ tagcloud:
 # Google Calendar
 # Share your recent schedule to others via calendar page.
 calendar:
-  calendar_id: <required> # Your Google account E-Mail
-  api_key: <required>
+  # calendar_id: 960611500693-u856vtk0099s47opltft0ccaoi4p7cea.apps.googleusercontent.com # Your Google account E-Mail
+  calendar_id: xuezhisd@gmail.com # Your Google account E-Mail
+  api_key: CfyMi5o68yg_e55HAoghWDKd
+  # api_key: AIzaSyBSlC_5Obx1oJalhEK1z_lSzJ_z7AMy-Zw
   orderBy: startTime
   offsetMax: 24 # Time Range
   offsetMin: 4 # Time Range
@@ -448,7 +461,7 @@ mobile_layout_economy: true
 android_chrome_color: "#222"
 
 # Hide sticky headers and color the menu bar on Safari (iOS / macOS).
-safari_rainbow: false
+safari_rainbow: true
 
 # Custom Logo (Do not support scheme Mist)
 custom_logo: #/uploads/custom-logo.jpg
@@ -469,7 +482,7 @@ codeblock:
 back2top:
   enable: true
   # Back to top in sidebar.
-  sidebar: false
+  sidebar: true
   # Scroll percent label in b2t button.
   scrollpercent: false
 
@@ -1041,7 +1054,7 @@ vendors:
 
   # Internal version: 0.2.8
   # pjax: //cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js
-  pjax:
+  pjax: //cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js
 
   # FancyBox
   # jquery: //cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
