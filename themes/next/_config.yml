@@ -73,7 +73,7 @@ footer:
     animated: true
     # Change the color of icon, using Hex Code.
     # color: "#808080"
-    color: "ff0000"
+    color: "#ff0000"
   # If not defined, `author` from Hexo `_config.yml` will be used.
   copyright: 张学志
   powered:
@@ -96,8 +96,9 @@ footer:
     gongan_num:
     # The icon for gongan beian. See: http://www.beian.gov.cn/portal/download
     gongan_icon_url:
-
-
+  # custom_text: <script src="https://s13.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
+  custom_text: <script src="https://s13.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675" language="JavaScript"></script>
+ 
 # ---------------------------------------------------------------
 
 # ---------------------------------------------------------------
@@ -215,7 +216,7 @@ site_state: true
 social:
   GitHub: https://github.com/algoboy101/note_blog || github
   E-Mail: mailto:algoboy@126.com || envelope
-  CSDN: https://blog.csdn.net/xuezhisdc || user
+  CSDN: https://blog.csdn.net/xuezhisdc || book
   #Weibo: https://weibo.com/yourname || weibo
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
@@ -723,19 +724,19 @@ changyan:
 # You can get your appid and appkey from https://leancloud.cn
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
-  enable: false # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version
-  appid: # Your leancloud application appid
-  appkey: # Your leancloud application appkey
+  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version
+  appid: 6imUgkJBy7GmdW1Dus2aO43g-gzGzoHsz # Your leancloud application appid
+  appkey: CY0B6REdC1675u79Py9NxwsS # Your leancloud application appkey
   notify: false # Mail notifier. See: https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: Just go go # Comment box placeholder
   avatar: mm # Gravatar style
-  guest_info: nick,mail,link # Custom comment header
+  guest_info: nick,mail # Custom comment header
   pageSize: 10 # Pagination size
-  language: # Language, available values: en, zh-cn
-  visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
+  language: zh-CN # Language, available values: en, zh-cn
+  visitor: true # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
   comment_count: true # If false, comment count will only be displayed in post page, not in home page
-  recordIP: false # Whether to record the commenter IP
+  recordIP: true # Whether to record the commenter IP
   serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
   #post_meta_order: 0
 
@@ -797,7 +798,7 @@ baidu_analytics: ce9a310dfefd1aeba54748007375c4d9
 growingio_analytics: # <project_id>
 
 # CNZZ count
-cnzz_siteid:
+cnzz_siteid: 1273432675
 
 # Tencent analytics
 tencent_analytics: # <app_id>
