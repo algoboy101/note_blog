@@ -9,6 +9,7 @@ author: 张学志
 comments: true
 updated: false
 permalink: 
+mathjax: false
 description: {{ title }} 
 ---
 

@@ -114,7 +114,7 @@ footer:
 creative_commons:
   license: by-nc-sa
   sidebar: true
-  post: true
+  post: false
   language: zh-CN
 
 
@@ -553,7 +553,7 @@ font:
 
 
 # ---------------------------------------------------------------
-# SEO Settings
+# SEO Settings TODO
 # ---------------------------------------------------------------
 
 # Disable Baidu transformation on mobile devices.
@@ -613,9 +613,9 @@ math:
 
   # hexo-renderer-pandoc (or hexo-renderer-kramed) required for full MathJax support.
   mathjax:
-    enable: false
+    enable: true
     # See: https://mhchem.github.io/MathJax-mhchem/
-    mhchem: false
+    mhchem: true
 
   # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.
   katex:
@@ -625,7 +625,7 @@ math:
 
 # Easily enable fast Ajax navigation on your website.
 # Dependencies: https://github.com/theme-next/theme-next-pjax
-pjax: false
+pjax: true
 
 # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
 # For more information: https://fancyapps.com/fancybox
@@ -634,7 +634,7 @@ fancybox: false
 # A JavaScript library for zooming images like Medium.
 # Do not enable both `fancybox` and `mediumzoom`.
 # For more information: https://github.com/francoischalifour/medium-zoom
-mediumzoom: false
+mediumzoom: true
 
 # Vanilla JavaScript plugin for lazyloading images.
 # For more information: https://github.com/ApoorvSaxena/lozad.js
@@ -642,7 +642,7 @@ lazyload: false
 
 # Pangu Support
 # For more information: https://github.com/vinta/pangu.js
-pangu: false
+pangu: true
 
 # Quicklink Support
 # For more information: https://github.com/GoogleChromeLabs/quicklink
@@ -791,7 +791,7 @@ google_analytics:
   only_pageview: false
 
 # Baidu Analytics
-baidu_analytics: # <app_id>
+baidu_analytics: ce9a310dfefd1aeba54748007375c4d9
 
 # Growingio Analytics
 growingio_analytics: # <project_id>
@@ -857,12 +857,12 @@ algolia_search:
 # Local Search
 # Dependencies: https://github.com/theme-next/hexo-generator-searchdb
 local_search:
-  enable: false
+  enable: true
   # If auto, trigger search by changing input.
   # If manual, trigger search by pressing enter key or search button.
   trigger: auto
   # Show top n results per article, show all results by setting to -1
-  top_n_per_article: 1
+  top_n_per_article: -1
   # Unescape html strings to the readable one.
   unescape: false
   # Preload the search data when the page loads.
@@ -944,7 +944,7 @@ mermaid:
 # Use velocity to animate everything.
 # For more information: http://velocityjs.org
 motion:
-  enable: true
+  enable: false
   async: false
   transition:
     # Transition variants:
