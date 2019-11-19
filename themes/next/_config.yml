@@ -480,7 +480,7 @@ codeblock:
 back2top:
   enable: true
   # Back to top in sidebar.
-  sidebar: true
+  sidebar: false
   # Scroll percent label in b2t button.
   scrollpercent: false
 
@@ -626,7 +626,7 @@ math:
   mathjax:
     enable: true
     # See: https://mhchem.github.io/MathJax-mhchem/
-    mhchem: true
+    mhchem: false
 
   # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.
   katex:
@@ -645,7 +645,7 @@ fancybox: false
 # A JavaScript library for zooming images like Medium.
 # Do not enable both `fancybox` and `mediumzoom`.
 # For more information: https://github.com/francoischalifour/medium-zoom
-mediumzoom: true
+mediumzoom: false
 
 # Vanilla JavaScript plugin for lazyloading images.
 # For more information: https://github.com/ApoorvSaxena/lozad.js
@@ -653,7 +653,7 @@ lazyload: false
 
 # Pangu Support
 # For more information: https://github.com/vinta/pangu.js
-pangu: true
+pangu: false
 
 # Quicklink Support
 # For more information: https://github.com/GoogleChromeLabs/quicklink
@@ -689,7 +689,7 @@ comments:
   style: tabs
   # Choose a comment system to be displayed by default.
   # Available values: changyan | disqus | disqusjs | gitalk | livere | valine
-  active:
+  active: valine
   # Setting `true` means remembering the comment system selected by the visitor.
   storage: true
   # Modify texts or order for any navs, here are some examples.
@@ -735,8 +735,10 @@ changyan:
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
   enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version
-  appid: vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz # Your leancloud application appid
-  appkey: KNlyr54S3RIstdjHBJUQomdF # Your leancloud application appkey
+  appid: 6imUgkJBy7GmdW1Dus2aO43g-gzGzoHsz
+  appkey: CY0B6REdC1675u79Py9NxwsS
+  # appid: vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz # Your leancloud application appid
+  # appkey: KNlyr54S3RIstdjHBJUQomdF # Your leancloud application appkey
   notify: false # Mail notifier. See: https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: Just go go # Comment box placeholder
@@ -820,13 +822,15 @@ tencent_mta: # <app_id>
 # You can visit https://leancloud.cn to get AppID and AppKey.
 leancloud_visitors:
   enable: false
-  app_id: spG40xtKMyVRbiPgGtEuvu0B-gzGzoHsz # <app_id>
-  app_key: 4Esc4jsDyePFbB8V4iOyURtK # <app_key>
+  app_id: 
+  app_key: 
+  # app_id: spG40xtKMyVRbiPgGtEuvu0B-gzGzoHsz # <app_id>
+  # app_key: 4Esc4jsDyePFbB8V4iOyURtK # <app_key>
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
   security: false
-  betterPerformance: true
+  betterPerformance: false
 
 # Another tool to show number of visitors to each article.
 # Visit https://console.firebase.google.com/u/0/ to get apiKey and projectId.
@@ -877,7 +881,7 @@ local_search:
   # Unescape html strings to the readable one.
   unescape: false
   # Preload the search data when the page loads.
-  preload: false
+  preload: true
 
 # Swiftype Search API Key
 swiftype_key:
@@ -1034,11 +1038,11 @@ vendors:
   fontawesome:
 
   # MathJax
-  # mathjax: //cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  mathjax: //cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML
   # mathjax: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML
   # mhchem: //cdn.jsdelivr.net/npm/mathjax-mhchem@3
   # mhchem: //cdnjs.cloudflare.com/ajax/libs/mathjax-mhchem/3.3.0
-  mathjax:
+  # mathjax:
   mhchem:
 
   # KaTeX
@@ -1088,14 +1092,14 @@ vendors:
 
   # Valine
   # valine: //cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js
-  # valine: //cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js
-  valine:
+  valine: //cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js
+  # valine: 
 
   # Gitalk
-  # gitalk_js: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js
-  # gitalk_css: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css
-  gitalk_js:
-  gitalk_css:
+  gitalk_js: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js
+  gitalk_css: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css
+  # gitalk_js: 
+  # gitalk_css:
 
   # Algolia Search
   # algolia_instant_js: //cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js
