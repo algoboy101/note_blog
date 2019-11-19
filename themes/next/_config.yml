@@ -735,8 +735,8 @@ changyan:
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
   enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version
-  appid: 6imUgkJBy7GmdW1Dus2aO43g-gzGzoHsz # Your leancloud application appid
-  appkey: CY0B6REdC1675u79Py9NxwsS # Your leancloud application appkey
+  appid: vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz # Your leancloud application appid
+  appkey: KNlyr54S3RIstdjHBJUQomdF # Your leancloud application appkey
   notify: false # Mail notifier. See: https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: Just go go # Comment box placeholder
@@ -758,7 +758,7 @@ livere_uid: # <your_uid>
 # Demo: https://gitalk.github.io
 # For more information: https://github.com/gitalk/gitalk
 gitalk:
-  enable: true
+  enable: false
   github_id: algoboy101 # GitHub repo owner
   repo: note_blog_comment # Repository name to store issues
   client_id: 5d7851a991d55468095a # GitHub Application Client ID
@@ -819,7 +819,7 @@ tencent_mta: # <app_id>
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn to get AppID and AppKey.
 leancloud_visitors:
-  enable: true
+  enable: false
   app_id: spG40xtKMyVRbiPgGtEuvu0B-gzGzoHsz # <app_id>
   app_key: 4Esc4jsDyePFbB8V4iOyURtK # <app_key>
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
