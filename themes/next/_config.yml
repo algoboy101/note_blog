@@ -53,7 +53,8 @@ favicon:
 # hexo-generator-feed required for rss support. Leave rss as blank to use site's feed link.
 # Set rss to false to disable feed link. Set rss to specific value if you have burned your feed already.
 # 留空，使用网站的feed链接
-rss:
+# rss: 
+rss: false
 
 
 # --------------------------------------------------------------
@@ -96,13 +97,11 @@ footer:
     gongan_num:
     # The icon for gongan beian. See: http://www.beian.gov.cn/portal/download
     gongan_icon_url:
-  # custom_text: <script src="https://s13.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
-  custom_text: <script src="https://s13.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675" language="JavaScript"></script>
- 
-# ---------------------------------------------------------------
+
 
 # ---------------------------------------------------------------
 # 设置知识共享协议
+# ---------------------------------------------------------------
 # by:必须提到原作者
 # nc:不得用于盈利性目的
 # nd:不得修改原作品, 不得再创作
@@ -809,14 +808,14 @@ tencent_mta: # <app_id>
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn to get AppID and AppKey.
 leancloud_visitors:
-  enable: false
-  app_id: # <app_id>
-  app_key: # <app_key>
+  enable: true
+  app_id: spG40xtKMyVRbiPgGtEuvu0B-gzGzoHsz # <app_id>
+  app_key: 4Esc4jsDyePFbB8V4iOyURtK # <app_key>
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
-  security: true
-  betterPerformance: false
+  security: false
+  betterPerformance: true
 
 # Another tool to show number of visitors to each article.
 # Visit https://console.firebase.google.com/u/0/ to get apiKey and projectId.
@@ -985,7 +984,7 @@ three:
 # For more information: https://github.com/hustcc/canvas-nest.js
 canvas_nest:
   enable: false
-  onmobile: true # Display on mobile or not
+  onmobile: false # Display on mobile or not
   color: "0,0,255" # RGB values, use `,` to separate
   opacity: 0.5 # The opacity of line: 0~1
   zIndex: -1 # z-index property of the background
