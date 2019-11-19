@@ -1,7 +1,6 @@
-
 ---
 title: Hello World
-tags: 
+tags:
   - 深度学习
   - Caffe
   - GCC
@@ -10,8 +9,10 @@ categories:
   - 测试1
   - 测试2
   - 测试3
-date: 2019-9-22 14:21:03
 author: 张学志
+abbrlink: 3eeb
+date: 2019-09-22 14:21:03
+description: desc..
 ---
 
 <!-- more -->

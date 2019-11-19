@@ -5,7 +5,8 @@
 # 网站信息
 #标题
 # Site
-title: 张学志の博客
+#title: 张学志の博客
+title: 张学志
 #副标题
 subtitle: '人工智能 | 计算机视觉 | 深度学习'
 #网站描述
@@ -31,7 +32,11 @@ url: http://blog.xuezhisd.top
 root: /
 #文章链接地址格式 
 # permalink: :year/:month/:day/:title/
-permalink: post/:lang/:title.html
+# permalink: post/:lang/:title.html
+permalink: post/:lang/:abbrlink.html
+abbrlink:
+  alg: crc16
+  rep: hex
 #permalink: post/:id_:title.html
 # permalink: :title/
 permalink_defaults:
@@ -206,4 +211,5 @@ baidusitemap:
 # deploy with hexo-admin-edit
 admin:
   deployCommand: "./deploy.sh"
+
 
