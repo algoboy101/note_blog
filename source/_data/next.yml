@@ -638,7 +638,7 @@ math:
 
 # Easily enable fast Ajax navigation on your website.
 # Dependencies: https://github.com/theme-next/theme-next-pjax
-pjax: true
+pjax: false
 
 # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
 # For more information: https://fancyapps.com/fancybox
@@ -693,7 +693,7 @@ comments:
   # Available values: changyan | disqus | disqusjs | gitalk | livere | valine
   active: gitalk
   # Setting `true` means remembering the comment system selected by the visitor.
-  storage: true
+  storage: false
   # Modify texts or order for any navs, here are some examples.
   nav:
     #disqus:
@@ -702,7 +702,7 @@ comments:
     #gitalk:
     #  order: -2
     gitalk:
-      text: "GitHub账号回复"
+      text: "GitHub回复"
       order: 1
     valine:
       text: "匿名回复"
