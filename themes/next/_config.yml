@@ -142,13 +142,12 @@ menu:
   about: 
     default: /about/ || user
     # tags: /tags/ || user
-    # archives: /archives/ || home
-    # about1: /about1/ || user
-    # about2: /about2/ || home
+    about1: /about1/ || user
+    about2: /about2/ || home
   tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
-  schedule: /schedule/ || calendar
+  # schedule: /schedule/ || calendar
   sitemap: /sitemap.xml || sitemap
   # commonweal: /404/ || heartbeat
 # Enable / Disable menu icons / item badges.
@@ -181,7 +180,6 @@ sidebar:
   display: always
   # display: hide
   # display: remove
-
   # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
   offset: 12
   # Enable sidebar on narrow view (only for Muse | Mist).
@@ -418,8 +416,8 @@ tagcloud:
   # All values below are same as default, change them by yourself.
   # min: 12 # Minimun font size in px
   # max: 30 # Maxium font size in px
-  min: 10 # Minimun font size in px
-  max: 80 # Maxium font size in px
+  min: 12 # Minimun font size in px
+  max: 40 # Maxium font size in px
   start: "#000" # Start color (hex, rgba, hsla or color keywords)
   end: "#FFFFFF" # End color (hex, rgba, hsla or color keywords)
   # start: "#ccc" # Start color (hex, rgba, hsla or color keywords)
