@@ -14,7 +14,7 @@ reminder: false
 
 # Allow to cache content generation. Introduced in NexT v6.0.0.
 cache:
-  enable: true
+  enable: false
 
 # Remove unnecessary files after hexo generate.
 minify: true
@@ -200,7 +200,7 @@ avatar:
   # If true, the avatar will be dispalyed in circle.
   rounded: true
   # If true, the avatar will be rotated with the cursor.
-  rotated: true
+  rotated: false
 
 
 # ---------------------------------------------------------------
@@ -495,7 +495,7 @@ reading_progress:
 # 右上角书签
 # Bookmark Support
 bookmark:
-  enable: false
+  enable: true
   # Customize the color of the bookmark.
   color: "#222"
   # If auto, save the reading progress when closing the page or clicking the bookmark-icon.
@@ -689,9 +689,9 @@ comments:
   style: tabs
   # Choose a comment system to be displayed by default.
   # Available values: changyan | disqus | disqusjs | gitalk | livere | valine
-  active:
+  active: gitalk
   # Setting `true` means remembering the comment system selected by the visitor.
-  storage: true
+  storage: false
   # Modify texts or order for any navs, here are some examples.
   nav:
     #disqus:
@@ -699,6 +699,12 @@ comments:
     #  order: -1
     #gitalk:
     #  order: -2
+    gitalk:
+      text: "GitHub账号回复"
+      order: 1
+    valine:
+      text: "匿名回复"
+      order: 2
 
 # Disqus
 disqus:
@@ -739,10 +745,11 @@ valine:
   appkey: KNlyr54S3RIstdjHBJUQomdF # Your leancloud application appkey
   notify: false # Mail notifier. See: https://github.com/xCss/Valine/wiki
   verify: false # Verification code
-  placeholder: 赞一个 # Comment box placeholder
-  avatar: mm # Gravatar style
-  guest_info: nick,mail # Custom comment header
-  pageSize: 20 # Pagination size
+  placeholder: 支持匿名回复; 支持md语法; 抓紧占座啦! # Comment box placeholder
+  # https://github.com/xCss/Valine/wiki/avatar-setting-for-valine
+  avatar: wavatar # retro # identicon # wavatar # mm # Gravatar style
+  guest_info: nick #,link # Custom comment header
+  pageSize: 30 # Pagination size
   language: zh-cn # Language, available values: en, zh-cn
   visitor: true # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
   comment_count: true # If false, comment count will only be displayed in post page, not in home page
@@ -758,7 +765,7 @@ livere_uid: # <your_uid>
 # Demo: https://gitalk.github.io
 # For more information: https://github.com/gitalk/gitalk
 gitalk:
-  enable: false
+  enable: true
   github_id: algoboy101 # GitHub repo owner
   repo: note_blog_comment # Repository name to store issues
   client_id: 5d7851a991d55468095a # GitHub Application Client ID
