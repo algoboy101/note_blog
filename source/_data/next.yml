@@ -1164,3 +1164,8 @@ vendors:
 css: css
 js: js
 images: images
+
+# background_music: //music.163.com/outchain/player?type=2&id=28238693&auto=1&height=32
+# background_music: //music.163.com/outchain/player?type=2&id=255294&auto=1&height=32
+# background_music: 
+background_music: //music.163.com/outchain/player?type=2&id=5276811&auto=1&height=32
