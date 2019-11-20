@@ -220,7 +220,8 @@ site_state: true
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
   GitHub: https://github.com/algoboy101/note_blog || github
-  E-Mail: mailto:algoboy@126.com || envelope
+  # E-Mail: mailto:algoboy@126.com || envelope
+  E-Mail: https://blog.xuezhisd.top/mailto.html || envelope
   CSDN: https://blog.csdn.net/xuezhisdc || book
   #Weibo: https://weibo.com/yourname || weibo
   #Google: https://plus.google.com/yourname || google
