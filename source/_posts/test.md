@@ -11,6 +11,7 @@ updated: false
 author: 张学志
 abbrlink: 5f9e
 date: 2018-04-14 18:20:00
+top: 100
 ---
 > 本文描述了单例模式的基本概念和一个例子。
 <!-- more -->
