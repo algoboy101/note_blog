@@ -147,16 +147,17 @@ menu:
     # tags: /tags/ || user
     about1: /about1/ || user
     about2: /about2/ || home
-  tags: /tags/ || tags
-  categories: /categories/ || th
   archives: /archives/ || archive
+  categories: /categories/ || th
+  tags: /tags/ || tags
+  message: /message/ || comment
   # schedule: /schedule/ || calendar
-  sitemap: /sitemap.xml || sitemap
+  # sitemap: /sitemap.xml || sitemap
   # commonweal: /404/ || heartbeat
 # Enable / Disable menu icons / item badges.
 menu_settings:
-  icons: true  # 显示图标?
-  badges: true # 显示数量?
+  icons: true  # 显示图标
+  badges: false # 显示数量
 
 
 # ---------------------------------------------------------------
@@ -652,7 +653,7 @@ mediumzoom: false
 
 # Vanilla JavaScript plugin for lazyloading images.
 # For more information: https://github.com/ApoorvSaxena/lozad.js
-lazyload: false
+lazyload: true
 
 # Pangu Support
 # For more information: https://github.com/vinta/pangu.js
@@ -1079,9 +1080,9 @@ vendors:
   mediumzoom:
 
   # Lazyload
-  # lazyload: //cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js
+  lazyload: //cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js
   # lazyload: //cdnjs.cloudflare.com/ajax/libs/lozad.js/1.9.0/lozad.min.js
-  lazyload:
+  # lazyload:
 
   # Pangu
   # pangu: //cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js
