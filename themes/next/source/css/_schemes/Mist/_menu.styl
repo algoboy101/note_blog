@@ -20,12 +20,13 @@
 
 // TODO 鼠标划过菜单时,颜色变化
 .menu-item-active a {
-  background: $gray-lighter;
+  color: #fc6423;
 }
+
+
 
 .menu {
   margin: 0; // 上下padding
-
   +mobile() {
     margin: 10px 0;
     padding: 0;
@@ -33,6 +34,8 @@
 
   .menu-item {
     margin: 0;
+      box-shadow: 0 1px 3px #5b9600, 0 1px 3px #5b9600;
+      border-radius: 50px;
 
     +mobile() {
       display: block;
