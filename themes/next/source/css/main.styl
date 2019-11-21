@@ -91,6 +91,38 @@ body {
   // color: #5b9600;
 }
 
+
+// ===========================
+// 归档页-标题的颜色和背景颜色
+// 未生效
+.posts-collapse .post-title {
+    color: red;
+    // background: #000;
+    // margin-left: 50px;   
+}
+// ===========================
+// 归档页-日期的颜色
+.posts-collapse .post-meta {
+    // color: #5073b8;
+    // color: #42c1b8;
+    color: #6f42c1;
+    font-weight: 900;
+}
+// ===========================
+// 归档页-竖线-彩色
+.posts-collapse::before {
+    background-image: linear-gradient(180deg,#f79533 0,#f37055 15%,#ef4e7b 30%,#a166ab 44%,#5073b8 58%,#1098ad 72%,#07b39b 86%,#6dba82 100%);
+}
+.page-archive .posts-collapse .archive-move-on{
+    background-color: #fc6423;
+}
+.posts-collapse .collection-title::before{
+    background-color: #fc6423;
+}
+.posts-collapse .post-header::before {
+    background-color: #f0ffff00;
+}
+
 // 归档页-Title的方框
 .posts-collapse .post-header {
 position: relative;
@@ -105,12 +137,6 @@ position: relative;
     background: #c1425c00;
     border-bottom: none;
     border-radius: 20px;
-}
-// ===========================
-// 归档页-日期的颜色
-.posts-collapse .post-meta {
-    color: #5073b8;
-    font-weight: 900;
 }
 
 
@@ -131,29 +157,7 @@ position: relative;
     background: #a166ab;
     border-radius: 20px 20px 20px 20px;
 }
-// ===========================
-// 归档页-标题的颜色和背景颜色
-// 未生效
-.posts-collapse .post-title {
-    color: red;
-    // background: #000;
-    margin-left: 50px;   
-}
 
-// ===========================
-// 归档页-竖线-彩色
-.posts-collapse::before {
-    background-image: linear-gradient(180deg,#f79533 0,#f37055 15%,#ef4e7b 30%,#a166ab 44%,#5073b8 58%,#1098ad 72%,#07b39b 86%,#6dba82 100%);
-}
-.page-archive .posts-collapse .archive-move-on{
-    background-color: #fc6423;
-}
-.posts-collapse .collection-title::before{
-    background-color: #fc6423;
-}
-.posts-collapse .post-header::before {
-    background-color: #f0ffff00;
-}
 
 
 // ===========================
