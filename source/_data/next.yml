@@ -421,9 +421,10 @@ tagcloud:
   # min: 12 # Minimun font size in px
   # max: 30 # Maxium font size in px
   min: 12 # Minimun font size in px
-  max: 40 # Maxium font size in px
-  start: "#000" # Start color (hex, rgba, hsla or color keywords)
-  end: "#FFFFFF" # End color (hex, rgba, hsla or color keywords)
+  max: 30 # Maxium font size in px
+  start: "#000000" # Start color (hex, rgba, hsla or color keywords)
+  end: "#ff0000" 
+  # end: "#fc6423" # End color (hex, rgba, hsla or color keywords)
   # start: "#ccc" # Start color (hex, rgba, hsla or color keywords)
   # end: "#111" # End color (hex, rgba, hsla or color keywords)
   amount: 200 # Amount of tags, change it if you have more than 200 tags
