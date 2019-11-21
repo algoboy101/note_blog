@@ -145,8 +145,8 @@ menu:
   about: 
     default: /about/ || user
     # tags: /tags/ || user
-    about1: /about1/ || user
-    about2: /about2/ || home
+    # about1: /about1/ || user
+    # about2: /about2/ || home
   archives: /archives/ || archive
   categories: /categories/ || th
   tags: /tags/ || tags
@@ -156,7 +156,7 @@ menu:
   # commonweal: /404/ || heartbeat
 # Enable / Disable menu icons / item badges.
 menu_settings:
-  icons: true  # 显示图标
+  icons: false  # 显示图标
   badges: false # 显示数量
 
 
