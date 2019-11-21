@@ -1,5 +1,5 @@
 ---
-title: testing
+title: c++-单例模式
 tags:
   - c++
   - 编程
@@ -9,7 +9,7 @@ categories:
 comments: true
 updated: false
 author: 张学志
-abbrlink: 5f9e
+abbrlink: '7470'
 date: 2018-04-14 18:20:00
 ---
 > 本文描述了单例模式的基本概念和一个例子。
