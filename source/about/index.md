@@ -5,6 +5,8 @@ date: 2019-11-18 15:46:18
 type: "about"
 ---
 
+<div style = "text-align:right;"><input type = "button" value = "英文" /></div>
+
 ### 教育经历
 | 时间|学历|学校
 |-|-|-|
