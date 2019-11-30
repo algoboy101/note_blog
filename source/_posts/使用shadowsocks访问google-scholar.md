@@ -14,7 +14,9 @@ abbrlink: b56e
 date: 2018-04-13 20:32:00
 ---
 > 本文描述了如何在windows下，使用shadowsocks，SwitchyOmega和chrome实现访问google scholar等网站。
+
 <!-- more -->
+
 ## 获取shadowsocksR账号
 * 获取的方法有以下几种：
 	* 网上搜索免费账号
