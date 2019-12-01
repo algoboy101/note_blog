@@ -34,7 +34,8 @@ root: /
 #文章链接地址格式 
 # permalink: :year/:month/:day/:title/
 # permalink: post/:lang/:title.html
-permalink: post/:lang/:abbrlink.html
+#permalink: post/:lang/:abbrlink.html
+permalink: :abbrlink.html
 abbrlink:
   alg: crc16
   rep: hex
