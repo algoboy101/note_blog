@@ -181,8 +181,8 @@ sidebar:
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  totally remove sidebar including sidebar toggle.
   # display: post
-  display: always
-  # display: hide
+  # display: always
+  display: hide
   # display: remove
   # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
   offset: 12
@@ -422,8 +422,13 @@ tagcloud:
   # max: 30 # Maxium font size in px
   min: 12 # Minimun font size in px
   max: 30 # Maxium font size in px
-  start: "#000000" # Start color (hex, rgba, hsla or color keywords)
-  end: "#ff0000" 
+  #start: "#5ED5D1" # Start color (hex, rgba, hsla or color keywords)
+  #start: "#DB9019" # Start color (hex, rgba, hsla or color keywords)
+  start: "#1A2D27" # Start color (hex, rgba, hsla or color keywords)
+  #start: "#F1AAA6" # Start color (hex, rgba, hsla or color keywords)
+  end: "#FF6E97" 
+  #start: "#000000" # Start color (hex, rgba, hsla or color keywords)
+  #end: "#ff0000" 
   # end: "#fc6423" # End color (hex, rgba, hsla or color keywords)
   # start: "#ccc" # Start color (hex, rgba, hsla or color keywords)
   # end: "#111" # End color (hex, rgba, hsla or color keywords)
