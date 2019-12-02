@@ -425,7 +425,8 @@ tagcloud:
   #start: "#5ED5D1" # Start color (hex, rgba, hsla or color keywords)
   #start: "#DB9019" # Start color (hex, rgba, hsla or color keywords)
   #start: "#1A2D27" # Start color (hex, rgba, hsla or color keywords)
-  start: "#1E90FF" # Start color (hex, rgba, hsla or color keywords)
+  #start: "#1E90FF" # Start color (hex, rgba, hsla or color keywords)
+  start: "#0684bd" # Start color (hex, rgba, hsla or color keywords)
   #start: "#F1AAA6" # Start color (hex, rgba, hsla or color keywords)
   end: "#FF6E97" 
   #start: "#000000" # Start color (hex, rgba, hsla or color keywords)
