@@ -110,14 +110,51 @@ body {
   // color: #5b9600;
 }
 
+
+// 文章页-相关（流行）文章推荐
+.popular-posts-header {
+  border-bottom: 2px solid #bbbbbb;// $gainsboro;
+  display: block;
+  font-size: $font-size-large * 1.2;
+  margin-bottom: 10px;
+  margin-top: $post-eof-margin-bottom;
+  color: #1A2D27;
+  font-weight: bolder;
+}
+.popular-posts {
+  padding: 0;
+  .popular-posts-item {
+    .popular-posts-title {
+      a, span.exturl {
+        font-size: $font-size-medium * 1.1;
+        border-bottom: none;
+        // border-bottom: 1px solid #1E90FF;
+        text-decoration: underline;
+        color: #1E90FF
+        &:hover {
+          color: #F1AAA6;
+          // border-bottom: 1px solid #F1AAA6;
+          border-bottom: none;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
 // 文章页-下一篇文章-上一篇文章-导航
 .post-nav-item {
   a {
+    font-size: $font-size-medium;
     color: #1E90FF;
+    border-bottom: none;
+    text-decoration: underline;
+    // border-bottom: 1px solid #1E90FF;
     // background-color: #F1AAA6;
     &:hover {
       color: #F1AAA6;
-      // text-decoration: underline;
+      border-bottom: none;
+      text-decoration: underline;
     }
   }
 }
@@ -358,11 +395,14 @@ pre, .highlight {
     // color: #a166ab;
     // font-weight: bolder;
     // color: #1A2D27;
-    // border-bottom: none;
+    border-bottom: none;
+    // border-bottom: 1px solid #1E90FF;
     text-decoration: underline;
     &:hover {
       color: #F1AAA6;
-      // text-decoration: underline;
+      border-bottom: none;
+      text-decoration: underline;
+      // border-bottom: 1px solid #F1AAA6;
     }
   }
 
