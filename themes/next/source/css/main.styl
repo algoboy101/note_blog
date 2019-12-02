@@ -110,6 +110,13 @@ body {
   // color: #5b9600;
 }
 
+.book-mark-link {
+  &::before {
+    color: #FF6E97;
+  }
+}
+
+
 
 // 文章页-相关（流行）文章推荐
 .popular-posts-header {
@@ -317,7 +324,14 @@ body {
     color: #1A2D27;
     // color: #1E90FF;
     // color:#42c1b8;
+    font-size: $font-size-large;
     font-weight: bolder;
+    &:hover {
+      color: #FF6E97;
+      // border-bottom: none;
+      // text-decoration: underline;
+      // border-bottom: 1px solid #F1AAA6;
+    }
 }
 // ===========================
 // 代码框的美化代码
