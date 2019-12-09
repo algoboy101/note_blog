@@ -1,6 +1,6 @@
 ---
-title: {{ title }}
-date: {{ date }}
+title: Ubuntu18.04部署django-sspanel.md
+date: 2019-12-09 20:22:00
 tags: 
   - Linux
   - Shadowsocks
@@ -12,7 +12,6 @@ updated: false
 permalink: 
 mathjax: false
 top: false
-description: {{ title }} 
 ---
 
 <!-- more -->
