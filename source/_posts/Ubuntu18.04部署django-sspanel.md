@@ -1,5 +1,5 @@
 ---
-title: Ubuntu18.04部署django-sspanel.md
+title: Ubuntu18.04部署django-sspanel
 date: 2019-12-09 20:22:00
 tags: 
   - Linux
