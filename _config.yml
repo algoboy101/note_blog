@@ -66,7 +66,7 @@ code_dir: downloads/code
 i18n_dir: :lang
 #不需要渲染的文件夹或文件夹,放在[]中
 # 这两个文件是百度和google的站长验证文件，不能渲染，否则会改变内容，不能验证过
-skip_render: [mailto.html, baidu_verify_R9MZjdMkXT.html, google0f8fac7da2b48ef8.html, README.md, 模板.md]
+skip_render: [mailto.html, baidu_verify_R9MZjdMkXT.html, google0f8fac7da2b48ef8.html, README.md, 模板.md, attachment/*]
 
 
 # 写作选项
