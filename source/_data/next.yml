@@ -961,7 +961,7 @@ tabs:
 pdf:
   enable: true
   # Default height
-  height: 800px
+  height: 850px
 
 # Mermaid tag
 mermaid:
