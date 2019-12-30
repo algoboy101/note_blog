@@ -156,7 +156,7 @@ menu:
   # commonweal: /404/ || heartbeat
 # Enable / Disable menu icons / item badges.
 menu_settings:
-  icons: true  # 显示图标
+  icons: false  # 显示图标
   badges: false # 显示数量
 
 
