@@ -144,7 +144,7 @@ menu:
   # about: /about/ || user
   about: 
     default: /about/ || user
-    resume: /resume/ || user
+    resume: /resume/ || file-pdf-o
     # about1: /about1/ || user
     # about2: /about2/ || home
   archives: /archives/ || archive
