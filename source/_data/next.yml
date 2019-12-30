@@ -144,7 +144,7 @@ menu:
   # about: /about/ || user
   about: 
     default: /about/ || user
-    # tags: /tags/ || user
+    resume: /resume/ || user
     # about1: /about1/ || user
     # about2: /about2/ || home
   archives: /archives/ || archive
@@ -649,7 +649,7 @@ math:
 # Easily enable fast Ajax navigation on your website.
 # Dependencies: https://github.com/theme-next/theme-next-pjax
 # pjax: false
-pjax: true
+pjax: false
 
 # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
 # For more information: https://fancyapps.com/fancybox
@@ -959,9 +959,9 @@ tabs:
 # So, you must install the dependency of pdf.js if you want to use pdf tag and make it available to all browsers.
 # See: https://github.com/theme-next/theme-next-pdf
 pdf:
-  enable: false
+  enable: true
   # Default height
-  height: 500px
+  height: 800px
 
 # Mermaid tag
 mermaid:
@@ -1127,8 +1127,8 @@ vendors:
 
   # PDF
   # pdfobject: //cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js
-  # pdfobject: //cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js
-  pdfobject:
+  pdfobject: //cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js
+  #pdfobject:
 
   # Mermaid
   # mermaid: //cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js
