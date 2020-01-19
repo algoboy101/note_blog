@@ -15,9 +15,6 @@ top: false
 description: ...
 ---
 
-<!-- more -->
-
-
 # Ubuntu18.04部署django-sspanel
 
 ## 更新系统
