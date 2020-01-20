@@ -2,10 +2,8 @@
 title: Ubuntu Server 14.04安装Gnome桌面环境
 tags:
   - Linux
-  - 安装和配置软件
 categories:
   - Linux
-  - 安装和配置软件
 author: 张学志
 abbrlink: 96b3
 date: 2015-09-14 14:26:00
