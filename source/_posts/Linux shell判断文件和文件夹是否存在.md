@@ -2,16 +2,13 @@
 title: Linux shell判断文件和文件夹是否存在
 tags:
   - Linux
-  - shell
 categories:
   - Linux
-  - 经验
 author: 张学志
 abbrlink: '9582'
 date: 2015-09-22 14:19:00
+description: ...
 ---
-> 
-
 
 
 

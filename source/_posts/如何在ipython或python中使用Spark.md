@@ -1,15 +1,13 @@
 ---
 title: 如何在ipython或python中使用Spark
 tags:
-  - 大数据
-  - Spark
-  - python
+  - Linux
 categories:
-  - 大数据
-  - Spark
+  - Linux
 author: 张学志
 abbrlink: 777a
 date: 2016-07-31 13:21:00
+description: ...
 ---
 
 

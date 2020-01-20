@@ -2,15 +2,12 @@
 title: Ubuntu14.04安装Theano详细教程
 tags:
   - Linux
-  - 安装和配置软件
-  - 深度学习
-  - theano
 categories:
-  - 深度学习
-  - Theano
+  - Linux
 author: 张学志
 abbrlink: ab45
 date: 2015-11-19 13:40:00
+description: ...
 ---
 
 

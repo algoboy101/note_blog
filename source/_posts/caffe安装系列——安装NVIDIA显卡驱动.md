@@ -3,15 +3,12 @@ title: caffe安装系列——安装NVIDIA显卡驱动
 tags:
   - 深度学习
   - Caffe
-  - NVIDIA
-  - 显卡驱动
-  - 安装和配置软件
 categories:
   - 深度学习
-  - cuda
 date: '2015-9-24 14:7:00'
 author: 张学志
 abbrlink: '9237'
+description: ...
 ---
 
 

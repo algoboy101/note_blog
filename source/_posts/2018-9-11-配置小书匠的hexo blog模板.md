@@ -1,22 +1,17 @@
 ---
 title: 2018-9-11-配置小书匠的hexo blog模板
 tags:
-  - 小书匠
-  - hexo
-  - blog
+  - 软件
 categories:
-  - blog
+  - 软件
 comments: true
 updated: false
 author: 张学志
 grammar_cjkRuby: true
 abbrlink: 55b4
 date: 2018-09-02 20:56:30
+description: ...
 ---
-
-> 本文描述了：**如何配置小书匠的模板，适用于hexo blog。**
-<!-- more -->
-
 
 ## 模板内容
 

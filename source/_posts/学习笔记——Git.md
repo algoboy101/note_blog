@@ -1,16 +1,14 @@
 ---
 title: 学习笔记——Git
 tags:
-  - 笔记
-  - Git
+  - 软件
 categories:
-  - 编程工具
-  - Git
+  - 软件
 author: 张学志
 abbrlink: e9ae
 date: 2016-08-02 13:19:00
+description: ...
 ---
-> 说明，此博文是学习《Git教程——廖雪峰》的笔记
 
 
 

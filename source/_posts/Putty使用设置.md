@@ -1,14 +1,13 @@
 ---
 title: Putty使用设置
 tags:
-  - Linux
-  - Putty
+  - 软件
 categories:
-  - Linux
-  - 经验
+  - 软件
 author: 张学志
 abbrlink: d605
 date: 2015-09-21 14:23:00
+description: ...
 ---
 
 

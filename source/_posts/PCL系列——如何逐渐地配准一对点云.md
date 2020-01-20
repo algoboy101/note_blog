@@ -1,14 +1,14 @@
 ---
 title: PCL系列——如何逐渐地配准一对点云
 tags:
+  - 计算机视觉
   - PCL
-  - 配准
 categories:
-  - 图像处理
-  - PCL
+  - 计算机视觉
 author: 张学志
 abbrlink: ef71
 date: 2016-04-01 13:24:00
+description: ...
 ---
 
 

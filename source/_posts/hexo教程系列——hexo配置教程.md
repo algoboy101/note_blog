@@ -1,18 +1,16 @@
 ---
 title: hexo教程系列——hexo配置教程
 tags:
-  - hexo
-  - 安装和配置软件
+  - 运维
 categories:
-  - 博客维护
-  - Hexo
+  - 运维
 author: 张学志
 abbrlink: bee4
 date: 2016-11-02 20:41:00
 updated:
 comments:
 permalink:
-description:
+description: ...
 ---
 > 本文对hexo的配置文件进行了说明。
 

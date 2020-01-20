@@ -4,10 +4,10 @@ tags:
   - Linux
 categories:
   - Linux
-  - 经验
 author: 张学志
 abbrlink: 6b94
 date: 2015-09-22 14:21:00
+description: ...
 ---
 
 

@@ -2,13 +2,12 @@
 title: MatConvNet学习笔记
 tags:
   - 深度学习
-  - MatConvNet
 categories:
   - 深度学习
-  - MatConvNet
 author: 张学志
 abbrlink: f780
 date: 2015-08-24 14:30:00
+description: ...
 ---
 
 

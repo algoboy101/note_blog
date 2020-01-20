@@ -2,13 +2,13 @@
 title: Ubuntu-安装-Python包
 tags:
   - Linux
-  - 安装和配置软件
+  - Python
 categories:
   - Linux
-  - 安装和配置软件
 author: 张学志
 abbrlink: bdb8
 date: 2015-07-14 14:47:00
+description: ...
 ---
 
 

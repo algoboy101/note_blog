@@ -2,13 +2,12 @@
 title: Linux命令——useradd
 tags:
   - Linux
-  - 命令
 categories:
   - Linux
-  - 命令
 date: '2015-11-4 14:2:00'
 author: 张学志
 abbrlink: '4280'
+description: ...
 ---
 
 

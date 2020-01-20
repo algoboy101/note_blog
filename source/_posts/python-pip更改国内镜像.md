@@ -1,19 +1,18 @@
 ---
 title: python-pip更改国内镜像
 tags:
-  - python
   - 编程
+  - Python
 categories:
-  - python
-  - ''
+  - 编程
+  - Python
 comments: true
 updated: false
 author: 张学志
 abbrlink: 921f
 date: 2018-04-18 18:20:00
+description: ...
 ---
-> 本文描述了如何在linux上为python配置国内镜像源。
-<!-- more -->
 
 
 ## 概述

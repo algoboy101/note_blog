@@ -1,19 +1,19 @@
 ---
 title: python-让jupyter notebook支持python3
 tags:
-  - python
-  - ''
+  - 编程
+  - Python
 categories:
-  - python
-  - ''
+  - 编程
+  - Python
 comments: true
 updated: false
 author: 张学志
 abbrlink: '81e2'
 date: 2018-04-24 22:02:00
+description: ...
 ---
-> 本文描述了如何让jupyter notebook支持python3
-<!-- more -->
+
 
 * 安装完jupyter notebook之后，默认只支持python2。
 * 其实jupyter还支持非常多的编程语言。点击[jupyter kernels list](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels)查看jupyter支持哪些语言。

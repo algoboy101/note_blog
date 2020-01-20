@@ -2,13 +2,12 @@
 title: 使用Putty无法远程登录，显示服务器拒绝连接
 tags:
   - Linux
-  - Putty
 categories:
   - Linux
-  - 经验
 author: 张学志
 abbrlink: d927
 date: 2015-09-21 14:23:00
+description: ...
 ---
 
 

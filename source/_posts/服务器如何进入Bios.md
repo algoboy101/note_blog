@@ -2,13 +2,12 @@
 title: 服务器如何进入Bios
 tags:
   - Linux
-  - 安装和配置软件
 categories:
   - Linux
-  - 安装和配置软件
 author: 张学志
 abbrlink: '9119'
 date: 2015-09-14 14:28:00
+description: ...
 ---
 
 

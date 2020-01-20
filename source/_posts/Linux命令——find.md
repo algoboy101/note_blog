@@ -2,13 +2,12 @@
 title: Linux命令——find
 tags:
   - Linux
-  - 命令
 categories:
   - Linux
-  - 命令
 author: 张学志
 abbrlink: 27ee
 date: 2015-11-05 13:45:00
+description: ...
 ---
 
 

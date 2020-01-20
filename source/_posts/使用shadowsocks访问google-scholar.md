@@ -1,21 +1,17 @@
 ---
 title: 使用shadowsocksR访问google scholar
 tags:
-  - shadowsocks
-  - 翻墙
-  - 运维
+  - 软件
 categories:
-  - 运维
-  - ''
+  - 软件
 comments: true
 updated: false
 author: 张学志
 abbrlink: b56e
 date: 2018-04-13 20:32:00
+description: ...
 ---
-> 本文描述了如何在windows下，使用shadowsocks，SwitchyOmega和chrome实现访问google scholar等网站。
 
-<!-- more -->
 
 ## 获取shadowsocksR账号
 * 获取的方法有以下几种：

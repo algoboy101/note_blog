@@ -1,14 +1,14 @@
 ---
 title: PCL系列——三维重构之泊松重构
 tags:
+  - 计算机视觉
   - PCL
-  - 三维重构
 categories:
-  - 图像处理
-  - PCL
+  - 计算机视觉
 author: 张学志
 abbrlink: e073
 date: 2016-04-01 13:24:00
+description: ...
 ---
 
 

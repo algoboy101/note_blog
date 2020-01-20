@@ -1,13 +1,13 @@
 ---
 title: Visual Studio——设置缩进
 tags:
-  - Visual Studio
+  - 软件
 categories:
-  - 编程工具
-  - VS
+  - 软件
 author: 张学志
 abbrlink: a86
 date: 2016-03-28 13:33:00
+description: ...
 ---
 
 

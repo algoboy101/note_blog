@@ -3,14 +3,12 @@ title: caffe安装系列——安装GCC4.7和G++4.7并降级
 tags:
   - 深度学习
   - Caffe
-  - GCC
-  - 安装和配置软件
 categories:
   - 深度学习
-  - cuda
 author: 张学志
 abbrlink: 5dcf
 date: 2015-09-22 14:21:03
+description: ...
 ---
 
 

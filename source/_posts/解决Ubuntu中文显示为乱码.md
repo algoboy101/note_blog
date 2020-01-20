@@ -2,13 +2,12 @@
 title: 解决Ubuntu中文显示为乱码
 tags:
   - Linux
-  - 乱码
 categories:
   - Linux
-  - 经验
 author: 张学志
 abbrlink: f09f
 date: 2016-09-19 12:35:00
+description: ...
 ---
 
 

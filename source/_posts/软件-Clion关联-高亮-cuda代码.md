@@ -2,19 +2,16 @@
 title: 软件-Clion关联(高亮)cuda代码
 tags:
   - 软件
-  - Clion
-  - ''
 categories:
   - 软件
-  - ''
 comments: true
 updated: false
 author: 张学志
 abbrlink: 17be
 date: 2018-04-16 11:41:00
+description: ...
 ---
-> 本文描述了如何在Clion中高亮cuda代码。
-<!-- more -->
+
 
 ## 操作步骤
 

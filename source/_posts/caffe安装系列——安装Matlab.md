@@ -3,14 +3,12 @@ title: caffe安装系列——安装Matlab
 tags:
   - 深度学习
   - Caffe
-  - Matlab
-  - 安装和配置软件
 categories:
   - 深度学习
-  - cuda
 author: 张学志
 abbrlink: 3bb1
 date: 2015-09-23 14:17:00
+description: ...
 ---
 
 

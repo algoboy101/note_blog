@@ -3,16 +3,13 @@ title: caffe安装系列——综述
 tags:
   - 深度学习
   - Caffe
-  - 安装和配置软件
 categories:
   - 深度学习
-  - cuda
 date: '2015-9-24 14:8:00'
 author: 张学志
 abbrlink: b95
+description: ...
 ---
-
-
 
 
 ## 说明

@@ -4,10 +4,10 @@ tags:
   - Linux
 categories:
   - Linux
-  - 经验
 author: 张学志
 abbrlink: a7cd
 date: 2015-06-24 14:50:00
+description: ...
 ---
 
 

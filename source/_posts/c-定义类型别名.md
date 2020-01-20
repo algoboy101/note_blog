@@ -1,19 +1,19 @@
 ---
 title: c++-定义类型别名
 tags:
-  - c++
   - 编程
+  - C++
 categories:
-  - c++
-  - ''
+  - 编程
+  - C++
 comments: true
 updated: false
 author: 张学志
 abbrlink: c71d
 date: 2018-04-14 22:24:00
+description: ...
 ---
-> 本文描述了C++中的3种定义“类型别名”的方式。
-<!-- more -->
+
 
 
 ## 概述

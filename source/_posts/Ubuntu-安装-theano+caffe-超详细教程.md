@@ -2,16 +2,13 @@
 title: Ubuntu-安装-theano+caffe-超详细教程
 tags:
   - Linux
-  - 安装和配置软件
   - 深度学习
-  - theano
-  - caffe
 categories:
   - Linux
-  - 安装和配置软件
 author: 张学志
 abbrlink: b846
 date: 2015-09-17 14:24:00
+description: ...
 ---
 
 

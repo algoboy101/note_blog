@@ -1,13 +1,14 @@
 ---
 title: PCL系列——平面模型分割
 tags:
+  - 计算机视觉
   - PCL
 categories:
-  - 图像处理
-  - PCL
+  - 计算机视觉
 author: 张学志
 abbrlink: ab16
 date: 2016-04-20 13:24:00
+description: ...
 ---
 
 

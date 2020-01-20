@@ -9,9 +9,9 @@ updated: false
 author: 张学志
 abbrlink: 7b97
 date: 2018-04-15 23:11:00
+description: ...
 ---
-> 本文描述了使用国内免费CDN**【加速乐】**来加速GitHub-Pages。
-<!-- more -->
+
 
  ## 概述
  

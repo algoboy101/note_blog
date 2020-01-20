@@ -3,14 +3,12 @@ title: caffe安装系列——安装OpenCV
 tags:
   - 深度学习
   - Caffe
-  - OpenCV
-  - 安装和配置软件
 categories:
   - 深度学习
-  - cuda
 author: 张学志
 abbrlink: 51f1
 date: 2015-09-24 14:15:00
+description: ...
 ---
 
 

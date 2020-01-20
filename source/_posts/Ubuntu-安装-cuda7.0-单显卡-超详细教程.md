@@ -2,15 +2,13 @@
 title: Ubuntu-安装-cuda7.0-单显卡-超详细教程
 tags:
   - Linux
-  - 安装和配置软件
   - 深度学习
-  - cuda
 categories:
-  - 深度学习
-  - cuda
+  - Linux
 author: 张学志
 abbrlink: '2455'
 date: 2015-08-02 14:31:00
+description: ...
 ---
 
 

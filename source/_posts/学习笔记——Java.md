@@ -1,14 +1,15 @@
 ---
 title: 学习笔记——Java
 tags:
-  - 笔记
+  - 编程
   - Java
 categories:
-  - 编程语言
+  - 编程
   - Java
 author: 张学志
 abbrlink: 5a2b
 date: 2016-08-09 13:14:00
+description: ...
 ---
 
 

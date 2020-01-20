@@ -3,14 +3,13 @@ title: >-
   错误-VS2010 error:LINK:fatal error LNK1123:failure during conversion to
   COFF:file invalid or c
 tags:
-  - 错误
-  - VS
+  - 软件
 categories:
-  - 编程工具
-  - VS
+  - 软件
 author: 张学志
 abbrlink: 7c40
 date: 2016-03-18 13:35:00
+description: ...
 ---
 
 

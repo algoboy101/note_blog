@@ -1,13 +1,15 @@
 ---
 title: 编码练习——Java-5-接口、继承与多态
 tags:
+  - 编程
   - Java
 categories:
-  - 编程语言
+  - 编程
   - Java
 date: '2016-08-12 13:5:00'
 author: 张学志
 abbrlink: '4938'
+description: ...
 ---
 
 

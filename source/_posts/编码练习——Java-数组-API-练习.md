@@ -1,13 +1,15 @@
 ---
 title: 编码练习——Java-数组-API-练习
 tags:
+  - 编程
   - Java
 categories:
-  - 编程语言
+  - 编程
   - Java
 author: 张学志
 abbrlink: c2a4
 date: 2016-08-28 12:56:00
+description: ...
 ---
 
 

@@ -2,15 +2,13 @@
 title: Linux命令——awk
 tags:
   - Linux
-  - 命令
 categories:
   - Linux
-  - 命令
 author: 张学志
 abbrlink: 8c68
 date: 2015-11-04 13:45:00
+description: ...
 ---
-> 
 
 
 

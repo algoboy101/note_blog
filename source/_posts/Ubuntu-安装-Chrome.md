@@ -2,13 +2,12 @@
 title: Ubuntu-安装-Chrome
 tags:
   - Linux
-  - 安装和配置软件
 categories:
   - Linux
-  - 安装和配置软件
 author: 张学志
 abbrlink: '2175'
 date: 2015-07-31 14:34:00
+description: ...
 ---
 
 

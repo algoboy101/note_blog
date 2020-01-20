@@ -2,13 +2,12 @@
 title: Linux下安装Eclipse
 tags:
   - Linux
-  - 安装和配置软件
 categories:
   - Linux
-  - 安装和配置软件
 author: 张学志
 abbrlink: 5eb9
 date: 2015-11-14 13:42:00
+description: ...
 ---
 
 

@@ -1,14 +1,13 @@
 ---
 title: Xftp使用教程——问答方式
 tags:
-  - Xftp
-  - Windows
+  - 软件
 categories:
-  - Windows
   - 软件
 author: 张学志
 abbrlink: 832d
 date: 2015-11-03 14:59:00
+description: ...
 ---
 
 

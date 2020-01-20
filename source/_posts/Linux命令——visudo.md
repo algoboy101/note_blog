@@ -2,13 +2,12 @@
 title: Linux命令——visudo
 tags:
   - Linux
-  - 命令
 categories:
   - Linux
-  - 命令
 author: 张学志
 abbrlink: af33
 date: 2015-11-04 13:58:00
+description: ...
 ---
 
 

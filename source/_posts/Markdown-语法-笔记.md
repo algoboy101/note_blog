@@ -1,14 +1,13 @@
 ---
 title: Markdown-语法-笔记
 tags:
-  - Markdown
-  - 学习笔记
+  - 编程
 categories:
-  - 编程语言
-  - Markdown
+  - 编程
 author: 张学志
 abbrlink: 59a5
 date: 2015-06-24 14:51:00
+description: ...
 ---
 
 

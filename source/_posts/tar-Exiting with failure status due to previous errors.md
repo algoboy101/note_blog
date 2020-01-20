@@ -2,13 +2,12 @@
 title: 'tar:Exiting with failure status due to previous errors'
 tags:
   - Linux
-  - 错误
 categories:
   - Linux
-  - 经验
 author: 张学志
 abbrlink: b1d9
 date: 2015-07-17 14:43:00
+description: ...
 ---
 
 

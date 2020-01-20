@@ -2,13 +2,12 @@
 title: Ubuntu使用过程中遇到的问题
 tags:
   - Linux
-  - 学习笔记
 categories:
   - Linux
-  - 经验
 author: 张学志
 abbrlink: abf0
 date: 2015-06-29 14:48:00
+description: ...
 ---
 
 

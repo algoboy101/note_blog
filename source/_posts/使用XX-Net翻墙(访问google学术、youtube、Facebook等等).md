@@ -1,14 +1,13 @@
 ---
 title: 使用XX-Net翻墙(访问google学术、youtube、Facebook等等）
 tags:
-  - 翻墙
-  - XX-Net
+  - 软件
 categories:
-  - Windows
-  - 经验
+  - 软件
 author: 张学志
 abbrlink: 8d1f
 date: 2015-09-12 21:02:00
+description: ...
 ---
 
 

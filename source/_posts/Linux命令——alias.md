@@ -2,15 +2,13 @@
 title: Linux命令——alias
 tags:
   - Linux
-  - 命令
 categories:
   - Linux
-  - 命令
 author: 张学志
 abbrlink: '34e1'
 date: 2015-11-04 13:47:00
+description: ...
 ---
-> 
 
 
 

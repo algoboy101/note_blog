@@ -1,13 +1,14 @@
 ---
 title: PCL系列——将点云数据写入PCD格式文件
 tags:
+  - 计算机视觉
   - PCL
 categories:
-  - 图像处理
-  - PCL
+  - 计算机视觉
 author: 张学志
 abbrlink: bac6
 date: 2016-03-30 13:30:00
+description: ...
 ---
 
 

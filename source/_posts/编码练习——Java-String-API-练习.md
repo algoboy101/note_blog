@@ -1,13 +1,15 @@
 ---
 title: 编码练习——Java-String-API-练习
 tags:
+  - 编程
   - Java
 categories:
-  - 编程语言
+  - 编程
   - Java
 author: 张学志
 abbrlink: dd33
 date: 2016-08-28 12:58:00
+description: ...
 ---
 
 

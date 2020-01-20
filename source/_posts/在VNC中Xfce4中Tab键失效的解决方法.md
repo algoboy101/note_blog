@@ -1,12 +1,13 @@
 ---
 title: 在VNC中Xfce4中Tab键失效的解决方法
 tags:
-  - VNC
+  - Linux
 categories:
   - Linux
 author: 张学志
 abbrlink: f8c1
 date: 2015-09-22 14:19:00
+description: ...
 ---
 
 

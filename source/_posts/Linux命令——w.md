@@ -2,13 +2,12 @@
 title: Linux命令——w
 tags:
   - Linux
-  - 命令
 categories:
   - Linux
-  - 命令
 date: '2015-11-4 14:0:00'
 author: 张学志
 abbrlink: a95
+description: ...
 ---
 
 

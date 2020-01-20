@@ -2,13 +2,12 @@
 title: Linux终端提示符显示颜色
 tags:
   - Linux
-  - 终端
 categories:
   - Linux
-  - 经验
 author: 张学志
 abbrlink: 32ac
 date: 2015-11-13 13:42:00
+description: ...
 ---
 
 

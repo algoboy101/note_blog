@@ -2,15 +2,13 @@
 title: 服务器安装并配置Ubuntu Server 14.04
 tags:
   - Linux
-  - 安装和配置软件
 categories:
   - Linux
-  - 安装和配置软件
 author: 张学志
 abbrlink: 8c26
 date: 2015-10-13 21:02:00
 comments:
-description:
+description: ...
 ---
 
 

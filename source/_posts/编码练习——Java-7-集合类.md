@@ -1,13 +1,15 @@
 ---
 title: 编码练习——Java-7-集合类
 tags:
+  - 编程
   - Java
 categories:
-  - 编程语言
+  - 编程
   - Java
 author: 张学志
 abbrlink: 61ef
 date: 2016-08-12 13:55:00
+description: ...
 ---
 
 

@@ -2,13 +2,12 @@
 title: Linux命令——diff
 tags:
   - Linux
-  - 命令
 categories:
   - Linux
-  - 命令
 author: 张学志
 abbrlink: '9e69'
 date: 2015-11-05 13:44:00
+description: ...
 ---
 
 

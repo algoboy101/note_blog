@@ -1,15 +1,15 @@
 ---
 title: 剑指Offer——Java答案
 tags:
-  - 编程语言
+  - 编程
   - Java
-  - 剑指Offer
 categories:
-  - 编程语言
+  - 编程
   - Java
 author: 张学志
 abbrlink: '4352'
 date: 2016-09-04 12:43:00
+description: ...
 ---
 
 

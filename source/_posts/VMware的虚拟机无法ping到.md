@@ -1,15 +1,13 @@
 ---
 title: VMware的虚拟机无法ping到
 tags:
-  - Linux
-  - VMware
-  - ping
+  - 软件
 categories:
-  - Linux
-  - 经验
+  - 软件
 author: 张学志
 abbrlink: c2de
 date: 2015-07-16 14:44:00
+description: ...
 ---
 
 

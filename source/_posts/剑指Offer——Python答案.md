@@ -1,15 +1,15 @@
 ---
 title: 剑指Offer——Python答案
 tags:
-  - 编程语言
+  - 编程
   - Python
-  - 剑指Offer
 categories:
-  - 编程语言
+  - 编程
   - Python
 author: 张学志
 abbrlink: 6c52
 date: 2016-08-05 13:18:00
+description: ...
 ---
 
 

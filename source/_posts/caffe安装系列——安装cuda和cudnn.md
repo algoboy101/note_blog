@@ -3,14 +3,12 @@ title: caffe安装系列——安装cuda和cudnn
 tags:
   - 深度学习
   - Caffe
-  - cudnn
-  - 安装和配置软件
 categories:
   - 深度学习
-  - Caffe
 author: 张学志
 abbrlink: 7e5a
 date: 2015-09-22 14:22:02
+description: ...
 ---
 
 

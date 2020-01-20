@@ -1,18 +1,18 @@
 ---
 title: python-为Python添加默认模块搜索路径
 tags:
-  - python
   - 编程
+  - Python
 categories:
-  - python
+  - 编程
+  - Python
 comments: true
 updated: false
 author: 张学志
 abbrlink: 770a
 date: 2018-04-21 23:01:36
+description: ...
 ---
-> 本文描述了3种**为Python添加模块搜索路径**的方法。
-<!-- more -->
 
 
 

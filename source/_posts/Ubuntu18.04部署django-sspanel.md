@@ -1,18 +1,18 @@
 ---
 title: Ubuntu18.04部署django-sspanel
-date: 2019-12-09 20:22:00
-tags: 
+tags:
   - Linux
-  - Shadowsocks
-categories: 
+categories:
   - Linux
 author: 张学志
 comments: true
 updated: false
-permalink: 
 mathjax: false
 top: false
 description: ...
+abbrlink: '2729'
+date: 2019-12-09 20:22:00
+permalink:
 ---
 
 # Ubuntu18.04部署django-sspanel

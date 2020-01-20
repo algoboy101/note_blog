@@ -12,10 +12,8 @@ author: 张学志
 grammar_cjkRuby: true
 abbrlink: d97d
 date: 2018-09-03 07:30:39
+description: ...
 ---
-
-> 本文分析了论文：Semi-Supervised Deep Learning for Monocular Depth Map Prediction
-<!-- more -->。
 
 ## 贡献
 * 提出了一个半监督的深度估计算法：有监督loss + 无监督loss。

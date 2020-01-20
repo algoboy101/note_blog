@@ -1,14 +1,15 @@
 ---
 title: Python学习笔记(未完)
 tags:
+  - 编程
   - Python
-  - 学习笔记
 categories:
-  - 编程语言
+  - 编程
   - Python
 author: 张学志
 abbrlink: 8f01
 date: 2015-06-28 14:50:00
+description: ...
 ---
 
 

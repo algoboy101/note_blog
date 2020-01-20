@@ -2,13 +2,12 @@
 title: Linux学习笔记
 tags:
   - Linux
-  - 学习笔记
 categories:
   - Linux
-  - 学习笔记
 author: 张学志
 abbrlink: 86b7
 date: 2015-06-28 14:49:00
+description: ...
 ---
 
 

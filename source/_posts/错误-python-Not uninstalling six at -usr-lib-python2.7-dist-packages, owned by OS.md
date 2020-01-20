@@ -4,14 +4,12 @@ title: >-
   OS
 tags:
   - Linux
-  - 错误
-  - 安装和配置软件
 categories:
   - Linux
-  - 经验
 author: 张学志
 abbrlink: 7aa0
 date: 2015-11-11 13:43:00
+description: ...
 ---
 
 

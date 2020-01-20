@@ -1,13 +1,15 @@
 ---
 title: 编码练习——Java-5-类和对象
 tags:
+  - 编程
   - Java
 categories:
-  - 编程语言
+  - 编程
   - Java
 date: '2016-08-12 13:5:01'
 author: 张学志
 abbrlink: f0b0
+description: ...
 ---
 
 ## 基本

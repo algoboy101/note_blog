@@ -1,18 +1,18 @@
 ---
 title: c++-工厂模式
 tags:
-  - c++
   - 编程
+  - C++
 categories:
-  - c++
+  - 编程
+  - C++
 comments: true
 updated: false
 author: 张学志
 abbrlink: d739
 date: 2018-04-14 06:43:00
+description: ...
 ---
-> 本文描述了c++工厂模式基本概念和一个例子。
-<!-- more -->
 
 ## 基本概念
 * 定义一个用于创建对象的接口，让子类决定实例化哪一个类。Factory Method使一个类的实例化延迟到其子类。又叫虚拟构造子（Virtual Constructor）模式或者多态性工厂（Polymorphic Factory）模式。 

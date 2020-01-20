@@ -2,13 +2,12 @@
 title: 服务器维护系列——VNC没有反应了怎么办？
 tags:
   - Linux
-  - VNC
 categories:
   - Linux
-  - 经验
 author: 张学志
 abbrlink: 4e0f
 date: 2016-03-29 13:33:00
+description: ...
 ---
 
 

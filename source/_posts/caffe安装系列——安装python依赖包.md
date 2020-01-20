@@ -3,14 +3,12 @@ title: caffe安装系列——安装python依赖包
 tags:
   - 深度学习
   - Caffe
-  - Python
-  - 安装和配置软件
 categories:
   - 深度学习
-  - cuda
 author: 张学志
 abbrlink: 3aa4
 date: 2015-09-24 14:13:00
+description: ...
 ---
 
 

@@ -2,13 +2,12 @@
 title: Ubuntu-安装-有道词典
 tags:
   - Linux
-  - 安装和配置软件
 categories:
   - Linux
-  - 安装和配置软件
 author: 张学志
 abbrlink: '8713'
 date: 2015-07-14 14:47:00
+description: ...
 ---
 
 

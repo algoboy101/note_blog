@@ -3,17 +3,15 @@ title: caffe安装系列——安装caffe
 tags:
   - 深度学习
   - Caffe
-  - 安装和配置软件
 categories:
   - 深度学习
-  - Caffe
 author: 张学志
 abbrlink: '5177'
 date: 2015-10-13 21:02:00
 updated:
 comments:
 permalink:
-description:
+description: ...
 ---
 
 

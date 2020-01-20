@@ -1,19 +1,17 @@
 ---
 title: 2018-9-11-NYU Depth v2数据库相关信息
 tags:
-  - 数据库
+  - 论文
 categories:
-  - 数据库
+  - 论文
 comments: true
 updated: false
 author: 张学志
 date: '2018-9-2 21:10:5'
 grammar_cjkRuby: true
 abbrlink: c7a7
+description: ...
 ---
-
-> 本文描述了：
-<!-- more -->
 
 ## 基本信息
 

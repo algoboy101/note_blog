@@ -1,14 +1,13 @@
 ---
 title: Windows办公技能——在当前文件夹中打开命令行窗口
 tags:
-  - Windows
-  - 命令行
+  - 软件
 categories:
-  - Windows
-  - 经验
+  - 软件
 author: 张学志
 abbrlink: 8d1
 date: 2016-03-23 13:33:00
+description: ...
 ---
 
 

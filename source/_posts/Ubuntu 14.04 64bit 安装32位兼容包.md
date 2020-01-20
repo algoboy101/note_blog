@@ -2,13 +2,12 @@
 title: Ubuntu 14.04 64bit 安装32位兼容包
 tags:
   - Linux
-  - 安装和配置软件
 categories:
   - Linux
-  - 安装和配置软件
 author: 张学志
 abbrlink: 9ef4
 date: 2015-09-15 14:26:00
+description: ...
 ---
 
 

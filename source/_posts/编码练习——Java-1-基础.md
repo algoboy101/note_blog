@@ -1,13 +1,15 @@
 ---
 title: 编码练习——Java-1-基础
 tags:
+  - 编程
   - Java
 categories:
-  - 编程语言
+  - 编程
   - Java
 date: '2016-08-10 13:5:00'
 author: 张学志
 abbrlink: '572'
+description: ...
 ---
 
 

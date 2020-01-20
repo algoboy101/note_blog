@@ -1,21 +1,17 @@
 ---
 title: hexo教程系列——hexo安装教程
 tags:
-  - hexo
-  - 安装和配置软件
+  - 运维
 categories:
-  - 博客维护
-  - Hexo
+  - 运维
 author: 张学志
 abbrlink: ed61
 date: 2016-11-01 23:02:00
 updated:
 comments:
 permalink:
-description:
+description: ...
 ---
-> 本文详细描述了如何在Github上，使用hexo部署博客。
-
 
 
 # 安装Hexo

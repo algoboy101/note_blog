@@ -1,19 +1,18 @@
 ---
 title: c++-单例模式
 tags:
-  - c++
   - 编程
+  - C++
 categories:
-  - c++
-  - ''
+  - 编程
+  - C++
 comments: true
 updated: false
 author: 张学志
 abbrlink: '7470'
 date: 2018-04-14 18:20:00
+description: ...
 ---
-> 本文描述了单例模式的基本概念和一个例子。
-<!-- more -->
 
 ## 基本概念
 * Singleton 是对全局变量的取代策略。

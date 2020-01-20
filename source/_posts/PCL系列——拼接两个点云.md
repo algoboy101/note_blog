@@ -1,13 +1,14 @@
 ---
 title: PCL系列——拼接两个点云
 tags:
+  - 计算机视觉
   - PCL
 categories:
-  - 图像处理
-  - PCL
+  - 计算机视觉
 author: 张学志
 abbrlink: 4dd2
 date: 2016-04-20 13:20:00
+description: ...
 ---
 
 

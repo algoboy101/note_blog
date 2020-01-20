@@ -1,14 +1,14 @@
 ---
 title: PCL系列——如何使用迭代最近点法（ICP）配准
 tags:
+  - 计算机视觉
   - PCL
-  - 配准
 categories:
-  - 图像处理
-  - PCL
+  - 计算机视觉
 author: 张学志
 abbrlink: 39c2
 date: 2016-03-31 13:24:00
+description: ...
 ---
 
 

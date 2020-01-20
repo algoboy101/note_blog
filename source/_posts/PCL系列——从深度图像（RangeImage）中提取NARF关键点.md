@@ -1,14 +1,14 @@
 ---
 title: PCL系列——从深度图像（RangeImage）中提取NARF关键点
 tags:
+  - 计算机视觉
   - PCL
-  - 关键点
 categories:
-  - 图像处理
-  - PCL
+  - 计算机视觉
 author: 张学志
 abbrlink: '630'
 date: 2016-03-30 13:24:00
+description: ...
 ---
 
 

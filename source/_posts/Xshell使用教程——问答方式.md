@@ -1,14 +1,13 @@
 ---
 title: Xshell使用教程——问答方式
 tags:
-  - Xshell
-  - Windows
+  - 软件
 categories:
-  - Windows
   - 软件
 date: '2015-11-3 14:3:00'
 author: 张学志
 abbrlink: '9210'
+description: ...
 ---
 
 

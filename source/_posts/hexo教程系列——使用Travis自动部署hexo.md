@@ -1,17 +1,14 @@
 ---
 title: hexo教程系列——使用Travis自动部署hexo
 tags:
-  - hexo
-  - 安装和配置软件
+  - 运维
 categories:
-  - 博客维护
-  - Hexo
+  - 运维
 author: 张学志
 abbrlink: c0af
 date: 2016-11-02 21:02:00
-description:
+description: ...
 ---
-> 本文介绍了如何使用Travis CI自动部署hexo，解决了家里和公司两地写博客的麻烦。本博客实现了博客仓库中的dev分支改动时，自动部署到master分支中。
 
 
 ## 说明

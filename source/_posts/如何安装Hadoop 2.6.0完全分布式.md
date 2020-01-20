@@ -1,14 +1,13 @@
 ---
 title: 如何安装Hadoop 2.6.0完全分布式？
 tags:
-  - 大数据
-  - Hadoop
+  - Linux
 categories:
-  - 大数据
-  - Hadoop
+  - Linux
 author: 张学志
 abbrlink: e6d7
 date: 2016-07-31 13:20:00
+description: ...
 ---
 
 

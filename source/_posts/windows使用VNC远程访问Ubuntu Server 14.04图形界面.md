@@ -1,15 +1,13 @@
 ---
 title: windows使用VNC远程访问Ubuntu Server 14.04图形界面
 tags:
-  - Windows
-  - VNC
-  - Linux
+  - 软件
 categories:
-  - Windows
-  - 经验
+  - 软件
 author: 张学志
 abbrlink: 47a9
 date: 2015-09-14 14:29:00
+description: ...
 ---
 
 
@@ -22,7 +20,6 @@ date: 2015-09-14 14:29:00
 ## 问题
 按照网上的教程安装vnc4server之后，并设置xstartup文件。在windows端通过VNCViewer登录，只能看到命令行，其他的看不到。
 
-<!-- more -->
 
 ## 安装以下软件
 * 在终端中运行以下命令，安装相应软件

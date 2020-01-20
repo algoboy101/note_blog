@@ -1,13 +1,14 @@
 ---
 title: PCL系列——如何可视化深度图像
 tags:
+  - 计算机视觉
   - PCL
 categories:
-  - 图像处理
-  - PCL
+  - 计算机视觉
 author: 张学志
 abbrlink: fdc7
 date: 2016-03-30 13:28:00
+description: ...
 ---
 
 

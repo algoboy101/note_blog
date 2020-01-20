@@ -4,13 +4,12 @@ title: >-
   memory
 tags:
   - Linux
-  - 错误
-  - 安装和配置软件
 categories:
   - Linux
 date: '2016-8-15 13:0:00'
 author: 张学志
 abbrlink: eb07
+description: ...
 ---
 
 
