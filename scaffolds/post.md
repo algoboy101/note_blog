@@ -11,7 +11,6 @@ updated: false
 permalink: 
 mathjax: false
 top: false
-description: {{ title }} 
+description: ...
 ---
 
-<!-- more -->
