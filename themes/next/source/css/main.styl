@@ -80,31 +80,46 @@ body {
 }
 // 美化 h1/h2/h3/h4/h5/h6 标签 (前景)
 .post-body h1 {
-  // color: #fc6423;
-  color: #FF6E97;
+  color: $mycolor_h16;
+  &:hover {
+    color: $mycolor_h16_hover;
+  }
 }
 .post-body h2 {
-  color: #FF6E97;
+  color: $mycolor_h16;
+  &:hover {
+    color: $mycolor_h16_hover;
+  }
 }
 .post-body h3 {
-  color: #FF6E97;
-  // color: #5b9600;
+  color: $mycolor_h16;
+  &:hover {
+    color: $mycolor_h16_hover;
+  }
 }
 .post-body h4 {
-  color: #FF6E97;
-  // color: #fc6423;
+  color: $mycolor_h16;
+  &:hover {
+    color: $mycolor_h16_hover;
+  }
 }
 .post-body h5 {
-  color: #FF6E97;
+  color: $mycolor_h16;
+  &:hover {
+    color: $mycolor_h16_hover;
+  }
 }
 .post-body h6 {
-  color: #FF6E97;
-  // color: #5b9600;
+  color: $mycolor_h16;
+  &:hover {
+    color: $mycolor_h16_hover;
+  }
 }
 
 .book-mark-link {
   &::before {
-    color: #FF6E97;
+  // color: $mycolor_book_mark_link;
+  // color: $black-deep;
   }
 }
 
@@ -120,17 +135,13 @@ body {
 
     a, span.exturl {
       border-bottom: none;
-      // color: $grey-dim;
-      // color: #1E90FF;
       color: $blue;
     }
 
 }
 // 归档页-日期的颜色
 .posts-collapse .post-meta {
-    // color: #5073b8;
-    // color: #42c1b8;
-    color: #FF6E97;
+    color: $red;
     font-weight: 900;
     margin-left: 8px; 
 }
@@ -143,13 +154,16 @@ body {
     margin: 20px 0;
 }
 .page-archive .posts-collapse .archive-move-on{
-    background-color: #FF6E97;
+    // background-color: #FF6E97;
+    background-color: $red;
 }
 .posts-collapse .collection-title::before{
-    background-color: #FF6E97;
+    // background-color: #FF6E97;
+    background-color: $red;
 }
 .posts-collapse .post-header::before {
     background-color: #f0ffff00;
+    // background-color: $black;
 }
 // 归档页 Title的方框
 // .posts-collapse .post-header {
@@ -183,7 +197,8 @@ body {
   //  font-weight: 900; // 加粗 
   // color: #FF6E97;
   // color:#1A2D27;
-  color:#FF6E97;
+  // color:#FF6E97;
+  color: $red;
 }
 
 
@@ -203,6 +218,7 @@ body {
 // }
 // 标签页-底部选择按钮(1.2.3.4.5)颜色
 .pagination .page-number.current {
+    // color: $red;
     background: #1A2D27;
     border-radius: 20px 20px 20px 20px;
 }
@@ -218,7 +234,8 @@ body {
     border-width: 1px 1px 1px 2px;
     border-style: dashed dashed dashed solid;
     // border-color: #5ED5D1;
-    border-color: rgb(170, 170, 170) rgb(170, 170, 170) rgb(170, 170, 170) rgb(108, 226, 108);
+    border-color: rgb(170, 170, 170) rgb(170, 170, 170) rgb(170, 170, 170) $blue-bright;
+    // border-color: rgb(170, 170, 170) rgb(170, 170, 170) rgb(170, 170, 170) rgb(108, 226, 108);
     border-image: initial;
     position: relative;
 }
@@ -230,7 +247,10 @@ code {
   // color: #ff7600;
   // background: #fbf7f8;
   // color: #1A2D27;
-  background: #F1AAA6;
+  // background: #F1AAA6;
+  // background: $grey-light;
+  background: $blue-bright;
+  // backgroudn: #f0faf9;
   border-radius: 3px;
   // font-size: 15px;
   // font-weight: bold;
@@ -246,7 +266,8 @@ strong{
 font-weight: bold;
     // background-color: #9f95ff;
     // border-radius: 39px;
-    color: #DB9019;
+    // color: #DB9019;
+    color: $red;
     padding-left: 0px;
     padding-right: 1px;
     text-shadow: 1px 1px 1px #0003;
@@ -256,7 +277,8 @@ em{
 // font-weight: bold;
     // background-color: #9f95ff;
     // border-radius: 39px;
-    color: #DB9019;
+    // color: #DB9019;
+    color: $red;
     // padding-left: 0px;
     // padding-right: 1px;
     // text-shadow: 1px 1px 1px #0003;
@@ -266,7 +288,8 @@ del{
 // font-weight: bold;
     // background-color: #9f95ff;
     // border-radius: 39px;
-    color: #DB9019;
+    // color: #DB9019;
+    color: $red;
     // padding-left: 0px;
     // padding-right: 1px;
     text-shadow: 1px 1px 1px #0003;
@@ -280,23 +303,26 @@ th{
   // background: #ff7600;
   // background: #6495ED;
   // background: #1E90FF;
-  background: #5ED5D1;
+  background: $blue;
   font-weight: bolder;
 }
 // ===========================
 // 引用-方框-美化 > 
 blockquote {
   padding: 0 15px;
-  color: #1A2D27;
+  color: $black-deep;
   // font-family: cursive;
   background-color: #f0faf9;
   // border-left-color: #42c1b8;
-  border-left-color: #5ED5D1;
+  // border-left-color: #5ED5D1;
+  border-left-color: $blue-bright;
 }
 // 引用-字体高亮 > 
 pre, .highlight {
     background: #f7f7f7;
-    color: #5cb85c;
+    // color: #5cb85c;
+    color: $blue;
+    // color: $red;
     line-height: 1.1;
 }
 // ===========================
@@ -316,7 +342,8 @@ pre, .highlight {
     // border-bottom: 1px solid #1E90FF;
     text-decoration: underline;
     &:hover {
-      color: #F1AAA6;
+      // color: $red;
+      color: $black-dim ;
       border-bottom: none;
       text-decoration: underline;
       // border-bottom: 1px solid #F1AAA6;
@@ -330,9 +357,8 @@ pre, .highlight {
 // ===========================
 // header颜色
 .header {
-  // background: #42c1b8;
-  // background: #5ED5D1;
   background: #4CB4E7;
+  // background: $blue;
 }
 // HEADER是否显示
 .header-inner {
@@ -349,8 +375,7 @@ pre, .highlight {
 // 鼠标划过菜单时,颜色变化
 // file: _menu.styl
 .menu-item-active a {
-  // color: #DB9019;
-  color: #ffffff;
+  color: $red;
 }
 .menu {
   font-weight: 900; // 加粗 
@@ -360,7 +385,6 @@ pre, .highlight {
     // margin: 0;
     // box-shadow: 0 1px 3px #5b9600, 0 1px 3px #5b9600;
     // border-radius: 50px;
-
     // &:hover { //鼠标飘过时反应
     //   @extend .menu-item-active a;
     // }
@@ -389,16 +413,30 @@ pre, .highlight {
 // 设置 首页-标题的颜色
 .posts-expand .post-title-link {
     // color: #fc6423;
-    // color:#42c1b8;
-    color: #FF6E97;
+    // color: $black-deep;
+    color: $blue;
+    // color: $red;
+    // color: $orange;
+    // color: #FF6E97;
     // color: #6495ED;
     font-weight: bolder;
-    font-size: 16px;
+    // font-size: 16px;
 }
 // 首页-文章标题的下划线 彩色
 .posts-expand .post-title-link::before {
     // background-image: linear-gradient(90deg,#a166ab 0,#ef4e7b 25%,#f37055 50%,#ef4e7b 75%,#a166ab 100%);
-    background-image: linear-gradient(90deg,#FF6E97 0,#FF6E97 25%,#F1AAA6 50%,#FF6E97 75%,#FF6E97 100%);
+    // background-image: linear-gradient(90deg,#FF6E97 0,#FF6E97 25%,#F1AAA6 50%,#FF6E97 75%,#FF6E97 100%);
+    // background-image: linear-gradient(90deg,#0684bd 0,#0684bd 25%,#5ed5d1 50%,#0684bd 75%,#0684bd 100%);
+    // text-decoration: underline;
+
+    &:hover {
+      // color: $red;
+      color: $black-dim ;
+      border-bottom: none;
+      text-decoration: underline;
+      // border-bottom: 1px solid #F1AAA6;
+    }
+
 }
 // 首页 - 内容距离菜单栏的距离
 .content {
@@ -416,7 +454,8 @@ pre, .highlight {
 // 首页 - 分页数字
 .pagination .prev, .pagination .next, .pagination .page-number {
     // color: blueviolet;
-    color: #FF6E97;
+    // color: #FF6E97;
+    color: $red;
     // color: #5ED5D1;
     // font-weight: 500;
     // border-radius: 30px 30px 30px 30px;
@@ -448,13 +487,13 @@ pre, .highlight {
 // ===========================
 // 标题的颜色
 .posts-expand .post-title {
-    color: #1A2D27;
+    color: $black-deep;
     // color: #1E90FF;
     // color:#42c1b8;
     font-size: $font-size-large;
     font-weight: bolder;
     &:hover {
-      color: #FF6E97;
+      color: $red;
       // border-bottom: none;
       // text-decoration: underline;
       // border-bottom: 1px solid #F1AAA6;
@@ -462,7 +501,7 @@ pre, .highlight {
 }
 // 给文章概述与文章内容添加上一个方框。
 .content .posts-expand .post-block{
-    color: black;
+    color: $black-deep;
     background-color: $whitesmoke;
     position: relative;
     margin-bottom: 30px;
@@ -490,8 +529,14 @@ pre, .highlight {
   font-size: $font-size-large * 1.2;
   margin-bottom: 10px;
   margin-top: $post-eof-margin-bottom;
-  color: #1A2D27;
+  color: $black-deep;
   font-weight: bolder;
+
+  &:hover {
+    color: $red;
+    border-bottom: 2px solid #bbbbbb;// $gainsboro;
+  }
+
 }
 .popular-posts {
   padding: 0;
@@ -505,7 +550,7 @@ pre, .highlight {
         // color: #1E90FF
         color: $blue;
         &:hover {
-          color: #F1AAA6;
+          color: $black-deep;
           // border-bottom: 1px solid #F1AAA6;
           border-bottom: none;
           text-decoration: underline;
@@ -520,7 +565,7 @@ pre, .highlight {
     // color: #DB9019;
     // color: #5ED5D1;
     // color: #1A2D27;
-    color: #FF6E97;
+    color: $red;
     // color: #F1AAA6;
     // color: #1E90FF;
     font-size: $font-size-medium;
@@ -543,7 +588,8 @@ pre, .highlight {
     // border-bottom: 1px solid #1E90FF;
     // background-color: #F1AAA6;
     &:hover {
-      color: #F1AAA6;
+      // color: #F1AAA6;
+      color: $black-deep;
       border-bottom: none;
       text-decoration: underline;
     }
@@ -556,10 +602,10 @@ pre, .highlight {
 // ===========================
 // 未知
 // ===========================
-// 下划线,美化 ???
-hr {
-  background-color: #5ED5D1;
-}
+// // 下划线,美化 ???
+// hr {
+//   background-color: $mycolor_hr;
+// }
 // 去掉图片的边框,显得更加自然 ???
 .posts-expand .post-body img {
     border: 1px #F1AAA6;
@@ -569,7 +615,6 @@ hr {
   height: 0px;
   background: #FF6E97;
 }
-
 
 
 // ===========================
