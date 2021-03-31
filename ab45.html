@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="8MClfGIKqlhvS7lCIUORoPlPQW5ZS-acECTz66SI-q0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="...">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu14.04安装Theano详细教程">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;ab45.html">
+<meta property="og:site_name" content="张学志">
+<meta property="og:description" content="...">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150726185255050">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150726185208417">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150726185356526">
+<meta property="og:updated_time" content="2021-03-31T04:11:19.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150726185255050">
+
+<link rel="canonical" href="http://blog.xuezhisd.top/ab45.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Ubuntu14.04安装Theano详细教程 | 张学志</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ce9a310dfefd1aeba54748007375c4d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张学志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">人工智能 | 计算机视觉 | 深度学习</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.xuezhisd.top/ab45.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpg">
+      <meta itemprop="name" content="张学志">
+      <meta itemprop="description" content="从今天开始, 做一个精彩的平凡人！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张学志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Ubuntu14.04安装Theano详细教程<a href="https://github.com/algoboy101/note_blog/tree/master/source/_posts/Ubuntu14.04%E5%AE%89%E8%A3%85Theano%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-11-19 13:40:00" itemprop="dateCreated datePublished" datetime="2015-11-19T13:40:00+08:00">2015-11-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-31 12:11:19" itemprop="dateModified" datetime="2021-03-31T12:11:19+08:00">2021-03-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/ab45.html" class="post-meta-item leancloud_visitors" data-flag-title="Ubuntu14.04安装Theano详细教程" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/ab45.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/ab45.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+            <div class="post-description">...</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>因为最近需要学习深度学习，因此想要配置Theano，来开发深度学习算法。但是发现Theano安装总是出现问题。于是在这里中总结一下。</p>
+</blockquote>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>操作系统：ubuntu14.04</li>
+<li>Python：2.7.6</li>
+<li>需要联网</li>
+</ul>
+<a id="more"></a>
+<h2 id="相关库简介"><a href="#相关库简介" class="headerlink" title="相关库简介"></a>相关库简介</h2><ul>
+<li><strong><em>BLAS</em></strong>（Basic Linear Algebra Subprograms）是基础线性代数子程序库，里面拥有大量已经编写好的关于线性代数运算的程序;</li>
+<li><strong><em>LAPACK</em></strong> （Linear Algebra PACKage）包含了求解科学与工程计算中最常见的数值线性代数问题，如求解线性方程组、线性最小二乘问题、特征值问题和奇异值问题等;</li>
+<li><strong><em>ATLAS</em></strong>是python下的一个线性代数库，是基于另外两个线性代数库BLAS和lapack的；</li>
+<li><strong><em>NumPy</em></strong>提供了一个在python中做科学计算的基础库，它重在数值计算，甚至可以说是用于多维数组处理的库；</li>
+<li><strong><em>SciPy</em></strong>是基于numpy，提供了一个在python中做科学计算的工具集，也就是说它是更上一个层次的库；</li>
+<li><strong><em>Theano</em></strong>则是基于NumPy以及SciPy的一个更高级的用于科学计算的库。</li>
+</ul>
+<h2 id="相关库的关系"><a href="#相关库的关系" class="headerlink" title="相关库的关系"></a>相关库的关系</h2><ul>
+<li>要安装Theano，就需要先安装好numpy和scipy；</li>
+<li>要安装numpy和scipy，就需要ATLAS；</li>
+<li>要安装ATLAS，就需要安装BLAS和LAPACK;</li>
+</ul>
+<h2 id="相关库的安装顺序"><a href="#相关库的安装顺序" class="headerlink" title="相关库的安装顺序"></a>相关库的安装顺序</h2><ul>
+<li>安装顺序：<em><code>BLAS → LAPACK → ATLAS → numpy → scipy → Theano</code></em></li>
+</ul>
+<h2 id="检查numpy和scipy是否通过测试"><a href="#检查numpy和scipy是否通过测试" class="headerlink" title="检查numpy和scipy是否通过测试"></a>检查numpy和scipy是否通过测试</h2><ul>
+<li>说明：如果你的numpy和scipy是通过<code>apt-get</code>安装的，那么它们的单元测试可能会通不过！！！（我在安装过程中没有通过测试，scipy出现了<strong>Error</strong>）</li>
+<li>如果numpy或scipy不能通过测试，就需要卸载，然后重新按照本文介绍的顺序安装。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查numpy是否通过测试</span></span><br><span class="line">python -c <span class="string">"import numpy;numpy.test()"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>如果numpy通过测试，会出现如下图所示的结果。注意最后一行<strong><em>errors=0 failures=0</em></strong>。如果没有通过测试，需要卸载并重新安装。<br><img alt="numpy测试结果" data-src="http://img.blog.csdn.net/20150726185255050"></p>
+</li>
+<li><p>如果scipy通过测试，会出现如下图所示的结果。注意最后一行<strong><em>errors=0 failures=0</em></strong>。如果没有通过测试，需要卸载并重新安装。<br><img alt="scipy通过测试" data-src="http://img.blog.csdn.net/20150726185208417"></p>
+</li>
+<li><p>注意：scipy很可能会出现测试错误，比如我安装过程中出现下图所示的错误。<br><img alt="scipy测试错误" data-src="http://img.blog.csdn.net/20150726185356526"></p>
+</li>
+</ul>
+<h2 id="卸载numpy和scipy"><a href="#卸载numpy和scipy" class="headerlink" title="卸载numpy和scipy"></a>卸载numpy和scipy</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 卸载numpy</span></span><br><span class="line">sudo apt-get remove python-numpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载scipy</span></span><br><span class="line">sudo apt-get remove python-scipy</span><br></pre></td></tr></table></figure>
+<h2 id="安装各种包"><a href="#安装各种包" class="headerlink" title="安装各种包"></a>安装各种包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装gfortran,后面编译过程中会用到</span></span><br><span class="line">sudo apt-get install gfortran</span><br><span class="line"><span class="comment"># 安装blas,Ubuntu下对应的是libopenblas，其它操作系统可能需要安装其它版本的blas——这是个OS相关的。</span></span><br><span class="line">sudo apt-get install libopenblas-dev</span><br><span class="line"><span class="comment"># 安装lapack，Ubuntu下对应的是liblapack-dev，和OS相关。</span></span><br><span class="line">sudo apt-get install liblapack-dev</span><br><span class="line"><span class="comment"># 安装atlas，Ubuntu下对应的是libatlas-base-dev，和OS相关。</span></span><br><span class="line">sudo apt-get install libatlas-base-dev</span><br></pre></td></tr></table></figure>
+<h2 id="安装numpy和scipy"><a href="#安装numpy和scipy" class="headerlink" title="安装numpy和scipy"></a>安装numpy和scipy</h2><ul>
+<li>使用pip安装numpy和scipy</li>
+<li>安装pip的命令：<strong><code>sudo apt-get install python-pip</code></strong></li>
+<li>注意：一定要在安装完lapack/blas之后，再安装numpy和scipy。否则，会出现错误<strong><em><code>no lapack/blas resources found</code></em></strong></li>
+<li>安装numpy和scipy的命令如下所示。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装numpy</span></span><br><span class="line">sudo pip install numpy</span><br><span class="line"><span class="comment"># 测试numpy</span></span><br><span class="line"><span class="comment"># 测试通过才能进行下一步～～</span></span><br><span class="line">python -c <span class="string">"import numpy;numpy.test()"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装scipy</span></span><br><span class="line">sudo pip install scipy</span><br><span class="line"><span class="comment"># 测试scipy</span></span><br><span class="line"><span class="comment"># 测试通过才能进行下一步～～</span></span><br><span class="line">python -c <span class="string">"import scipy;scipy.test()"</span></span><br></pre></td></tr></table></figure>
+<h2 id="安装线性计算库、numPy和sciPy的编译方法（推荐）"><a href="#安装线性计算库、numPy和sciPy的编译方法（推荐）" class="headerlink" title="安装线性计算库、numPy和sciPy的编译方法（推荐）"></a>安装线性计算库、numPy和sciPy的编译方法（推荐）</h2></li>
+</ul>
+<h3 id="编译安装OpenBlas"><a href="#编译安装OpenBlas" class="headerlink" title="编译安装OpenBlas"></a>编译安装OpenBlas</h3><ul>
+<li>为什么安装OpenBLAS？因为OpenBLAS的速度比atlas快。速度对比请参考：<a href="https://github.com/tmolteno/necpp/issues/18" target="_blank" rel="noopener">《Benchmark OpenBLAS, Intel MKL vs ATLAS》</a></li>
+<li>下载OpenBLAS。<a href="https://github.com/xianyi/OpenBLAS" target="_blank" rel="noopener">github下载地址</a></li>
+<li>安装OpenBLAS<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf OpenBLAS**.tar.gz</span><br><span class="line"><span class="built_in">cd</span> OpenBLAS***</span><br><span class="line">make -FC gfortran <span class="comment">#需要已经安装gfortran </span></span><br><span class="line">make install <span class="comment"># 安装在/opt/OpenBLAS/目录下</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="安装numPy"><a href="#安装numPy" class="headerlink" title="安装numPy"></a>安装numPy</h3><ul>
+<li>下载numPy 。<a href="https://github.com/numpy/numpy" target="_blank" rel="noopener">github</a> <a href="http://pypi.douban.com/simple/numpy/" target="_blank" rel="noopener">豆瓣镜像</a></li>
+<li>解压下载包，并配置OpenBLAS。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf numpy***.tar.gz</span><br><span class="line"><span class="built_in">cd</span> numpy***</span><br><span class="line">cp site.cfg.example site.cfg</span><br><span class="line">vi site.cfg</span><br><span class="line"><span class="comment">#将以下4行去掉注释。【101行--104行】</span></span><br><span class="line"><span class="comment">#[openblas]</span></span><br><span class="line"><span class="comment">#libraries = openblas</span></span><br><span class="line"><span class="comment">#library_dirs = /opt/OpenBLAS/lib</span></span><br><span class="line"><span class="comment">#include_dirs = /opt/OpenBLAS/include</span></span><br></pre></td></tr></table></figure></li>
+<li>安装numPy。<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo python setup.py config</span><br><span class="line">sudo python setup.py build</span><br><span class="line">sudo python setup.py install</span><br></pre></td></tr></table></figure>
+<h3 id="安装sciPy"><a href="#安装sciPy" class="headerlink" title="安装sciPy"></a>安装sciPy</h3></li>
+<li>下载sciPy 。<a href="https://github.com/numpy/scipy" target="_blank" rel="noopener">github</a> <a href="http://pypi.douban.com/simple/scipy/" target="_blank" rel="noopener">豆瓣镜像</a></li>
+<li>解压下载包，并配置OpenBLAS。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf scipy***.tar.gz</span><br><span class="line"><span class="built_in">cd</span> scipy***</span><br><span class="line"><span class="comment"># 将numPy**中的配置文件复制到此处</span></span><br><span class="line">cp ../numpy**/site.cfg.example ./site.cfg</span><br></pre></td></tr></table></figure></li>
+<li>安装sciPy。<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo python setup.py config</span><br><span class="line">sudo python setup.py build</span><br><span class="line">sudo python setup.py install</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装其它库"><a href="#安装其它库" class="headerlink" title="安装其它库"></a>安装其它库</h2><ul>
+<li>为了安装Theano，最后还需要安装一些库，可以参考<a href="http://deeplearning.net/software/theano/install_ubuntu.html#install-ubuntu" target="_blank" rel="noopener">官方教程</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-dev</span><br><span class="line">sudo apt-get install python-pip</span><br><span class="line">sudo apt-get install python-nose</span><br><span class="line">sudo apt-get install g++</span><br><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装Theano"><a href="#安装Theano" class="headerlink" title="安装Theano"></a>安装Theano</h2><ul>
+<li>前面的操作如果没有出现错误，就可以开始安装Theano了。命令如下所示。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Theano</span></span><br><span class="line">sudo pip install Theano</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试Theano</span></span><br><span class="line">python -c <span class="string">"import theano;theano.test()"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ul>
+<li><a href="http://blog.sina.com.cn/s/blog_6cb8e53d0101keak.html" target="_blank" rel="noopener">ATLAS + NumPy + SciPy + Theano 的python科学计算环境搭建 </a></li>
+<li><a href="http://stackoverflow.com/questions/11443302/compiling-numpy-with-openblas-integration" target="_blank" rel="noopener">Compiling numpy with OpenBLAS integration</a></li>
+<li><a href="http://www.tuicool.com/articles/Ub6vqiQ" target="_blank" rel="noopener">依赖关系</a></li>
+<li><a href="http://deeplearning.net/software/theano/install.html#install" target="_blank" rel="noopener">官方安装教程</a></li>
+<li><a href="http://stackoverflow.com/questions/7496547/does-python-scipy-need-blas" target="_blank" rel="noopener">http://stackoverflow.com/questions/7496547/does-python-scipy-need-blas</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2014-10/107503.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2014-10/107503.htm</a></li>
+<li><a href="http://www.scipy.org/scipylib/building/linux.html#installation-from-source" target="_blank" rel="noopener">http://www.scipy.org/scipylib/building/linux.html#installation-from-source</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/c517.html" rel="bookmark">系统运维学习笔记</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2729.html" rel="bookmark">Ubuntu18.04部署django-sspanel</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/eb07.html" rel="bookmark">错误-Ubuntu-no talloc stackframe at ../source3/param/loadparm.c:4864, leaking memory</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/5eb9.html" rel="next" title="Linux下安装Eclipse">
+                  <i class="fa fa-chevron-left"></i> Linux下安装Eclipse
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/7c40.html" rel="prev" title="错误-VS2010 error:LINK:fatal error LNK1123:failure during conversion to COFF:file invalid or c">
+                  错误-VS2010 error:LINK:fatal error LNK1123:failure during conversion to COFF:file invalid or c <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">GitHub回复</a></li>
+            <li class="tab"><a href="#comment-valine">匿名回复</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="comments"></div>
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = 'gitalk';
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关库简介"><span class="nav-number">2.</span> <span class="nav-text">相关库简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关库的关系"><span class="nav-number">3.</span> <span class="nav-text">相关库的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关库的安装顺序"><span class="nav-number">4.</span> <span class="nav-text">相关库的安装顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查numpy和scipy是否通过测试"><span class="nav-number">5.</span> <span class="nav-text">检查numpy和scipy是否通过测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载numpy和scipy"><span class="nav-number">6.</span> <span class="nav-text">卸载numpy和scipy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装各种包"><span class="nav-number">7.</span> <span class="nav-text">安装各种包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装numpy和scipy"><span class="nav-number">8.</span> <span class="nav-text">安装numpy和scipy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装线性计算库、numPy和sciPy的编译方法（推荐）"><span class="nav-number">9.</span> <span class="nav-text">安装线性计算库、numPy和sciPy的编译方法（推荐）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译安装OpenBlas"><span class="nav-number">9.1.</span> <span class="nav-text">编译安装OpenBlas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装numPy"><span class="nav-number">9.2.</span> <span class="nav-text">安装numPy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装sciPy"><span class="nav-number">9.3.</span> <span class="nav-text">安装sciPy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装其它库"><span class="nav-number">10.</span> <span class="nav-text">安装其它库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Theano"><span class="nav-number">11.</span> <span class="nav-text">安装Theano</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">12.</span> <span class="nav-text">引用</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张学志"
+      src="/images/avatar1.jpg">
+  <p class="site-author-name" itemprop="name">张学志</p>
+  <div class="site-description" itemprop="description">从今天开始, 做一个精彩的平凡人！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/algoboy101/note_blog" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;algoboy101&#x2F;note_blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.xuezhisd.top/mailto.html" title="E-Mail → https:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;mailto.html"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/xuezhisdc" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;xuezhisdc" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://yongyuan.name/" title="https:&#x2F;&#x2F;yongyuan.name&#x2F;" rel="noopener" target="_blank">袁勇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <!-- 
+      
+           <div>
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=2&id=5276811&auto=1&height=32"></iframe>
+           </div>
+      
+      -->
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张学志</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">325k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:56</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581db2eae126635e" async="async"></script>
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
+  </div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '850px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5d7851a991d55468095a',
+      clientSecret: 'eb16a65b938a0160c3380a324e3a49b0bf5be67a',
+      repo: 'note_blog_comment',
+      owner: 'algoboy101',
+      admin: ['algoboy101'],
+      id: 'c57740477a48a77548d712533326fd42',
+        language: 'zh-CN',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+
+<script>
+NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz',
+    appKey: 'KNlyr54S3RIstdjHBJUQomdF',
+    placeholder: "支持匿名回复; 支持md语法; 抓紧占座啦!",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '30' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="8MClfGIKqlhvS7lCIUORoPlPQW5ZS-acECTz66SI-q0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="...">
+<meta name="keywords" content="编程,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编码练习——Java-数组-API-练习">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;c2a4.html">
+<meta property="og:site_name" content="张学志">
+<meta property="og:description" content="...">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-03-31T04:11:19.380Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.xuezhisd.top/c2a4.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>编码练习——Java-数组-API-练习 | 张学志</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ce9a310dfefd1aeba54748007375c4d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张学志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">人工智能 | 计算机视觉 | 深度学习</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.xuezhisd.top/c2a4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpg">
+      <meta itemprop="name" content="张学志">
+      <meta itemprop="description" content="从今天开始, 做一个精彩的平凡人！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张学志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          编码练习——Java-数组-API-练习<a href="https://github.com/algoboy101/note_blog/tree/master/source/_posts/%E7%BC%96%E7%A0%81%E7%BB%83%E4%B9%A0%E2%80%94%E2%80%94Java-%E6%95%B0%E7%BB%84-API-%E7%BB%83%E4%B9%A0.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-28 12:56:00" itemprop="dateCreated datePublished" datetime="2016-08-28T12:56:00+08:00">2016-08-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-31 12:11:19" itemprop="dateModified" datetime="2021-03-31T12:11:19+08:00">2021-03-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/c2a4.html" class="post-meta-item leancloud_visitors" data-flag-title="编码练习——Java-数组-API-练习" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/c2a4.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/c2a4.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+            <div class="post-description">...</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="java-util-Arrays"><a href="#java-util-Arrays" class="headerlink" title="java.util.Arrays"></a>java.util.Arrays</h2><h3 id="Arrays-asList"><a href="#Arrays-asList" class="headerlink" title="Arrays.asList()"></a>Arrays.asList()</h3><ul>
+<li>数组转换成列表</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String<span class="literal">[]</span> strArray = &#123;<span class="string">"zhang"</span>, <span class="string">"xue"</span>, <span class="string">"zhi"</span>&#125;;</span><br><span class="line">List&lt;String&gt; <span class="built_in">list</span> = <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span><span class="keyword">as</span><span class="constructor">List(<span class="params">strArray</span>)</span>;</span><br><span class="line"><span class="comment">// 打印元素</span></span><br><span class="line">for (<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;<span class="built_in">list</span>.size<span class="literal">()</span>; i++) &#123;</span><br><span class="line">	<span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.print(<span class="built_in">list</span>.get(i) + <span class="string">" "</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="Arrays-binarySearch"><a href="#Arrays-binarySearch" class="headerlink" title="Arrays.binarySearch()"></a>Arrays.binarySearch()</h3><ul>
+<li>二分查找</li>
+<li>查找前，一定要<strong>排序</strong>。</li>
+<li>如果查找元素不存在，返回(-(insertion point) - 1)。</li>
+<li>自然数表示查到，负数表示没有查找。</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span><span class="literal">[]</span> a = &#123;<span class="number">3</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">2</span>&#125;;</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>sort(a); <span class="comment">// 排序</span></span><br><span class="line"><span class="comment">// 打印数组</span></span><br><span class="line">for (<span class="built_in">int</span> item : a) </span><br><span class="line">	<span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.print(item + <span class="string">" "</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println<span class="literal">()</span>;</span><br><span class="line"><span class="comment">// 二分查找</span></span><br><span class="line"><span class="built_in">int</span> ind1 = <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>binary<span class="constructor">Search(<span class="params">a</span>, 2)</span>;</span><br><span class="line"><span class="built_in">int</span> ind2 = <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>binary<span class="constructor">Search(<span class="params">a</span>, 4)</span>;</span><br><span class="line"><span class="built_in">int</span> ind3 = <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>binary<span class="constructor">Search(<span class="params">a</span>, 1, 3, 5)</span>;</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"2的查找位置："</span> + ind1);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"4的查找位置："</span> + ind2);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"5的查找位置："</span> + ind3);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串</span></span><br><span class="line">String<span class="literal">[]</span> strArray = &#123;<span class="string">"aa"</span>, <span class="string">"bc"</span>, <span class="string">"ab"</span>, <span class="string">"cd"</span>&#125;;</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>sort(strArray);</span><br><span class="line"><span class="built_in">int</span> ind4 = <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>binary<span class="constructor">Search(<span class="params">strArray</span>, <span class="string">"bc"</span>)</span>;</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"'bc'的查找位置是："</span> + ind4);</span><br></pre></td></tr></table></figure>
+<h3 id="Arrays-copyOf"><a href="#Arrays-copyOf" class="headerlink" title="Arrays.copyOf()"></a>Arrays.copyOf()</h3><ul>
+<li>复制长度大于原数组长度时，后面补零。</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span><span class="literal">[]</span> a = &#123;<span class="number">3</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">2</span>&#125;;</span><br><span class="line"><span class="built_in">int</span><span class="literal">[]</span> newa = <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>copy<span class="constructor">Of(<span class="params">a</span>, 2)</span>;</span><br><span class="line"><span class="built_in">int</span><span class="literal">[]</span> newa2 = <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>copy<span class="constructor">Of(<span class="params">a</span>, 7)</span>;	<span class="comment">//复制长度大于原数组的长度</span></span><br><span class="line"></span><br><span class="line">for (<span class="built_in">int</span> item : newa) </span><br><span class="line">	<span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.print(item + <span class="string">" "</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line">for (<span class="built_in">int</span> item : newa2) </span><br><span class="line">	<span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.print(item + <span class="string">" "</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println<span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Arrays-copyOfRange"><a href="#Arrays-copyOfRange" class="headerlink" title="Arrays.copyOfRange()"></a>Arrays.copyOfRange()</h3><ul>
+<li>复制长度大于原数组长度时，后面补零。</li>
+<li>Java中区间一般都是左闭右开[a,b)，即包括左边，不包括右边。</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span><span class="literal">[]</span> a = &#123;<span class="number">3</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">2</span>&#125;;</span><br><span class="line"><span class="built_in">int</span><span class="literal">[]</span> newa = <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>copy<span class="constructor">OfRange(<span class="params">a</span>, 1, 3)</span>;</span><br><span class="line"><span class="built_in">int</span><span class="literal">[]</span> newa2 = <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>copy<span class="constructor">OfRange(<span class="params">a</span>, 1, 8)</span>;	<span class="comment">//复制长度大于原数组的长度</span></span><br><span class="line"></span><br><span class="line">for (<span class="built_in">int</span> item : newa) </span><br><span class="line">	<span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.print(item + <span class="string">" "</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line">for (<span class="built_in">int</span> item : newa2) </span><br><span class="line">	<span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.print(item + <span class="string">" "</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println<span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Arrays-deepEquals"><a href="#Arrays-deepEquals" class="headerlink" title="Arrays.deepEquals()"></a>Arrays.deepEquals()</h3><ul>
+<li>比较数组元素是否深层相等。</li>
+<li>一维数组无区别，高维数组有区别。</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String<span class="literal">[]</span><span class="literal">[]</span> ticTacToe1 = &#123; &#123; <span class="string">" O "</span>, <span class="string">" O "</span>, <span class="string">" X "</span> &#125;, &#123; <span class="string">" O "</span>, <span class="string">" X "</span>, <span class="string">" X "</span> &#125;,&#123; <span class="string">" X "</span>, <span class="string">" O "</span>, <span class="string">" O "</span> &#125; &#125;;</span><br><span class="line">String<span class="literal">[]</span><span class="literal">[]</span> ticTacToe2 = &#123; &#123; <span class="string">" O "</span>, <span class="string">" O "</span>, <span class="string">" X "</span> &#125;, &#123; <span class="string">" O "</span>, <span class="string">" X "</span>, <span class="string">" X "</span> &#125;,&#123; <span class="string">" X "</span>, <span class="string">" O "</span>, <span class="string">" O "</span> &#125; &#125;;</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>equals(ticTacToe1, ticTacToe2));<span class="comment">// false</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>deep<span class="constructor">Equals(<span class="params">ticTacToe1</span>, <span class="params">ticTacToe2</span>)</span>);<span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">String<span class="literal">[]</span> ticTacToe3 = &#123; <span class="string">" O "</span>, <span class="string">" O "</span>, <span class="string">" X "</span> &#125;;</span><br><span class="line">String<span class="literal">[]</span> ticTacToe4 = &#123; <span class="string">" O "</span>, <span class="string">" O "</span>, <span class="string">" X "</span> &#125;;  </span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>equals(ticTacToe3, ticTacToe4));  <span class="comment">// true</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>deep<span class="constructor">Equals(<span class="params">ticTacToe3</span>, <span class="params">ticTacToe4</span>)</span>);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Arrays-deepHashCode"><a href="#Arrays-deepHashCode" class="headerlink" title="Arrays.deepHashCode()"></a>Arrays.deepHashCode()</h3><ul>
+<li>深层相等的两个数组的深层哈希编码也相等。</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String<span class="literal">[]</span><span class="literal">[]</span> ticTacToe1 = &#123; &#123; <span class="string">" O "</span>, <span class="string">" O "</span>, <span class="string">" X "</span> &#125;, &#123; <span class="string">" O "</span>, <span class="string">" X "</span>, <span class="string">" X "</span> &#125;,&#123; <span class="string">" X "</span>, <span class="string">" O "</span>, <span class="string">" O "</span> &#125; &#125;;</span><br><span class="line">String<span class="literal">[]</span><span class="literal">[]</span> ticTacToe2 = &#123; &#123; <span class="string">" O "</span>, <span class="string">" O "</span>, <span class="string">" X "</span> &#125;, &#123; <span class="string">" O "</span>, <span class="string">" X "</span>, <span class="string">" X "</span> &#125;,&#123; <span class="string">" X "</span>, <span class="string">" O "</span>, <span class="string">" O "</span> &#125; &#125;;</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>equals(ticTacToe1, ticTacToe2));<span class="comment">// false</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>deep<span class="constructor">Equals(<span class="params">ticTacToe1</span>, <span class="params">ticTacToe2</span>)</span>);<span class="comment">// true</span></span><br><span class="line"><span class="comment">// ticTacToe1和ticTacToe1深层相等，深层哈希编码也相等。</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>deep<span class="constructor">HashCode(<span class="params">ticTacToe1</span>)</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>deep<span class="constructor">HashCode(<span class="params">ticTacToe2</span>)</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Arrays-deepToString"><a href="#Arrays-deepToString" class="headerlink" title="Arrays.deepToString()"></a>Arrays.deepToString()</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 二维数组有区别</span></span><br><span class="line">String<span class="literal">[]</span><span class="literal">[]</span> ticTacToe1 = &#123; &#123; <span class="string">" O "</span>, <span class="string">" O "</span>, <span class="string">" X "</span> &#125;, &#123; <span class="string">" O "</span>, <span class="string">" X "</span>, <span class="string">" X "</span> &#125;,&#123; <span class="string">" X "</span>, <span class="string">" O "</span>, <span class="string">" O "</span> &#125; &#125;;</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>deep<span class="constructor">ToString(<span class="params">ticTacToe1</span>)</span>);	<span class="comment">// 深层变换成字符串</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span><span class="keyword">to</span><span class="constructor">String(<span class="params">ticTacToe1</span>)</span>);		<span class="comment">// 一般</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 一维数组无区别</span></span><br><span class="line">String<span class="literal">[]</span> ticTacToe3 = &#123; <span class="string">" O "</span>, <span class="string">" O "</span>, <span class="string">" X "</span> &#125;;</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>deep<span class="constructor">ToString(<span class="params">ticTacToe3</span>)</span>);	<span class="comment">// 深层变换成字符串</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span><span class="keyword">to</span><span class="constructor">String(<span class="params">ticTacToe3</span>)</span>);		<span class="comment">// 一般</span></span><br></pre></td></tr></table></figure>
+<h3 id="Arrays-equals"><a href="#Arrays-equals" class="headerlink" title="Arrays.equals()"></a>Arrays.equals()</h3><ul>
+<li>参考Arrays.deepArrays()</li>
+</ul>
+<h3 id="Arrays-fill"><a href="#Arrays-fill" class="headerlink" title="Arrays.fill()"></a>Arrays.fill()</h3><ul>
+<li>填充数组元素</li>
+</ul>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>[] a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"></span><br><span class="line">Arrays.fill(a, <span class="number">8</span>);<span class="comment">//全部填充</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> item : a) </span><br><span class="line">	System.<span class="keyword">out</span>.print(item + <span class="string">" "</span>);</span><br><span class="line">System.<span class="keyword">out</span>.println();</span><br><span class="line"></span><br><span class="line">Arrays.fill(a, <span class="number">1</span>, <span class="number">3</span>, <span class="number">0</span>);<span class="comment">//指定范围，替换</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> item : a) </span><br><span class="line">	System.<span class="keyword">out</span>.print(item + <span class="string">" "</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Arrays-hashCode"><a href="#Arrays-hashCode" class="headerlink" title="Arrays.hashCode()"></a>Arrays.hashCode()</h3><ul>
+<li>如果两个数组相等，哈希编码也相等。</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span><span class="literal">[]</span> a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="built_in">int</span><span class="literal">[]</span> b = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">String<span class="literal">[]</span> c = &#123;<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>&#125;;</span><br><span class="line">String<span class="literal">[]</span> d = &#123;<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"a==b:"</span> + <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>equals(a, b));</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"a和b的哈希码分别为："</span> + <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>hash<span class="constructor">Code(<span class="params">a</span>)</span> + <span class="string">"\t"</span> + <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>hash<span class="constructor">Code(<span class="params">b</span>)</span>);</span><br><span class="line"><span class="comment">// 字符串</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"c==d:"</span> + <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>equals(c, d));</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"c和d的哈希码分别为："</span> + <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>hash<span class="constructor">Code(<span class="params">c</span>)</span> + <span class="string">"\t"</span> + <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>hash<span class="constructor">Code(<span class="params">d</span>)</span>);</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"c==d:"</span> + c.equals(d));</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"c和d的哈希码分别为："</span> + c.hash<span class="constructor">Code()</span> + <span class="string">"\t"</span> + d.hash<span class="constructor">Code()</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Arrays-sort"><a href="#Arrays-sort" class="headerlink" title="Arrays.sort()"></a>Arrays.sort()</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span><span class="literal">[]</span> a = &#123;<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>&#125;;</span><br><span class="line"><span class="comment">// 指定范围排序</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>sort(a, <span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">for (<span class="built_in">int</span> item : a) </span><br><span class="line">	<span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.print(item + <span class="string">" "</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println<span class="literal">()</span>;</span><br><span class="line"><span class="comment">// 全部元素排序</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>sort(a);</span><br><span class="line">for (<span class="built_in">int</span> item : a) </span><br><span class="line">	<span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.print(item + <span class="string">" "</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println<span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Arrays-toString"><a href="#Arrays-toString" class="headerlink" title="Arrays.toString()"></a>Arrays.toString()</h3><ul>
+<li>参考 Arrays.deepToString()</li>
+</ul>
+<h2 id="遍历数组"><a href="#遍历数组" class="headerlink" title="遍历数组"></a>遍历数组</h2><h3 id="遍历一维数组"><a href="#遍历一维数组" class="headerlink" title="遍历一维数组"></a>遍历一维数组</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>[] a = &#123;<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>&#125;;</span><br><span class="line"><span class="comment">// 遍历数组 for</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;a.length; i++)</span><br><span class="line">	<span class="keyword">if</span> (i == a.length<span class="number">-1</span>)</span><br><span class="line">		System.<span class="keyword">out</span>.print(a[i]);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		System.<span class="keyword">out</span>.print(a[i] + <span class="string">", "</span>);</span><br><span class="line">System.<span class="keyword">out</span>.println();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历数组  - foreach</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> item : a)</span><br><span class="line">	<span class="keyword">if</span> (item == a[a.length<span class="number">-1</span>])</span><br><span class="line">		System.<span class="keyword">out</span>.print(item);</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">		System.<span class="keyword">out</span>.print(item + <span class="string">", "</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="遍历二维数组"><a href="#遍历二维数组" class="headerlink" title="遍历二维数组"></a>遍历二维数组</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>[][] a = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;, &#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;, &#123;<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;&#125;;</span><br><span class="line"><span class="comment">// 遍历二维数组 for</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;a.length; i++) &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">int</span> j=<span class="number">0</span>; j&lt;a[i].length; j++)</span><br><span class="line">		<span class="keyword">if</span> (j == a[i].length<span class="number">-1</span>)</span><br><span class="line">			System.<span class="keyword">out</span>.print(a[i][j]);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			System.<span class="keyword">out</span>.print(a[i][j] + <span class="string">", "</span>);</span><br><span class="line">	System.<span class="keyword">out</span>.println();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数组对象的方法"><a href="#数组对象的方法" class="headerlink" title="数组对象的方法"></a>数组对象的方法</h2><ul>
+<li>数组从java.lang.Object继承的方法：clone, equals, finalize, getClass, hashCode, notify, toString, wait</li>
+</ul>
+<h3 id="arr-clone"><a href="#arr-clone" class="headerlink" title="arr.clone()"></a>arr.clone()</h3><ul>
+<li>通过克隆生成另一个数组</li>
+</ul>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>[] a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="built_in">int</span>[] b = a.clone();</span><br><span class="line">Arrays.fill(a, <span class="number">1</span>, <span class="number">4</span>, <span class="number">0</span>); <span class="comment">// 改变a，看是否对b有影响</span></span><br><span class="line"><span class="comment">//打印b</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> item : b) </span><br><span class="line">	System.<span class="keyword">out</span>.print(item + <span class="string">" "</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="arr-equals"><a href="#arr-equals" class="headerlink" title="arr.equals()"></a>arr.equals()</h3><ul>
+<li>arr.equals()和Arrays.equals()不同</li>
+</ul>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>[] a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="built_in">int</span>[] b = a.clone();</span><br><span class="line"><span class="built_in">int</span>[] c = a;</span><br><span class="line"><span class="comment">// 判等</span></span><br><span class="line">System.<span class="keyword">out</span>.println(Arrays.equals(a, b)); <span class="comment">// 比较内容</span></span><br><span class="line">System.<span class="keyword">out</span>.println(a.equals(b));	<span class="comment">//比较地址</span></span><br><span class="line">System.<span class="keyword">out</span>.println(a.equals(c));</span><br></pre></td></tr></table></figure>
+<h3 id="arr-getClass"><a href="#arr-getClass" class="headerlink" title="arr.getClass()"></a>arr.getClass()</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>[] a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"></span><br><span class="line">System.<span class="keyword">out</span>.println(a.getClass());</span><br></pre></td></tr></table></figure>
+<h3 id="arr-hashCode"><a href="#arr-hashCode" class="headerlink" title="arr.hashCode()"></a>arr.hashCode()</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span><span class="literal">[]</span> a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 两种方法的结果不同。</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(a.hash<span class="constructor">Code()</span>); </span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>hash<span class="constructor">Code(<span class="params">a</span>)</span>); <span class="comment">// Arrays.hashCode()</span></span><br></pre></td></tr></table></figure>
+<h3 id="arr-toString"><a href="#arr-toString" class="headerlink" title="arr.toString()"></a>arr.toString()</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span><span class="literal">[]</span> a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(a.<span class="keyword">to</span><span class="constructor">String()</span>);	<span class="comment">// 地址</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span><span class="keyword">to</span><span class="constructor">String(<span class="params">a</span>)</span>);	<span class="comment">//字符串</span></span><br></pre></td></tr></table></figure>
+<h2 id="数组对象的属性"><a href="#数组对象的属性" class="headerlink" title="数组对象的属性"></a>数组对象的属性</h2><h3 id="arr-length"><a href="#arr-length" class="headerlink" title="arr.length"></a>arr.length</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>[] a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> len = a.length;</span><br><span class="line">System.<span class="keyword">out</span>.println(len);</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/f0b0.html" rel="bookmark">编码练习——Java-5-类和对象</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/8297.html" rel="bookmark">编码练习——Java-6-类的高级特性</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/dd33.html" rel="bookmark">编码练习——Java-String-API-练习</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> 编程</a>
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/eb07.html" rel="next" title="错误-Ubuntu-no talloc stackframe at ../source3/param/loadparm.c:4864, leaking memory">
+                  <i class="fa fa-chevron-left"></i> 错误-Ubuntu-no talloc stackframe at ../source3/param/loadparm.c:4864, leaking memory
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/dd33.html" rel="prev" title="编码练习——Java-String-API-练习">
+                  编码练习——Java-String-API-练习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">GitHub回复</a></li>
+            <li class="tab"><a href="#comment-valine">匿名回复</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="comments"></div>
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = 'gitalk';
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java-util-Arrays"><span class="nav-number">1.</span> <span class="nav-text">java.util.Arrays</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-asList"><span class="nav-number">1.1.</span> <span class="nav-text">Arrays.asList()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-binarySearch"><span class="nav-number">1.2.</span> <span class="nav-text">Arrays.binarySearch()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-copyOf"><span class="nav-number">1.3.</span> <span class="nav-text">Arrays.copyOf()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-copyOfRange"><span class="nav-number">1.4.</span> <span class="nav-text">Arrays.copyOfRange()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-deepEquals"><span class="nav-number">1.5.</span> <span class="nav-text">Arrays.deepEquals()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-deepHashCode"><span class="nav-number">1.6.</span> <span class="nav-text">Arrays.deepHashCode()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-deepToString"><span class="nav-number">1.7.</span> <span class="nav-text">Arrays.deepToString()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-equals"><span class="nav-number">1.8.</span> <span class="nav-text">Arrays.equals()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-fill"><span class="nav-number">1.9.</span> <span class="nav-text">Arrays.fill()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-hashCode"><span class="nav-number">1.10.</span> <span class="nav-text">Arrays.hashCode()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-sort"><span class="nav-number">1.11.</span> <span class="nav-text">Arrays.sort()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-toString"><span class="nav-number">1.12.</span> <span class="nav-text">Arrays.toString()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历数组"><span class="nav-number">2.</span> <span class="nav-text">遍历数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历一维数组"><span class="nav-number">2.1.</span> <span class="nav-text">遍历一维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历二维数组"><span class="nav-number">2.2.</span> <span class="nav-text">遍历二维数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组对象的方法"><span class="nav-number">3.</span> <span class="nav-text">数组对象的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#arr-clone"><span class="nav-number">3.1.</span> <span class="nav-text">arr.clone()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arr-equals"><span class="nav-number">3.2.</span> <span class="nav-text">arr.equals()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arr-getClass"><span class="nav-number">3.3.</span> <span class="nav-text">arr.getClass()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arr-hashCode"><span class="nav-number">3.4.</span> <span class="nav-text">arr.hashCode()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arr-toString"><span class="nav-number">3.5.</span> <span class="nav-text">arr.toString()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组对象的属性"><span class="nav-number">4.</span> <span class="nav-text">数组对象的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#arr-length"><span class="nav-number">4.1.</span> <span class="nav-text">arr.length</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张学志"
+      src="/images/avatar1.jpg">
+  <p class="site-author-name" itemprop="name">张学志</p>
+  <div class="site-description" itemprop="description">从今天开始, 做一个精彩的平凡人！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/algoboy101/note_blog" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;algoboy101&#x2F;note_blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.xuezhisd.top/mailto.html" title="E-Mail → https:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;mailto.html"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/xuezhisdc" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;xuezhisdc" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://yongyuan.name/" title="https:&#x2F;&#x2F;yongyuan.name&#x2F;" rel="noopener" target="_blank">袁勇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <!-- 
+      
+           <div>
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=2&id=5276811&auto=1&height=32"></iframe>
+           </div>
+      
+      -->
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张学志</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">325k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:56</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581db2eae126635e" async="async"></script>
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
+  </div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '850px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5d7851a991d55468095a',
+      clientSecret: 'eb16a65b938a0160c3380a324e3a49b0bf5be67a',
+      repo: 'note_blog_comment',
+      owner: 'algoboy101',
+      admin: ['algoboy101'],
+      id: 'ae5efd1a97926aaed0801877843e87ca',
+        language: 'zh-CN',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+
+<script>
+NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz',
+    appKey: 'KNlyr54S3RIstdjHBJUQomdF',
+    placeholder: "支持匿名回复; 支持md语法; 抓紧占座啦!",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '30' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

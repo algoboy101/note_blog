@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="8MClfGIKqlhvS7lCIUORoPlPQW5ZS-acECTz66SI-q0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="...">
+<meta name="keywords" content="编程,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编码练习——Java-String-API-练习">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;dd33.html">
+<meta property="og:site_name" content="张学志">
+<meta property="og:description" content="...">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-03-31T04:11:19.380Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.xuezhisd.top/dd33.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>编码练习——Java-String-API-练习 | 张学志</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ce9a310dfefd1aeba54748007375c4d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张学志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">人工智能 | 计算机视觉 | 深度学习</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.xuezhisd.top/dd33.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpg">
+      <meta itemprop="name" content="张学志">
+      <meta itemprop="description" content="从今天开始, 做一个精彩的平凡人！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张学志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          编码练习——Java-String-API-练习<a href="https://github.com/algoboy101/note_blog/tree/master/source/_posts/%E7%BC%96%E7%A0%81%E7%BB%83%E4%B9%A0%E2%80%94%E2%80%94Java-String-API-%E7%BB%83%E4%B9%A0.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-28 12:58:00" itemprop="dateCreated datePublished" datetime="2016-08-28T12:58:00+08:00">2016-08-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-31 12:11:19" itemprop="dateModified" datetime="2021-03-31T12:11:19+08:00">2021-03-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/dd33.html" class="post-meta-item leancloud_visitors" data-flag-title="编码练习——Java-String-API-练习" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/dd33.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/dd33.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+            <div class="post-description">...</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="初始化（构造函数）"><a href="#初始化（构造函数）" class="headerlink" title="初始化（构造函数）"></a>初始化（构造函数）</h2><ul>
+<li>各种初始化方法<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> str1 = <span class="keyword">new</span> <span class="keyword">String</span>();</span><br><span class="line">System.out.<span class="built_in">println</span>(str1);</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span>[] arr = &#123;<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>&#125;;</span><br><span class="line"><span class="keyword">String</span> str2 = <span class="keyword">new</span> <span class="keyword">String</span>(arr);</span><br><span class="line">System.out.<span class="built_in">println</span>(str2);</span><br><span class="line"></span><br><span class="line"><span class="keyword">String</span> str3 = <span class="string">"zhang"</span>;</span><br><span class="line">System.out.<span class="built_in">println</span>(str3);</span><br><span class="line"></span><br><span class="line"><span class="keyword">String</span> str4 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"xuezhi"</span>);</span><br><span class="line">System.out.<span class="built_in">println</span>(str4);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="String方法"><a href="#String方法" class="headerlink" title="String方法"></a>String方法</h2><h3 id="str-charAt"><a href="#str-charAt" class="headerlink" title="str.charAt()"></a>str.charAt()</h3><ul>
+<li>返回指定位置的字符<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="keyword">new</span> <span class="constructor">String(<span class="string">"hello, world!"</span>)</span>;</span><br><span class="line">		</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.<span class="built_in">char</span><span class="constructor">At(4)</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-codePointAt"><a href="#str-codePointAt" class="headerlink" title="str.codePointAt()"></a>str.codePointAt()</h3><ul>
+<li>返回指定位置字符的Unicode编码<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(<span class="keyword">String</span>[] args)</span> </span>&#123;</span><br><span class="line"><span class="keyword">String</span> str1 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"hello, world!"</span>);</span><br><span class="line"></span><br><span class="line">System.out.<span class="built_in">println</span>(str1.codePointAt(<span class="number">4</span>)); <span class="comment">//o</span></span><br><span class="line">System.out.<span class="built_in">println</span>(str1.codePointAt(<span class="number">8</span>)); <span class="comment">//o</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-codePointBefore"><a href="#str-codePointBefore" class="headerlink" title="str.codePointBefore()"></a>str.codePointBefore()</h3><ul>
+<li>返回指定位置前一位置的字符的Unicode编码<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="keyword">new</span> <span class="constructor">String(<span class="string">"hello, world!"</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.code<span class="constructor">PointBefore(3)</span>); <span class="comment">//l</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.code<span class="constructor">PointBefore(4)</span>); <span class="comment">//l</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-codePointCount"><a href="#str-codePointCount" class="headerlink" title="str.codePointCount()"></a>str.codePointCount()</h3><ul>
+<li>返回指定范围内的Unicode的编码数量<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="keyword">new</span> <span class="constructor">String(<span class="string">"hello, world!"</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.code<span class="constructor">PointCount(0, 2)</span>); <span class="comment">//he</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-compareTo"><a href="#str-compareTo" class="headerlink" title="str.compareTo()"></a>str.compareTo()</h3><ul>
+<li>比较两个字符串的字典序，相等时返回0<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"ba"</span>;</span><br><span class="line">String str2 = <span class="string">"ba"</span>;</span><br><span class="line">String str3 = <span class="string">"be"</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.compare<span class="constructor">To(<span class="params">str2</span>)</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.compare<span class="constructor">To(<span class="params">str3</span>)</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-compareToIgnoreCase"><a href="#str-compareToIgnoreCase" class="headerlink" title="str.compareToIgnoreCase()"></a>str.compareToIgnoreCase()</h3><ul>
+<li>不区分大小形式，比较两个字符串的字典序，相等时返回0<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"ba"</span>;</span><br><span class="line">String str2 = <span class="string">"bE"</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.compare<span class="constructor">To(<span class="params">str2</span>)</span>);</span><br><span class="line"><span class="comment">// 不区分大小写</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.compare<span class="constructor">ToIgnoreCase(<span class="params">str2</span>)</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-concat"><a href="#str-concat" class="headerlink" title="str.concat()"></a>str.concat()</h3><ul>
+<li>字符串拼接<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String </span><span class="keyword">str1 </span>= <span class="string">"hello "</span><span class="comment">;</span></span><br><span class="line"><span class="keyword">String </span><span class="keyword">str2 </span>= <span class="string">"world!"</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">String </span><span class="keyword">str3 </span>= <span class="keyword">str1.concat(str2); </span>// 通过concat()连接</span><br><span class="line"><span class="keyword">String </span><span class="keyword">str4 </span>= <span class="keyword">str1 </span>+ <span class="keyword">str2;	</span>//通过+连接</span><br><span class="line"><span class="symbol">System.out.println</span>(<span class="keyword">str3);</span></span><br><span class="line"><span class="keyword">System.out.println(str4);</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-contains"><a href="#str-contains" class="headerlink" title="str.contains()"></a>str.contains()</h3><ul>
+<li>判断 字符串是否包含另一个字符串<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String </span><span class="keyword">str1 </span>= <span class="string">"hello "</span><span class="comment">;</span></span><br><span class="line"><span class="keyword">String </span><span class="keyword">str2 </span>= <span class="string">"ll"</span><span class="comment">;</span></span><br><span class="line"><span class="keyword">String </span><span class="keyword">str3 </span>= <span class="string">"ab"</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">System.out.println</span>(<span class="keyword">str1.contains(str2));</span></span><br><span class="line"><span class="keyword">System.out.println(str1.contains(str3));</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-contentEquals"><a href="#str-contentEquals" class="headerlink" title="str.contentEquals()"></a>str.contentEquals()</h3><ul>
+<li>判断 两个字符串是否相等<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"hello "</span>;</span><br><span class="line">String str2 = <span class="string">"ll"</span>;</span><br><span class="line">StringBuffer str3 = <span class="keyword">new</span> <span class="constructor">StringBuffer(<span class="string">"hello "</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.content<span class="constructor">Equals(<span class="params">str2</span>)</span>);	<span class="comment">// String</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.content<span class="constructor">Equals(<span class="params">str3</span>)</span>);	<span class="comment">// StringBuffer</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-copyValueOf"><a href="#str-copyValueOf" class="headerlink" title="str.copyValueOf()"></a>str.copyValueOf()</h3><ul>
+<li>将字符数组转换成字符串<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">char</span><span class="literal">[]</span> arr = &#123;<span class="character">'h'</span>, <span class="character">'e'</span>, <span class="character">'l'</span>, <span class="character">'l'</span>, <span class="character">'o'</span>&#125;;</span><br><span class="line">String str1 = <span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>copy<span class="constructor">ValueOf(<span class="params">arr</span>)</span>;</span><br><span class="line">String str2 = <span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>copy<span class="constructor">ValueOf(<span class="params">arr</span>, 2, 2)</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str2);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-endsWith"><a href="#str-endsWith" class="headerlink" title="str.endsWith()"></a>str.endsWith()</h3><ul>
+<li>判断是否以子字符串结尾<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"hello, world"</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.ends<span class="constructor">With(<span class="string">"world"</span>)</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-equals-amp-str-equalsIgnoreCase"><a href="#str-equals-amp-str-equalsIgnoreCase" class="headerlink" title="str.equals() &amp; str.equalsIgnoreCase()"></a>str.equals() &amp; str.equalsIgnoreCase()</h3><ul>
+<li>判等<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"hello, world"</span>;</span><br><span class="line">String str2 = <span class="string">"Hello, world"</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.equals(str2));</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.equals<span class="constructor">IgnoreCase(<span class="params">str2</span>)</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-format"><a href="#str-format" class="headerlink" title="str.format()"></a>str.format()</h3><ul>
+<li>字符串格式化<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>format(<span class="string">"Hi, %s!"</span>, <span class="string">"Xuezhi"</span>);</span><br><span class="line">String str2 = <span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>format(<span class="string">"价格：%d元"</span>, <span class="number">4</span>);</span><br><span class="line">String str3 = <span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>format(<span class="string">"价格：%.2f元"</span>, <span class="number">4.5</span>);</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str2);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str3);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-getBytes"><a href="#str-getBytes" class="headerlink" title="str.getBytes()"></a>str.getBytes()</h3><ul>
+<li>将字符串编码成byte数组<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String </span><span class="keyword">str1 </span>= <span class="string">"abcdef"</span><span class="comment">;</span></span><br><span class="line"><span class="keyword">byte[] </span><span class="keyword">bArr </span>= <span class="keyword">str1.getBytes();</span></span><br><span class="line"><span class="keyword">// </span>打印</span><br><span class="line"><span class="symbol">for</span> (<span class="keyword">byte </span><span class="keyword">item </span>: <span class="keyword">bArr) </span></span><br><span class="line">	System.out.print(<span class="keyword">item </span>+ <span class="string">" "</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-hashCode"><a href="#str-hashCode" class="headerlink" title="str.hashCode()"></a>str.hashCode()</h3><ul>
+<li>返回它的哈希码<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"abcdef"</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.hash<span class="constructor">Code()</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-indexOf"><a href="#str-indexOf" class="headerlink" title="str.indexOf()"></a>str.indexOf()</h3><ul>
+<li>返回字符首次出现的位置<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"abcabc"</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"a的位置是："</span> + str1.index<span class="constructor">Of(<span class="string">"a"</span>)</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"a的位置是："</span> + str1.index<span class="constructor">Of('<span class="params">a</span>')</span>);</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"a的位置是："</span> + str1.index<span class="constructor">Of(<span class="string">"a"</span>, 2)</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-lastIndexOf"><a href="#str-lastIndexOf" class="headerlink" title="str.lastIndexOf()"></a>str.lastIndexOf()</h3><ul>
+<li>返回字符最后出现的位置<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"abcabc"</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"a的最后位置是："</span> + str1.last<span class="constructor">IndexOf(<span class="string">"a"</span>)</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"a的最后位置是："</span> + str1.last<span class="constructor">IndexOf('<span class="params">a</span>')</span>);</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"a的最后位置是："</span> + str1.last<span class="constructor">IndexOf(<span class="string">"a"</span>, 2)</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-intern"><a href="#str-intern" class="headerlink" title="str.intern()"></a>str.intern()</h3><ul>
+<li>？</li>
+<li>仅当两字符串相等时，intern()返回值相等<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String </span><span class="keyword">str1 </span>= <span class="string">"abcabc"</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">String </span><span class="keyword">str2 </span>= <span class="keyword">str1.intern();</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">System.out.println(str2);</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-isEmpty"><a href="#str-isEmpty" class="headerlink" title="str.isEmpty()"></a>str.isEmpty()</h3><ul>
+<li>判断字符串是否为空<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str1 = "abc";</span><br><span class="line">String str2 = "";</span><br><span class="line"></span><br><span class="line"><span class="keyword">System</span>.<span class="keyword">out</span>.println(str1.isEmpty());</span><br><span class="line"><span class="keyword">System</span>.<span class="keyword">out</span>.println(str2.isEmpty());</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-length"><a href="#str-length" class="headerlink" title="str.length()"></a>str.length()</h3><ul>
+<li>返回字符串的长度<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str1 = "abc";</span><br><span class="line">String str2 = "";</span><br><span class="line"></span><br><span class="line"><span class="keyword">System</span>.<span class="keyword">out</span>.println(str1.length());</span><br><span class="line"><span class="keyword">System</span>.<span class="keyword">out</span>.println(str2.length());</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-matches"><a href="#str-matches" class="headerlink" title="str.matches()"></a>str.matches()</h3><ul>
+<li>是否匹配给定正则表达式<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"hello, world"</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line">System.out.println(str1.matches(<span class="string">"(.*)world(.*)"</span>))<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-replace"><a href="#str-replace" class="headerlink" title="str.replace()"></a>str.replace()</h3><ul>
+<li>字符替换 或 字符串替换<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> str1 = <span class="string">"hello, world"</span>;</span><br><span class="line"><span class="keyword">String</span> str2 = str1.replace(<span class="string">'h'</span>, <span class="string">'H'</span>); <span class="comment">// char</span></span><br><span class="line"><span class="keyword">String</span> str3 = str1.replace(<span class="string">"world"</span>, <span class="string">"WORLD"</span>); <span class="comment">// String</span></span><br><span class="line"></span><br><span class="line">System.out.<span class="built_in">println</span>(str2);</span><br><span class="line">System.out.<span class="built_in">println</span>(str3);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-replaceAll"><a href="#str-replaceAll" class="headerlink" title="str.replaceAll()"></a>str.replaceAll()</h3><ul>
+<li>替换所有的符合正则表达式<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> str1 = <span class="string">"hello, world"</span>;</span><br><span class="line"><span class="keyword">String</span> str2 = str1.replaceAll(<span class="string">"l"</span>, <span class="string">"L"</span>); <span class="comment">// char</span></span><br><span class="line"></span><br><span class="line">System.out.<span class="built_in">println</span>(str2);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-replaceFirst"><a href="#str-replaceFirst" class="headerlink" title="str.replaceFirst()"></a>str.replaceFirst()</h3><ul>
+<li>替换第一个字符串<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String </span><span class="keyword">str1 </span>= <span class="string">"hello, world"</span><span class="comment">;</span></span><br><span class="line"><span class="keyword">String </span><span class="keyword">str2 </span>= <span class="keyword">str1.replaceFirst("l", </span><span class="string">"L"</span>)<span class="comment">; </span></span><br><span class="line"></span><br><span class="line"><span class="symbol">System.out.println</span>(<span class="keyword">str2);</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-split"><a href="#str-split" class="headerlink" title="str.split()"></a>str.split()</h3><ul>
+<li>字符串切分<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String </span><span class="keyword">str1 </span>= <span class="string">"abcabcabcabc"</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">String[] </span><span class="keyword">strArr </span>= <span class="keyword">str1.split("a");</span></span><br><span class="line"><span class="keyword">System.out.println(strArr.length);</span></span><br><span class="line"><span class="keyword">for </span>(<span class="keyword">String </span><span class="keyword">item </span>: <span class="keyword">strArr) </span></span><br><span class="line">	System.out.println(<span class="keyword">item);</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">String[] </span><span class="keyword">strArr2 </span>= <span class="keyword">str1.split("a",3);</span></span><br><span class="line"><span class="keyword">System.out.println(strArr2.length);</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">for </span>(<span class="keyword">String </span><span class="keyword">item </span>: <span class="keyword">strArr2) </span></span><br><span class="line">	System.out.println(<span class="keyword">item);</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-startsWith"><a href="#str-startsWith" class="headerlink" title="str.startsWith()"></a>str.startsWith()</h3><ul>
+<li>判断字符串是否以某子字符串开始<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"hello, world!"</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.starts<span class="constructor">With(<span class="string">"hello"</span>)</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.starts<span class="constructor">With(<span class="string">"world"</span>, 7)</span>);<span class="comment">// 偏移</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-subSequence"><a href="#str-subSequence" class="headerlink" title="str.subSequence()"></a>str.subSequence()</h3><ul>
+<li>返回指定区间的字符序列<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String </span><span class="keyword">str1 </span>= <span class="string">"hello, world!"</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">System.out.println</span>(<span class="keyword">str1.subSequence(7, </span><span class="number">12</span>))<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-substring"><a href="#str-substring" class="headerlink" title="str.substring()"></a>str.substring()</h3><ul>
+<li>返回指定区间的字符串<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str1 = "hello, world!";</span><br><span class="line"></span><br><span class="line"><span class="keyword">System</span>.<span class="keyword">out</span>.println(str1.substring(<span class="number">7</span>, <span class="number">12</span>));</span><br><span class="line"><span class="keyword">System</span>.<span class="keyword">out</span>.println(str1.substring(<span class="number">7</span>));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-toCharArray"><a href="#str-toCharArray" class="headerlink" title="str.toCharArray()"></a>str.toCharArray()</h3><ul>
+<li>将字符串转换成字符数组<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"hello"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">char</span><span class="literal">[]</span> charArr = str1.<span class="keyword">to</span><span class="constructor">CharArray()</span>;</span><br><span class="line"></span><br><span class="line">for (<span class="built_in">char</span> item : charArr) </span><br><span class="line">	<span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.print(item + <span class="string">" "</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-toLowerCase"><a href="#str-toLowerCase" class="headerlink" title="str.toLowerCase()"></a>str.toLowerCase()</h3><ul>
+<li>转换成小写形式<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"abc DEF"</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.<span class="keyword">to</span><span class="constructor">LowerCase()</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-toUpperCase"><a href="#str-toUpperCase" class="headerlink" title="str.toUpperCase()"></a>str.toUpperCase()</h3><ul>
+<li>转换成大写形式<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"abc DEF"</span>;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(str1.<span class="keyword">to</span><span class="constructor">UpperCase()</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-trim"><a href="#str-trim" class="headerlink" title="str.trim()"></a>str.trim()</h3><ul>
+<li>去除字符串开头和结尾的空白符<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = "  abc def  ";</span><br><span class="line"></span><br><span class="line"><span class="keyword">System</span>.<span class="keyword">out</span>.println(str1.trim());</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="str-valueOf"><a href="#str-valueOf" class="headerlink" title="str.valueOf()"></a>str.valueOf()</h3><ul>
+<li>将各种类型的数据 转换成 字符串<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">char</span><span class="literal">[]</span> charArr = &#123;<span class="character">'a'</span>, <span class="character">'b'</span>, <span class="character">'c'</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>value<span class="constructor">Of(<span class="params">false</span>)</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>value<span class="constructor">Of('<span class="params">a</span>')</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>value<span class="constructor">Of(<span class="params">charArr</span>)</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>value<span class="constructor">Of(4.5)</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>value<span class="constructor">Of(4)</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/f0b0.html" rel="bookmark">编码练习——Java-5-类和对象</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/8297.html" rel="bookmark">编码练习——Java-6-类的高级特性</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/c2a4.html" rel="bookmark">编码练习——Java-数组-API-练习</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> 编程</a>
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/c2a4.html" rel="next" title="编码练习——Java-数组-API-练习">
+                  <i class="fa fa-chevron-left"></i> 编码练习——Java-数组-API-练习
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/4352.html" rel="prev" title="剑指Offer——Java答案">
+                  剑指Offer——Java答案 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">GitHub回复</a></li>
+            <li class="tab"><a href="#comment-valine">匿名回复</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="comments"></div>
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = 'gitalk';
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化（构造函数）"><span class="nav-number">1.</span> <span class="nav-text">初始化（构造函数）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String方法"><span class="nav-number">2.</span> <span class="nav-text">String方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#str-charAt"><span class="nav-number">2.1.</span> <span class="nav-text">str.charAt()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-codePointAt"><span class="nav-number">2.2.</span> <span class="nav-text">str.codePointAt()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-codePointBefore"><span class="nav-number">2.3.</span> <span class="nav-text">str.codePointBefore()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-codePointCount"><span class="nav-number">2.4.</span> <span class="nav-text">str.codePointCount()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-compareTo"><span class="nav-number">2.5.</span> <span class="nav-text">str.compareTo()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-compareToIgnoreCase"><span class="nav-number">2.6.</span> <span class="nav-text">str.compareToIgnoreCase()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-concat"><span class="nav-number">2.7.</span> <span class="nav-text">str.concat()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-contains"><span class="nav-number">2.8.</span> <span class="nav-text">str.contains()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-contentEquals"><span class="nav-number">2.9.</span> <span class="nav-text">str.contentEquals()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-copyValueOf"><span class="nav-number">2.10.</span> <span class="nav-text">str.copyValueOf()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-endsWith"><span class="nav-number">2.11.</span> <span class="nav-text">str.endsWith()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-equals-amp-str-equalsIgnoreCase"><span class="nav-number">2.12.</span> <span class="nav-text">str.equals() &amp; str.equalsIgnoreCase()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-format"><span class="nav-number">2.13.</span> <span class="nav-text">str.format()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-getBytes"><span class="nav-number">2.14.</span> <span class="nav-text">str.getBytes()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-hashCode"><span class="nav-number">2.15.</span> <span class="nav-text">str.hashCode()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-indexOf"><span class="nav-number">2.16.</span> <span class="nav-text">str.indexOf()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-lastIndexOf"><span class="nav-number">2.17.</span> <span class="nav-text">str.lastIndexOf()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-intern"><span class="nav-number">2.18.</span> <span class="nav-text">str.intern()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-isEmpty"><span class="nav-number">2.19.</span> <span class="nav-text">str.isEmpty()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-length"><span class="nav-number">2.20.</span> <span class="nav-text">str.length()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-matches"><span class="nav-number">2.21.</span> <span class="nav-text">str.matches()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-replace"><span class="nav-number">2.22.</span> <span class="nav-text">str.replace()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-replaceAll"><span class="nav-number">2.23.</span> <span class="nav-text">str.replaceAll()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-replaceFirst"><span class="nav-number">2.24.</span> <span class="nav-text">str.replaceFirst()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-split"><span class="nav-number">2.25.</span> <span class="nav-text">str.split()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-startsWith"><span class="nav-number">2.26.</span> <span class="nav-text">str.startsWith()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-subSequence"><span class="nav-number">2.27.</span> <span class="nav-text">str.subSequence()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-substring"><span class="nav-number">2.28.</span> <span class="nav-text">str.substring()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-toCharArray"><span class="nav-number">2.29.</span> <span class="nav-text">str.toCharArray()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-toLowerCase"><span class="nav-number">2.30.</span> <span class="nav-text">str.toLowerCase()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-toUpperCase"><span class="nav-number">2.31.</span> <span class="nav-text">str.toUpperCase()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-trim"><span class="nav-number">2.32.</span> <span class="nav-text">str.trim()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-valueOf"><span class="nav-number">2.33.</span> <span class="nav-text">str.valueOf()</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张学志"
+      src="/images/avatar1.jpg">
+  <p class="site-author-name" itemprop="name">张学志</p>
+  <div class="site-description" itemprop="description">从今天开始, 做一个精彩的平凡人！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/algoboy101/note_blog" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;algoboy101&#x2F;note_blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.xuezhisd.top/mailto.html" title="E-Mail → https:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;mailto.html"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/xuezhisdc" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;xuezhisdc" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://yongyuan.name/" title="https:&#x2F;&#x2F;yongyuan.name&#x2F;" rel="noopener" target="_blank">袁勇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <!-- 
+      
+           <div>
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=2&id=5276811&auto=1&height=32"></iframe>
+           </div>
+      
+      -->
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张学志</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">325k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:56</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581db2eae126635e" async="async"></script>
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
+  </div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '850px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5d7851a991d55468095a',
+      clientSecret: 'eb16a65b938a0160c3380a324e3a49b0bf5be67a',
+      repo: 'note_blog_comment',
+      owner: 'algoboy101',
+      admin: ['algoboy101'],
+      id: '91de4bc812a1c3e650207cdcfb637baa',
+        language: 'zh-CN',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+
+<script>
+NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz',
+    appKey: 'KNlyr54S3RIstdjHBJUQomdF',
+    placeholder: "支持匿名回复; 支持md语法; 抓紧占座啦!",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '30' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

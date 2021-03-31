@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="8MClfGIKqlhvS7lCIUORoPlPQW5ZS-acECTz66SI-q0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="...">
+<meta name="keywords" content="计算机视觉,PCL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PCL系列——三维重构之泊松重构">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;e073.html">
+<meta property="og:site_name" content="张学志">
+<meta property="og:description" content="...">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20160401093428810">
+<meta property="og:updated_time" content="2021-03-31T04:11:19.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20160401093428810">
+
+<link rel="canonical" href="http://blog.xuezhisd.top/e073.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>PCL系列——三维重构之泊松重构 | 张学志</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ce9a310dfefd1aeba54748007375c4d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张学志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">人工智能 | 计算机视觉 | 深度学习</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.xuezhisd.top/e073.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpg">
+      <meta itemprop="name" content="张学志">
+      <meta itemprop="description" content="从今天开始, 做一个精彩的平凡人！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张学志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          PCL系列——三维重构之泊松重构<a href="https://github.com/algoboy101/note_blog/tree/master/source/_posts/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E4%B8%89%E7%BB%B4%E9%87%8D%E6%9E%84%E4%B9%8B%E6%B3%8A%E6%9D%BE%E9%87%8D%E6%9E%84.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-04-01 13:24:00" itemprop="dateCreated datePublished" datetime="2016-04-01T13:24:00+08:00">2016-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-31 12:11:19" itemprop="dateModified" datetime="2021-03-31T12:11:19+08:00">2021-03-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机视觉</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/e073.html" class="post-meta-item leancloud_visitors" data-flag-title="PCL系列——三维重构之泊松重构" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/e073.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/e073.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+            <div class="post-description">...</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="PCL系列"><a href="#PCL系列" class="headerlink" title="PCL系列"></a>PCL系列</h2><ul>
+<li><a href="http://zhangxuezhi.com/2016/03/30/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E8%AF%BB%E5%85%A5PCD%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6/" target="_blank" rel="noopener">PCL系列——读入PCD格式文件操作</a></li>
+<li><a href="http://zhangxuezhi.com/2016/03/30/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%B0%86%E7%82%B9%E4%BA%91%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5PCD%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6/" target="_blank" rel="noopener">PCL系列——将点云数据写入PCD格式文件</a></li>
+<li><a href="http://zhangxuezhi.com/2016/04/20/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8B%BC%E6%8E%A5%E4%B8%A4%E4%B8%AA%E7%82%B9%E4%BA%91/" target="_blank" rel="noopener">PCL系列——拼接两个点云</a></li>
+<li><a href="http://zhangxuezhi.com/2016/03/30/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E4%BB%8E%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F%EF%BC%88RangeImage%EF%BC%89%E4%B8%AD%E6%8F%90%E5%8F%96NARF%E5%85%B3%E9%94%AE%E7%82%B9/" target="_blank" rel="noopener">PCL系列——从深度图像（RangeImage）中提取NARF关键点</a></li>
+<li><a href="http://zhangxuezhi.com/2016/03/30/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%A6%82%E4%BD%95%E5%8F%AF%E8%A7%86%E5%8C%96%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/" target="_blank" rel="noopener">PCL系列——如何可视化深度图像</a></li>
+<li><a href="http://zhangxuezhi.com/2016/03/31/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E8%BF%AD%E4%BB%A3%E6%9C%80%E8%BF%91%E7%82%B9%E6%B3%95%EF%BC%88ICP%EF%BC%89%E9%85%8D%E5%87%86/" target="_blank" rel="noopener">PCL系列——如何使用迭代最近点法（ICP）配准</a></li>
+<li><a href="http://zhangxuezhi.com/2016/04/01/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%A6%82%E4%BD%95%E9%80%90%E6%B8%90%E5%9C%B0%E9%85%8D%E5%87%86%E4%B8%80%E5%AF%B9%E7%82%B9%E4%BA%91/" target="_blank" rel="noopener">PCL系列——如何逐渐地配准一对点云</a></li>
+<li><a href="http://zhangxuezhi.com/2016/04/01/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E4%B8%89%E7%BB%B4%E9%87%8D%E6%9E%84%E4%B9%8B%E6%B3%8A%E6%9D%BE%E9%87%8D%E6%9E%84/" target="_blank" rel="noopener">PCL系列——三维重构之泊松重构</a></li>
+<li><a href="http://zhangxuezhi.com/2016/04/01/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E4%B8%89%E7%BB%B4%E9%87%8D%E6%9E%84%E4%B9%8B%E8%B4%AA%E5%A9%AA%E4%B8%89%E8%A7%92%E6%8A%95%E5%BD%B1%E7%AE%97%E6%B3%95/" target="_blank" rel="noopener">PCL系列——三维重构之贪婪三角投影算法</a></li>
+<li><a href="http://zhangxuezhi.com/2016/04/01/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E4%B8%89%E7%BB%B4%E9%87%8D%E6%9E%84%E4%B9%8B%E7%A7%BB%E5%8A%A8%E7%AB%8B%E6%96%B9%E4%BD%93%E7%AE%97%E6%B3%95/" target="_blank" rel="noopener">PCL系列——三维重构之移动立方体算法</a></li>
+<li><a href="http://zhangxuezhi.com/2016/04/20/PCL%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%B9%B3%E9%9D%A2%E6%A8%A1%E5%9E%8B%E5%88%86%E5%89%B2/" target="_blank" rel="noopener">PCL系列——平面模型分割</a></li>
+</ul>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>通过本教程，我们将会学会：</p>
+<ul>
+<li>如果通过泊松算法进行三维点云重构。</li>
+<li>程序支持两种文件格式：<code>*.pcd</code>和<code>*.ply</code></li>
+<li>程序先读取点云文件，然后计算法向量，接着使用泊松算法进行重构，最后显示结果。</li>
+</ul>
+<a id="more"></a>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ul>
+<li>在VS2010 中新建一个文件 <code>recon_poisson.cpp</code>，然后将下面的代码复制到文件中。</li>
+<li>参照之前的文章，配置项目的属性。设置包含目录和库目录和附加依赖项。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//点的类型的头文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_types.h&gt;</span></span></span><br><span class="line"><span class="comment">//点云文件IO（pcd文件和ply文件）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/io/pcd_io.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/io/ply_io.h&gt;</span></span></span><br><span class="line"><span class="comment">//kd树</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/kdtree/kdtree_flann.h&gt;</span></span></span><br><span class="line"><span class="comment">//特征提取</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/features/normal_3d_omp.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/features/normal_3d.h&gt;</span></span></span><br><span class="line"><span class="comment">//重构</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/surface/gp3.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/surface/poisson.h&gt;</span></span></span><br><span class="line"><span class="comment">//可视化</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/visualization/pcl_visualizer.h&gt;</span></span></span><br><span class="line"><span class="comment">//多线程</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/thread/thread.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 确定文件格式</span></span><br><span class="line">	<span class="keyword">char</span> tmpStr[<span class="number">100</span>];</span><br><span class="line">	<span class="built_in">strcpy</span>(tmpStr,argv[<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">char</span>* pext = <span class="built_in">strrchr</span>(tmpStr, <span class="string">'.'</span>);</span><br><span class="line">	<span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">extply</span><span class="params">(<span class="string">"ply"</span>)</span></span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">extpcd</span><span class="params">(<span class="string">"pcd"</span>)</span></span>;</span><br><span class="line">	<span class="keyword">if</span>(pext)&#123;</span><br><span class="line">		*pext=<span class="string">'\0'</span>;</span><br><span class="line">		pext++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">ext</span><span class="params">(pext)</span></span>;</span><br><span class="line">	<span class="comment">//如果不支持文件格式，退出程序</span></span><br><span class="line">	<span class="keyword">if</span> (!((ext == extply)||(ext == extpcd)))&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"文件格式不支持!"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"支持文件格式：*.pcd和*.ply！"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//根据文件格式选择输入方式</span></span><br><span class="line">  pcl::PointCloud&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">cloud</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZ&gt;)</span> </span>; <span class="comment">//创建点云对象指针，用于存储输入</span></span><br><span class="line">	<span class="keyword">if</span> (ext == extply)&#123;</span><br><span class="line">		<span class="keyword">if</span> (pcl::io::loadPLYFile(argv[<span class="number">1</span>] , *cloud) == <span class="number">-1</span>)&#123;</span><br><span class="line">			PCL_ERROR(<span class="string">"Could not read ply file!\n"</span>) ;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (pcl::io::loadPCDFile(argv[<span class="number">1</span>] , *cloud) == <span class="number">-1</span>)&#123;</span><br><span class="line">			PCL_ERROR(<span class="string">"Could not read pcd file!\n"</span>) ;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 计算法向量</span></span><br><span class="line">  pcl::PointCloud&lt;pcl::PointNormal&gt;::<span class="function">Ptr <span class="title">cloud_with_normals</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointNormal&gt;)</span></span>; <span class="comment">//法向量点云对象指针</span></span><br><span class="line">  pcl::NormalEstimation&lt;pcl::PointXYZ , pcl::Normal&gt; n ;<span class="comment">//法线估计对象</span></span><br><span class="line">  pcl::PointCloud&lt;pcl::Normal&gt;::<span class="function">Ptr <span class="title">normals</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::Normal&gt;)</span> </span>;<span class="comment">//存储估计的法线的指针</span></span><br><span class="line">  pcl::search::KdTree&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">tree</span><span class="params">(<span class="keyword">new</span> pcl::search::KdTree&lt;pcl::PointXYZ&gt;)</span> </span>;</span><br><span class="line">  tree-&gt;setInputCloud(cloud) ;</span><br><span class="line">  n.setInputCloud(cloud) ;</span><br><span class="line">  n.setSearchMethod(tree) ;</span><br><span class="line">  n.setKSearch(<span class="number">20</span>);</span><br><span class="line">	n.compute(*normals); <span class="comment">//计算法线，结果存储在normals中</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//将点云和法线放到一起</span></span><br><span class="line">  pcl::concatenateFields(*cloud , *normals , *cloud_with_normals) ;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建搜索树</span></span><br><span class="line">  pcl::search::KdTree&lt;pcl::PointNormal&gt;::<span class="function">Ptr <span class="title">tree2</span><span class="params">(<span class="keyword">new</span> pcl::search::KdTree&lt;pcl::PointNormal&gt;)</span> </span>;</span><br><span class="line">  tree2-&gt;setInputCloud(cloud_with_normals) ;</span><br><span class="line">	<span class="comment">//创建Poisson对象，并设置参数</span></span><br><span class="line">  pcl::Poisson&lt;pcl::PointNormal&gt; pn ;</span><br><span class="line">	pn.setConfidence(<span class="literal">false</span>); <span class="comment">//是否使用法向量的大小作为置信信息。如果false，所有法向量均归一化。</span></span><br><span class="line">	pn.setDegree(<span class="number">2</span>); <span class="comment">//设置参数degree[1,5],值越大越精细，耗时越久。</span></span><br><span class="line">	pn.setDepth(<span class="number">8</span>); <span class="comment">//树的最大深度，求解2^d x 2^d x 2^d立方体元。由于八叉树自适应采样密度，指定值仅为最大深度。</span></span><br><span class="line">	pn.setIsoDivide(<span class="number">8</span>); <span class="comment">//用于提取ISO等值面的算法的深度</span></span><br><span class="line">	pn.setManifold(<span class="literal">false</span>); <span class="comment">//是否添加多边形的重心，当多边形三角化时。 设置流行标志，如果设置为true，则对多边形进行细分三角话时添加重心，设置false则不添加</span></span><br><span class="line">	pn.setOutputPolygons(<span class="literal">false</span>); <span class="comment">//是否输出多边形网格（而不是三角化移动立方体的结果）</span></span><br><span class="line">	pn.setSamplesPerNode(<span class="number">3.0</span>); <span class="comment">//设置落入一个八叉树结点中的样本点的最小数量。无噪声，[1.0-5.0],有噪声[15.-20.]平滑</span></span><br><span class="line">	pn.setScale(<span class="number">1.25</span>); <span class="comment">//设置用于重构的立方体直径和样本边界立方体直径的比率。</span></span><br><span class="line">	pn.setSolverDivide(<span class="number">8</span>); <span class="comment">//设置求解线性方程组的Gauss-Seidel迭代方法的深度</span></span><br><span class="line">	<span class="comment">//pn.setIndices();</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//设置搜索方法和输入点云</span></span><br><span class="line">	pn.setSearchMethod(tree2);</span><br><span class="line">	pn.setInputCloud(cloud_with_normals);</span><br><span class="line">	<span class="comment">//创建多变形网格，用于存储结果</span></span><br><span class="line">	pcl::PolygonMesh mesh ;</span><br><span class="line">	<span class="comment">//执行重构</span></span><br><span class="line">	pn.performReconstruction(mesh);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//保存网格图</span></span><br><span class="line">	pcl::io::savePLYFile(<span class="string">"result.ply"</span>, mesh);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 显示结果图</span></span><br><span class="line">	boost::<span class="built_in">shared_ptr</span>&lt;pcl::visualization::PCLVisualizer&gt; viewer(<span class="keyword">new</span> pcl::visualization::PCLVisualizer(<span class="string">"3D viewer"</span>)) ;</span><br><span class="line">	viewer-&gt;setBackgroundColor(<span class="number">0</span> , <span class="number">0</span> , <span class="number">0</span>) ;</span><br><span class="line">	viewer-&gt;addPolygonMesh(mesh , <span class="string">"my"</span>) ;</span><br><span class="line">	viewer-&gt;addCoordinateSystem (<span class="number">50.0</span>);</span><br><span class="line">	viewer-&gt;initCameraParameters() ;</span><br><span class="line">	<span class="keyword">while</span> (!viewer-&gt;wasStopped())&#123;</span><br><span class="line">		viewer-&gt;spinOnce(<span class="number">100</span>) ;</span><br><span class="line">		boost::this_thread::sleep(boost::posix_time::microseconds(<span class="number">100000</span>)) ;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重新生成项目。</li>
+<li>到改项目的Debug目录下，按住Shift，同时点击鼠标右键，在当前窗口打开CMD窗口。</li>
+<li>在命令行中输入<code>recon_poisson.exe bunny.points.ply</code>，执行程序。得到如下图所示的结果。</li>
+</ul>
+<p><img alt="泊松重构结果图" data-src="http://img.blog.csdn.net/20160401093428810"></p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/39c2.html" rel="bookmark">PCL系列——如何使用迭代最近点法（ICP）配准</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/ab16.html" rel="bookmark">PCL系列——平面模型分割</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/ef71.html" rel="bookmark">PCL系列——如何逐渐地配准一对点云</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
+              <a href="/tags/PCL/" rel="tag"><i class="fa fa-tag"></i> PCL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/39c2.html" rel="next" title="PCL系列——如何使用迭代最近点法（ICP）配准">
+                  <i class="fa fa-chevron-left"></i> PCL系列——如何使用迭代最近点法（ICP）配准
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/8af6.html" rel="prev" title="PCL系列——三维重构之贪婪三角投影算法">
+                  PCL系列——三维重构之贪婪三角投影算法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">GitHub回复</a></li>
+            <li class="tab"><a href="#comment-valine">匿名回复</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="comments"></div>
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = 'gitalk';
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PCL系列"><span class="nav-number">1.</span> <span class="nav-text">PCL系列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">3.</span> <span class="nav-text">操作</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张学志"
+      src="/images/avatar1.jpg">
+  <p class="site-author-name" itemprop="name">张学志</p>
+  <div class="site-description" itemprop="description">从今天开始, 做一个精彩的平凡人！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/algoboy101/note_blog" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;algoboy101&#x2F;note_blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.xuezhisd.top/mailto.html" title="E-Mail → https:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;mailto.html"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/xuezhisdc" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;xuezhisdc" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://yongyuan.name/" title="https:&#x2F;&#x2F;yongyuan.name&#x2F;" rel="noopener" target="_blank">袁勇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <!-- 
+      
+           <div>
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=2&id=5276811&auto=1&height=32"></iframe>
+           </div>
+      
+      -->
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张学志</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">325k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:56</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581db2eae126635e" async="async"></script>
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
+  </div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '850px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5d7851a991d55468095a',
+      clientSecret: 'eb16a65b938a0160c3380a324e3a49b0bf5be67a',
+      repo: 'note_blog_comment',
+      owner: 'algoboy101',
+      admin: ['algoboy101'],
+      id: 'f08194c19a27e61ac65f09d42f6f0f76',
+        language: 'zh-CN',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+
+<script>
+NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz',
+    appKey: 'KNlyr54S3RIstdjHBJUQomdF',
+    placeholder: "支持匿名回复; 支持md语法; 抓紧占座啦!",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '30' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

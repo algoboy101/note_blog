@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="8MClfGIKqlhvS7lCIUORoPlPQW5ZS-acECTz66SI-q0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="...">
+<meta name="keywords" content="软件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xshell使用教程——问答方式">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;9210.html">
+<meta property="og:site_name" content="张学志">
+<meta property="og:description" content="...">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-03-31T04:11:19.376Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.xuezhisd.top/9210.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Xshell使用教程——问答方式 | 张学志</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ce9a310dfefd1aeba54748007375c4d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张学志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">人工智能 | 计算机视觉 | 深度学习</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.xuezhisd.top/9210.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpg">
+      <meta itemprop="name" content="张学志">
+      <meta itemprop="description" content="从今天开始, 做一个精彩的平凡人！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张学志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Xshell使用教程——问答方式<a href="https://github.com/algoboy101/note_blog/tree/master/source/_posts/Xshell%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E2%80%94%E2%80%94%E9%97%AE%E7%AD%94%E6%96%B9%E5%BC%8F.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-11-03 14:03:00" itemprop="dateCreated datePublished" datetime="2015-11-03T14:03:00+08:00">2015-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-31 12:11:19" itemprop="dateModified" datetime="2021-03-31T12:11:19+08:00">2021-03-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">软件</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/9210.html" class="post-meta-item leancloud_visitors" data-flag-title="Xshell使用教程——问答方式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/9210.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/9210.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+            <div class="post-description">...</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p> 以问答的方式学习如何操作Xshell？</p>
+</blockquote>
+<h2 id="Xshell练习"><a href="#Xshell练习" class="headerlink" title="Xshell练习"></a>Xshell练习</h2><ol>
+<li>安装Xshell 5【激活码】？</li>
+<li>更改语言？</li>
+<li>更改激活码？</li>
+<li>如何创建新用户？</li>
+<li>如何打开新的对话？</li>
+<li>如何断开连接？</li>
+<li>如何重新连接？</li>
+<li>如何打印命令历史？<a id="more"></a></li>
+<li>如何传输文件？</li>
+<li>如何关闭Xshelll的声音提示？</li>
+<li>如何是指属性？</li>
+<li>如何复制？</li>
+<li>如何粘贴？</li>
+<li>如何选择会话中的文本？</li>
+<li>如何将会话中的文本输出到记事本（Notepad）中？</li>
+<li>如何查找字符串？</li>
+<li>如何清屏？两种方法的区别是什么？</li>
+<li>如何重置窗口大小？</li>
+<li>如何显示/隐藏【菜单栏/标准按钮/地址栏/链接栏/】</li>
+<li>如何锁定工具栏？</li>
+<li>如何管理/保存/选择“布局”？</li>
+<li>如何设置显示模式为“始终在最上面”？</li>
+<li>如何设置显示模式为“半透明”？</li>
+<li>如何设置显示模式为“最简显示”？</li>
+<li>如何全屏显示？</li>
+<li>如何“锁定屏幕”，防止别人乘你不在时操作？</li>
+<li>如何“发送键输入到所有会话”？如何使用“撰写栏”？</li>
+<li>如何设置/编辑/新建/选择“配色方案”？</li>
+<li>如何设置/选择/新建“快速命令集”？如何显示“快速命令栏”？</li>
+<li>如何新建“选项卡”，重命名“选项卡”，关闭“选项卡”，关闭“其它选项卡”，新建“选</li>
+<li>有关“会话选项卡”的设置：显示新选项卡按钮（加号），显示序号，显示终端标签， </li>
+<li>窗口操作：新建窗口，关闭全部窗口，除此窗口之外全部关闭，切换到下一个窗口，切</li>
+<li>会话选项卡、选项卡组和窗口的区别？</li>
+<li>如何设置“会话文件夹路径”？有什么用？</li>
+<li>更换电脑时，需要复制哪些文件（夹）？</li>
+<li>如何清除各种“历史记录”？</li>
+<li>如何“取消自动更新”？</li>
+<li>如何设置“主控密码”和“锁屏密码”？</li>
+<li>如何在全屏显示是，显示“会话选项卡”？</li>
+<li>如何让Xshell启动时，打开会话对话框？</li>
+<li>如何绑定文本编辑器（Notepad++）？</li>
+<li>如何创建会话的桌面快捷方式？</li>
+<li>【Properties】和【Options】区别？</li>
+<li>新建窗口和新建终端的联系和区别？</li>
+</ol>
+<hr>
+<h2 id="练习答案"><a href="#练习答案" class="headerlink" title="练习答案"></a>练习答案</h2><h3 id="1-安装Xshell-5【激活码】？"><a href="#1-安装Xshell-5【激活码】？" class="headerlink" title="1.    安装Xshell 5【激活码】？"></a>1.    安装Xshell 5【激活码】？</h3><p>注意：激活码 生成激活码机</p>
+<h3 id="2-更改语言？"><a href="#2-更改语言？" class="headerlink" title="2.    更改语言？"></a>2.    更改语言？</h3><p>菜单栏【Tools】→【Language】→【English/Chinese】</p>
+<h3 id="3-更改激活码？"><a href="#3-更改激活码？" class="headerlink" title="3.    更改激活码？"></a>3.    更改激活码？</h3><p>菜单栏【Help】→【Chang Product Key】，输入激活码。</p>
+<h3 id="4-如何创建新用户？"><a href="#4-如何创建新用户？" class="headerlink" title="4.    如何创建新用户？"></a>4.    如何创建新用户？</h3><p>菜单栏【File】→【New】，输入“会话名称”和“主机地址”，点击“OK”保存。</p>
+<h3 id="5-如何打开新的对话？"><a href="#5-如何打开新的对话？" class="headerlink" title="5.    如何打开新的对话？"></a>5.    如何打开新的对话？</h3><p>菜单栏【File】→【Open】，选择保存的会话，点击“connect”打开会话。</p>
+<h3 id="6-如何断开连接？"><a href="#6-如何断开连接？" class="headerlink" title="6.    如何断开连接？"></a>6.    如何断开连接？</h3><p>方法一：对话框中输入命令“disconnect”，即可重新连接。<br>方法二：菜单栏【File】→【Disconnect】，即可重新连接。<br>方法三：工具栏中“断开连接的图标”。</p>
+<h3 id="7-如何重新连接？"><a href="#7-如何重新连接？" class="headerlink" title="7.    如何重新连接？"></a>7.    如何重新连接？</h3><p>方法一：对话框中输入命令“reconnect”，即可重新连接。<br>方法二：菜单栏【File】→【Reconnect】，即可重新连接。<br>方法三：工具栏中“重新连接的图标”。<br>注：菜单栏【File】→【Reconnect All】，重新连接所有的会话。</p>
+<h3 id="8-如何打印命令历史？"><a href="#8-如何打印命令历史？" class="headerlink" title="8.    如何打印命令历史？"></a>8.    如何打印命令历史？</h3><p>菜单栏【File】→【Page Setup】，设置打印效果。<br>菜单栏【File】→【Print Preview】可以看“打印预览”。<br>菜单栏【File】→【Print】，设置打印参数，点击“OK”开始打印。</p>
+<h3 id="9-如何传输文件？"><a href="#9-如何传输文件？" class="headerlink" title="9.    如何传输文件？"></a>9.    如何传输文件？</h3><p>方法一：菜单栏【File】→【Transfer】→【Sent with ZMODEM】，选择文件即可上传文件。<br>方法二：右键→【Transfer】→【Sent with ZMODEM】，选择文件即可上传文件。</p>
+<h3 id="10-如何关闭Xshelll的声音提示？"><a href="#10-如何关闭Xshelll的声音提示？" class="headerlink" title="10.    如何关闭Xshelll的声音提示？"></a>10.    如何关闭Xshelll的声音提示？</h3><p>菜单栏【Tools】→【Options】→【Advanced】 ，在 Terminal 类别中勾选“Disable bell sound”</p>
+<h3 id="11-如何是指属性？"><a href="#11-如何是指属性？" class="headerlink" title="11.    如何是指属性？"></a>11.    如何是指属性？</h3><p>菜单栏【File】→【Properties】，打开属性对话框。</p>
+<h3 id="12-如何复制？"><a href="#12-如何复制？" class="headerlink" title="12.    如何复制？"></a>12.    如何复制？</h3><p>方法一：右键→复制。<br>方法二：菜单栏【Edit】→【Copy】。</p>
+<h3 id="13-如何粘贴？"><a href="#13-如何粘贴？" class="headerlink" title="13.    如何粘贴？"></a>13.    如何粘贴？</h3><p>方法一：右键→Paste。<br>方法二：菜单栏【Edit】→【Paste】。<br>方法三：点击鼠标中键。</p>
+<h3 id="14-如何选择会话中的文本？"><a href="#14-如何选择会话中的文本？" class="headerlink" title="14.    如何选择会话中的文本？"></a>14.    如何选择会话中的文本？</h3><p>方法一：菜单栏【Edit】→【Select All】，选择会话中的“所有文本”。<br>方法二：鼠标右键→【Select All】，选择会话中的“所有文本”。<br>方法三：菜单栏【Edit】→【Select Screen】，选择会话中的“当前屏幕中的文本”。<br>方法四：鼠标右键→【Select Screen】，选择会话中的“当前屏幕中的文本”。</p>
+<h3 id="15-如何将会话中的文本输出到记事本（Notepad）中？"><a href="#15-如何将会话中的文本输出到记事本（Notepad）中？" class="headerlink" title="15.    如何将会话中的文本输出到记事本（Notepad）中？"></a>15.    如何将会话中的文本输出到记事本（Notepad）中？</h3><p>方法一：菜单栏【Edit】→【To Notepad】→【All】，将会话中的“所有文本”导出到记事本中。<br>方法二：菜单栏【Edit】→【To Notepad】→【Current Screen】，将会话中的“当前屏幕中的文本”导出到记事本中。<br>方法三：鼠标右键→【To Notepad】→【All】，将会话中的“所有文本”导出到记事本中。<br>方法四：鼠标右键→【To Notepad】→【Current Screen】，将会话中的“当前屏幕中的文本”导出到记事本中。</p>
+<h3 id="16-如何查找字符串？"><a href="#16-如何查找字符串？" class="headerlink" title="16.    如何查找字符串？"></a>16.    如何查找字符串？</h3><p>方法一：菜单栏【Edit】→【Find…】，打开查找对话框。<br>方法二：鼠标右键→【Find…】，打开查找对话框。</p>
+<h3 id="17-如何清屏？两种方法的区别是什么？"><a href="#17-如何清屏？两种方法的区别是什么？" class="headerlink" title="17.    如何清屏？两种方法的区别是什么？"></a>17.    如何清屏？两种方法的区别是什么？</h3><p>方法一：菜单栏【Edit】→【Reset Terminal】，即可清屏（重置终端）。<br>方法二：菜单栏【Edit】→【Clear Screen】，即可清屏。<br>方法三：菜单栏【Edit】→【Clear Scrollback Buffer】，即可清空滚动缓存区。<br>方法四：鼠标右键→【Reset Terminal】<br>方法五：鼠标右键→【Clear Screen】<br>方法六：鼠标右键→Edit】→【Clear Scrollback Buffer】<br>区别：第一种方法是重置终端，所以无法上滚历史；第二种方法仅仅是清屏，等价于clear的作用，所以能上滚历史命令。第一种方法 ==第二种方法+第三种方法。</p>
+<h3 id="18-如何重置窗口大小？"><a href="#18-如何重置窗口大小？" class="headerlink" title="18.    如何重置窗口大小？"></a>18.    如何重置窗口大小？</h3><p>菜单栏【Edit】→【Reset Window Size】。</p>
+<h3 id="19-如何显示-隐藏【菜单栏-标准按钮-地址栏-链接栏-】"><a href="#19-如何显示-隐藏【菜单栏-标准按钮-地址栏-链接栏-】" class="headerlink" title="19.    如何显示/隐藏【菜单栏/标准按钮/地址栏/链接栏/】"></a>19.    如何显示/隐藏【菜单栏/标准按钮/地址栏/链接栏/】</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>显示/隐藏“菜单栏”</td>
+<td>菜单栏【View】→【Toolbar】→【Menu Bar】</td>
+</tr>
+<tr>
+<td>显示/隐藏“标准按钮”</td>
+<td>菜单栏【View】→【Toolbar】→【Standard Button】</td>
+</tr>
+<tr>
+<td>显示/隐藏“地址栏”</td>
+<td>菜单栏【View】→【Toolbar】→【Address Bar】</td>
+</tr>
+<tr>
+<td>显示/隐藏“链接栏”</td>
+<td>菜单栏【View】→【Toolbar】→【Links Bar】</td>
+</tr>
+<tr>
+<td>显示/隐藏“滚动条”</td>
+<td>菜单栏【View】→【Scroll Bar】</td>
+</tr>
+<tr>
+<td>显示/隐藏“状态栏”</td>
+<td>菜单栏【View】→【Status Bar】</td>
+</tr>
+<tr>
+<td>显示/隐藏“会话选项卡”</td>
+<td>菜单栏【View】→【Session Tab】</td>
+</tr>
+<tr>
+<td>显示/隐藏“撰写栏”</td>
+<td>菜单栏【View】→【Compose Bar】</td>
+</tr>
+<tr>
+<td>显示/隐藏“快速命令栏”</td>
+<td>菜单栏【View】→【Quick Commands】</td>
+</tr>
+<tr>
+<td>显示/隐藏“隧道窗格”</td>
+<td>菜单栏【View】→【Tunneling Pane】</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="20-如何锁定工具栏？"><a href="#20-如何锁定工具栏？" class="headerlink" title="20.    如何锁定工具栏？"></a>20.    如何锁定工具栏？</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>锁定“工具栏”</td>
+<td>菜单栏【View】→【Toolbar】→【Lock the Toolbars】</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="21-如何管理-保存-选择“布局”？"><a href="#21-如何管理-保存-选择“布局”？" class="headerlink" title="21.    如何管理/保存/选择“布局”？"></a>21.    如何管理/保存/选择“布局”？</h3><p>菜单栏【View】→【Layout】，保存【Save As】,管理【Manage】。</p>
+<h3 id="22-如何设置显示模式为“始终在最上面”？"><a href="#22-如何设置显示模式为“始终在最上面”？" class="headerlink" title="22.    如何设置显示模式为“始终在最上面”？"></a>22.    如何设置显示模式为“始终在最上面”？</h3><p>菜单栏【View】→【Always on Top】</p>
+<h3 id="23-如何设置显示模式为“半透明”？"><a href="#23-如何设置显示模式为“半透明”？" class="headerlink" title="23.    如何设置显示模式为“半透明”？"></a>23.    如何设置显示模式为“半透明”？</h3><p>菜单栏【View】→【Transparent】</p>
+<h3 id="24-如何设置显示模式为“最简显示”？"><a href="#24-如何设置显示模式为“最简显示”？" class="headerlink" title="24.    如何设置显示模式为“最简显示”？"></a>24.    如何设置显示模式为“最简显示”？</h3><p>菜单栏【View】→【Simple】</p>
+<h3 id="25-如何全屏显示？"><a href="#25-如何全屏显示？" class="headerlink" title="25.    如何全屏显示？"></a>25.    如何全屏显示？</h3><p>方法一：菜单栏【View】→【Full Screen】<br>方法二：右键→【Full Screen】</p>
+<h3 id="26-如何“锁定屏幕”，防止别人乘你不在时操作？"><a href="#26-如何“锁定屏幕”，防止别人乘你不在时操作？" class="headerlink" title="26.    如何“锁定屏幕”，防止别人乘你不在时操作？"></a>26.    如何“锁定屏幕”，防止别人乘你不在时操作？</h3><p>菜单栏【View】→【Lock Screen】</p>
+<h3 id="27-如何“发送键输入到所有会话”？如何使用“撰写栏”？"><a href="#27-如何“发送键输入到所有会话”？如何使用“撰写栏”？" class="headerlink" title="27.    如何“发送键输入到所有会话”？如何使用“撰写栏”？"></a>27.    如何“发送键输入到所有会话”？如何使用“撰写栏”？</h3><p>方法一：菜单栏【Tools】→【Send Key Input All Sessions】，就可以打开或关闭该功能了。<br>方法二：右键→【Send Key Input All Sessions】<br>菜单栏【View】→【Compose Bar】显示“撰写栏”，然后点击撰写栏最右侧按钮，设置命令发送范围。</p>
+<h3 id="28-如何设置-编辑-新建-选择“配色方案”？"><a href="#28-如何设置-编辑-新建-选择“配色方案”？" class="headerlink" title="28.    如何设置/编辑/新建/选择“配色方案”？"></a>28.    如何设置/编辑/新建/选择“配色方案”？</h3><p>方法一：菜单栏【Tools】→【Color Schemes】<br>方法二：右键→【Color Schemes】，选择颜色模式。默认首映xTerm。</p>
+<h3 id="29-如何设置-选择-新建“快速命令集”？如何显示“快速命令栏”？"><a href="#29-如何设置-选择-新建“快速命令集”？如何显示“快速命令栏”？" class="headerlink" title="29.    如何设置/选择/新建“快速命令集”？如何显示“快速命令栏”？"></a>29.    如何设置/选择/新建“快速命令集”？如何显示“快速命令栏”？</h3><p>菜单栏【Tools】→【Quick Command Sets】，可以设置快速命令集。<br>菜单栏【View】→【Quick Commands】，显示/隐藏“快速命令栏”。<br>快速命令栏中显示的快捷命令就是“快速命令集”中的命令。<br>单击“快速命令栏”最右侧的按钮，可以便捷/添加/删除命令。</p>
+<h3 id="30-如何新建“选项卡”，重命名“选项卡”，关闭“选项卡”，关闭“其它选项卡”，新建“选项卡组”，关闭选项卡组，排列选项卡组？"><a href="#30-如何新建“选项卡”，重命名“选项卡”，关闭“选项卡”，关闭“其它选项卡”，新建“选项卡组”，关闭选项卡组，排列选项卡组？" class="headerlink" title="30.    如何新建“选项卡”，重命名“选项卡”，关闭“选项卡”，关闭“其它选项卡”，新建“选项卡组”，关闭选项卡组，排列选项卡组？"></a>30.    如何新建“选项卡”，重命名“选项卡”，关闭“选项卡”，关闭“其它选项卡”，新建“选项卡组”，关闭选项卡组，排列选项卡组？</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新建“选项卡”</td>
+<td>菜单栏【Tab】→【New Tab】</td>
+</tr>
+<tr>
+<td>重命名“选项卡”</td>
+<td>菜单栏【Tab】→【Rename】</td>
+</tr>
+<tr>
+<td>关闭“选项卡”</td>
+<td>菜单栏【Tab】→【Close】</td>
+</tr>
+<tr>
+<td>关闭“其他选项卡”</td>
+<td>菜单栏【Tab】→【Close other Tabs】</td>
+</tr>
+<tr>
+<td>新建“选项卡组”</td>
+<td>菜单栏【Tab】→【New Tab Groubs】，再选择位置</td>
+</tr>
+<tr>
+<td>关闭“选项卡组”</td>
+<td>菜单栏【Tab】→【Close This Tab Group】</td>
+</tr>
+<tr>
+<td>排列“选项卡组”</td>
+<td>菜单栏【Tab】→【Arrange】，选择排列方式</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="31-有关“会话选项卡”的设置：显示新选项卡按钮（加号），显示序号，显示终端标签，显示状态图标（连接or没连接），设置颜色？"><a href="#31-有关“会话选项卡”的设置：显示新选项卡按钮（加号），显示序号，显示终端标签，显示状态图标（连接or没连接），设置颜色？" class="headerlink" title="31.    有关“会话选项卡”的设置：显示新选项卡按钮（加号），显示序号，显示终端标签，显示状态图标（连接or没连接），设置颜色？"></a>31.    有关“会话选项卡”的设置：显示新选项卡按钮（加号），显示序号，显示终端标签，显示状态图标（连接or没连接），设置颜色？</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>显示新选项卡按钮（加号）</td>
+<td>菜单栏【Tab】→【Show New Tab Button】</td>
+</tr>
+<tr>
+<td>显示序号</td>
+<td>菜单栏【Tab】→【Show Numbers】</td>
+</tr>
+<tr>
+<td>显示终端标签</td>
+<td>菜单栏【Tab】→【Show Terminal Title】</td>
+</tr>
+<tr>
+<td>显示状态图标</td>
+<td>菜单栏【Tab】→【Show Status Icon】</td>
+</tr>
+<tr>
+<td>设置颜色</td>
+<td>菜单栏【Tab】→【Set Color】</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="32-窗口操作：新建窗口，关闭全部窗口，除此窗口之外全部关闭，切换到下一个窗口，切换到上一个窗口，窗口层叠排列，窗口水平排列，窗口垂直排列。打开新的终端窗口，打开新的文件传输窗口（Xftp）？"><a href="#32-窗口操作：新建窗口，关闭全部窗口，除此窗口之外全部关闭，切换到下一个窗口，切换到上一个窗口，窗口层叠排列，窗口水平排列，窗口垂直排列。打开新的终端窗口，打开新的文件传输窗口（Xftp）？" class="headerlink" title="32.    窗口操作：新建窗口，关闭全部窗口，除此窗口之外全部关闭，切换到下一个窗口，切换到上一个窗口，窗口层叠排列，窗口水平排列，窗口垂直排列。打开新的终端窗口，打开新的文件传输窗口（Xftp）？"></a>32.    窗口操作：新建窗口，关闭全部窗口，除此窗口之外全部关闭，切换到下一个窗口，切换到上一个窗口，窗口层叠排列，窗口水平排列，窗口垂直排列。打开新的终端窗口，打开新的文件传输窗口（Xftp）？</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新建窗口</td>
+<td>菜单栏【Window】→【New Window】</td>
+</tr>
+<tr>
+<td>关闭全部窗口</td>
+<td>菜单栏【Window】→【Close All】</td>
+</tr>
+<tr>
+<td>除此窗口之外全部关闭</td>
+<td>菜单栏【Window】→【Close All But This】</td>
+</tr>
+<tr>
+<td>切换到下一个窗口</td>
+<td>菜单栏【Window】→【Next】</td>
+</tr>
+<tr>
+<td>切换到上一个窗口</td>
+<td>菜单栏【Window】→【Previous】</td>
+</tr>
+<tr>
+<td>窗口层叠排列</td>
+<td>菜单栏【Window】→【Cascade】</td>
+</tr>
+<tr>
+<td>窗口水平排列</td>
+<td>菜单栏【Window】→【Tile Horizontally】</td>
+</tr>
+<tr>
+<td>窗口垂直排列</td>
+<td>菜单栏【Window】→【Tile Vertically】</td>
+</tr>
+<tr>
+<td>打开新的终端窗口</td>
+<td>菜单栏【Window】→【New Terminal】</td>
+</tr>
+<tr>
+<td>打开新的文件传输窗口</td>
+<td>菜单栏【Window】→【New File Transfer】</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="33-会话选项卡、选项卡组和窗口的区别？"><a href="#33-会话选项卡、选项卡组和窗口的区别？" class="headerlink" title="33.    会话选项卡、选项卡组和窗口的区别？"></a>33.    会话选项卡、选项卡组和窗口的区别？</h3><p>一个窗口中可以有多个选项卡组，一个选项卡组中又可以有多个会话选项卡。新建窗口之后，在任务栏中可以看到多一个“窗口”。</p>
+<h3 id="34-如何设置“会话文件夹路径”？有什么用？"><a href="#34-如何设置“会话文件夹路径”？有什么用？" class="headerlink" title="34.    如何设置“会话文件夹路径”？有什么用？"></a>34.    如何设置“会话文件夹路径”？有什么用？</h3><p>菜单栏【Tools】→【Options】→【General】，在【Session】条目中，修改文件夹路径即可。通过它，当我们更换电脑时，可以将此文件夹中的内容复制到现在电脑中该文件下，就可打开这些会话了。</p>
+<h3 id="35-更换电脑时，需要复制哪些文件（夹）？"><a href="#35-更换电脑时，需要复制哪些文件（夹）？" class="headerlink" title="35.    更换电脑时，需要复制哪些文件（夹）？"></a>35.    更换电脑时，需要复制哪些文件（夹）？</h3><p>D:\Documents\NetSarang\Xshell\Sessions 保存了所有的会话。<br>D:\Documents\NetSarang\Xshell\QuickButton Files快速命令集<br>最好将D:\Documents\NetSarang\Xshell\所有文件（夹）复制到新的电脑中。</p>
+<h3 id="36-如何清除各种“历史记录”？"><a href="#36-如何清除各种“历史记录”？" class="headerlink" title="36.    如何清除各种“历史记录”？"></a>36.    如何清除各种“历史记录”？</h3><p>菜单栏【Tools】→【Options】→【General】，History条目中点击“Clean”按钮。</p>
+<h3 id="37-如何“取消自动更新”？"><a href="#37-如何“取消自动更新”？" class="headerlink" title="37.    如何“取消自动更新”？"></a>37.    如何“取消自动更新”？</h3><p>菜单栏【Tools】→【Options】→【Update】，去掉复选框中的对号。</p>
+<h3 id="38-如何设置“主控密码”和“锁屏密码”？"><a href="#38-如何设置“主控密码”和“锁屏密码”？" class="headerlink" title="38.    如何设置“主控密码”和“锁屏密码”？"></a>38.    如何设置“主控密码”和“锁屏密码”？</h3><p>菜单栏【Tools】→【Options】→【Security】，勾选“Use Master Password”，即可设置主控密码。不过建议慎用，如果忘记主控密码，就不能打开喽！<br>菜单栏【Tools】→【Options】→【Security】，在Lock Screen条目中，点击“Set Password”，即可设置锁屏密码。</p>
+<h3 id="39-如何在全屏显示是，显示“会话选项卡”？"><a href="#39-如何在全屏显示是，显示“会话选项卡”？" class="headerlink" title="39.    如何在全屏显示是，显示“会话选项卡”？"></a>39.    如何在全屏显示是，显示“会话选项卡”？</h3><p>菜单栏【Tools】→【Options】→【Advanced】，在Window项目中，勾选“Show session tab in full screen mode”即可。</p>
+<h3 id="40-如何让Xshell启动时，打开会话对话框？"><a href="#40-如何让Xshell启动时，打开会话对话框？" class="headerlink" title="40.    如何让Xshell启动时，打开会话对话框？"></a>40.    如何让Xshell启动时，打开会话对话框？</h3><p>菜单栏【Tools】→【Options】→【Advanced】，在Window项目中，勾选“Open the Sessions dialog box at Xshell startup”即可。</p>
+<h3 id="41-如何绑定文本编辑器（Notepad-）？"><a href="#41-如何绑定文本编辑器（Notepad-）？" class="headerlink" title="41.    如何绑定文本编辑器（Notepad++）？"></a>41.    如何绑定文本编辑器（Notepad++）？</h3><p>菜单栏【Tools】→【Options】→【Advanced】，在<em>Text Editor</em>项目中，点击“Settings”按钮，设置文本编辑器（Notepad++）的路径。</p>
+<h3 id="42-如何创建会话的桌面快捷方式？"><a href="#42-如何创建会话的桌面快捷方式？" class="headerlink" title="42.    如何创建会话的桌面快捷方式？"></a>42.    如何创建会话的桌面快捷方式？</h3><p>菜单栏【File】→【Open】，选择一个会话，然后点击“Create Shortcut”。</p>
+<h3 id="43-【Properties】和【Options】区别？"><a href="#43-【Properties】和【Options】区别？" class="headerlink" title="43.    【Properties】和【Options】区别？"></a>43.    【Properties】和【Options】区别？</h3><p>【File】→【Properties】设置的是会话的终端属性，【Tools】→【Options】设置的是Xshell的选项（属性）。</p>
+<h3 id="44-新建窗口和新建终端的联系和区别？"><a href="#44-新建窗口和新建终端的联系和区别？" class="headerlink" title="44.    新建窗口和新建终端的联系和区别？"></a>44.    新建窗口和新建终端的联系和区别？</h3><p>联系：两者都打开新的饿窗口。<br>区别：新建窗口打开的会话是本地会话，没有连接服务器；而新建终端试图连接与当前会话相同的会话信息。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/7c40.html" rel="bookmark">错误-VS2010 error:LINK:fatal error LNK1123:failure during conversion to COFF:file invalid or c</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/55b4.html" rel="bookmark">2018-9-11-配置小书匠的hexo blog模板</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/b56e.html" rel="bookmark">使用shadowsocksR访问google scholar</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag"><i class="fa fa-tag"></i> 软件</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/c517.html" rel="next" title="系统运维学习笔记">
+                  <i class="fa fa-chevron-left"></i> 系统运维学习笔记
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/832d.html" rel="prev" title="Xftp使用教程——问答方式">
+                  Xftp使用教程——问答方式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">GitHub回复</a></li>
+            <li class="tab"><a href="#comment-valine">匿名回复</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="comments"></div>
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = 'gitalk';
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Xshell练习"><span class="nav-number">1.</span> <span class="nav-text">Xshell练习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#练习答案"><span class="nav-number">2.</span> <span class="nav-text">练习答案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装Xshell-5【激活码】？"><span class="nav-number">2.1.</span> <span class="nav-text">1.    安装Xshell 5【激活码】？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-更改语言？"><span class="nav-number">2.2.</span> <span class="nav-text">2.    更改语言？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-更改激活码？"><span class="nav-number">2.3.</span> <span class="nav-text">3.    更改激活码？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-如何创建新用户？"><span class="nav-number">2.4.</span> <span class="nav-text">4.    如何创建新用户？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-如何打开新的对话？"><span class="nav-number">2.5.</span> <span class="nav-text">5.    如何打开新的对话？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-如何断开连接？"><span class="nav-number">2.6.</span> <span class="nav-text">6.    如何断开连接？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-如何重新连接？"><span class="nav-number">2.7.</span> <span class="nav-text">7.    如何重新连接？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-如何打印命令历史？"><span class="nav-number">2.8.</span> <span class="nav-text">8.    如何打印命令历史？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-如何传输文件？"><span class="nav-number">2.9.</span> <span class="nav-text">9.    如何传输文件？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-如何关闭Xshelll的声音提示？"><span class="nav-number">2.10.</span> <span class="nav-text">10.    如何关闭Xshelll的声音提示？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-如何是指属性？"><span class="nav-number">2.11.</span> <span class="nav-text">11.    如何是指属性？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-如何复制？"><span class="nav-number">2.12.</span> <span class="nav-text">12.    如何复制？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-如何粘贴？"><span class="nav-number">2.13.</span> <span class="nav-text">13.    如何粘贴？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-如何选择会话中的文本？"><span class="nav-number">2.14.</span> <span class="nav-text">14.    如何选择会话中的文本？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-如何将会话中的文本输出到记事本（Notepad）中？"><span class="nav-number">2.15.</span> <span class="nav-text">15.    如何将会话中的文本输出到记事本（Notepad）中？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-如何查找字符串？"><span class="nav-number">2.16.</span> <span class="nav-text">16.    如何查找字符串？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-如何清屏？两种方法的区别是什么？"><span class="nav-number">2.17.</span> <span class="nav-text">17.    如何清屏？两种方法的区别是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-如何重置窗口大小？"><span class="nav-number">2.18.</span> <span class="nav-text">18.    如何重置窗口大小？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-如何显示-隐藏【菜单栏-标准按钮-地址栏-链接栏-】"><span class="nav-number">2.19.</span> <span class="nav-text">19.    如何显示/隐藏【菜单栏/标准按钮/地址栏/链接栏/】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-如何锁定工具栏？"><span class="nav-number">2.20.</span> <span class="nav-text">20.    如何锁定工具栏？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-如何管理-保存-选择“布局”？"><span class="nav-number">2.21.</span> <span class="nav-text">21.    如何管理/保存/选择“布局”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-如何设置显示模式为“始终在最上面”？"><span class="nav-number">2.22.</span> <span class="nav-text">22.    如何设置显示模式为“始终在最上面”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-如何设置显示模式为“半透明”？"><span class="nav-number">2.23.</span> <span class="nav-text">23.    如何设置显示模式为“半透明”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-如何设置显示模式为“最简显示”？"><span class="nav-number">2.24.</span> <span class="nav-text">24.    如何设置显示模式为“最简显示”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-如何全屏显示？"><span class="nav-number">2.25.</span> <span class="nav-text">25.    如何全屏显示？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-如何“锁定屏幕”，防止别人乘你不在时操作？"><span class="nav-number">2.26.</span> <span class="nav-text">26.    如何“锁定屏幕”，防止别人乘你不在时操作？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-如何“发送键输入到所有会话”？如何使用“撰写栏”？"><span class="nav-number">2.27.</span> <span class="nav-text">27.    如何“发送键输入到所有会话”？如何使用“撰写栏”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-如何设置-编辑-新建-选择“配色方案”？"><span class="nav-number">2.28.</span> <span class="nav-text">28.    如何设置/编辑/新建/选择“配色方案”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#29-如何设置-选择-新建“快速命令集”？如何显示“快速命令栏”？"><span class="nav-number">2.29.</span> <span class="nav-text">29.    如何设置/选择/新建“快速命令集”？如何显示“快速命令栏”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#30-如何新建“选项卡”，重命名“选项卡”，关闭“选项卡”，关闭“其它选项卡”，新建“选项卡组”，关闭选项卡组，排列选项卡组？"><span class="nav-number">2.30.</span> <span class="nav-text">30.    如何新建“选项卡”，重命名“选项卡”，关闭“选项卡”，关闭“其它选项卡”，新建“选项卡组”，关闭选项卡组，排列选项卡组？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-有关“会话选项卡”的设置：显示新选项卡按钮（加号），显示序号，显示终端标签，显示状态图标（连接or没连接），设置颜色？"><span class="nav-number">2.31.</span> <span class="nav-text">31.    有关“会话选项卡”的设置：显示新选项卡按钮（加号），显示序号，显示终端标签，显示状态图标（连接or没连接），设置颜色？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-窗口操作：新建窗口，关闭全部窗口，除此窗口之外全部关闭，切换到下一个窗口，切换到上一个窗口，窗口层叠排列，窗口水平排列，窗口垂直排列。打开新的终端窗口，打开新的文件传输窗口（Xftp）？"><span class="nav-number">2.32.</span> <span class="nav-text">32.    窗口操作：新建窗口，关闭全部窗口，除此窗口之外全部关闭，切换到下一个窗口，切换到上一个窗口，窗口层叠排列，窗口水平排列，窗口垂直排列。打开新的终端窗口，打开新的文件传输窗口（Xftp）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-会话选项卡、选项卡组和窗口的区别？"><span class="nav-number">2.33.</span> <span class="nav-text">33.    会话选项卡、选项卡组和窗口的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34-如何设置“会话文件夹路径”？有什么用？"><span class="nav-number">2.34.</span> <span class="nav-text">34.    如何设置“会话文件夹路径”？有什么用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#35-更换电脑时，需要复制哪些文件（夹）？"><span class="nav-number">2.35.</span> <span class="nav-text">35.    更换电脑时，需要复制哪些文件（夹）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#36-如何清除各种“历史记录”？"><span class="nav-number">2.36.</span> <span class="nav-text">36.    如何清除各种“历史记录”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#37-如何“取消自动更新”？"><span class="nav-number">2.37.</span> <span class="nav-text">37.    如何“取消自动更新”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#38-如何设置“主控密码”和“锁屏密码”？"><span class="nav-number">2.38.</span> <span class="nav-text">38.    如何设置“主控密码”和“锁屏密码”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#39-如何在全屏显示是，显示“会话选项卡”？"><span class="nav-number">2.39.</span> <span class="nav-text">39.    如何在全屏显示是，显示“会话选项卡”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#40-如何让Xshell启动时，打开会话对话框？"><span class="nav-number">2.40.</span> <span class="nav-text">40.    如何让Xshell启动时，打开会话对话框？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#41-如何绑定文本编辑器（Notepad-）？"><span class="nav-number">2.41.</span> <span class="nav-text">41.    如何绑定文本编辑器（Notepad++）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#42-如何创建会话的桌面快捷方式？"><span class="nav-number">2.42.</span> <span class="nav-text">42.    如何创建会话的桌面快捷方式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#43-【Properties】和【Options】区别？"><span class="nav-number">2.43.</span> <span class="nav-text">43.    【Properties】和【Options】区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#44-新建窗口和新建终端的联系和区别？"><span class="nav-number">2.44.</span> <span class="nav-text">44.    新建窗口和新建终端的联系和区别？</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张学志"
+      src="/images/avatar1.jpg">
+  <p class="site-author-name" itemprop="name">张学志</p>
+  <div class="site-description" itemprop="description">从今天开始, 做一个精彩的平凡人！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/algoboy101/note_blog" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;algoboy101&#x2F;note_blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.xuezhisd.top/mailto.html" title="E-Mail → https:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;mailto.html"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/xuezhisdc" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;xuezhisdc" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://yongyuan.name/" title="https:&#x2F;&#x2F;yongyuan.name&#x2F;" rel="noopener" target="_blank">袁勇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <!-- 
+      
+           <div>
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=2&id=5276811&auto=1&height=32"></iframe>
+           </div>
+      
+      -->
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张学志</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">325k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:56</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581db2eae126635e" async="async"></script>
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
+  </div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '850px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5d7851a991d55468095a',
+      clientSecret: 'eb16a65b938a0160c3380a324e3a49b0bf5be67a',
+      repo: 'note_blog_comment',
+      owner: 'algoboy101',
+      admin: ['algoboy101'],
+      id: 'db175b33b177e7e375f0b0af8924fa05',
+        language: 'zh-CN',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+
+<script>
+NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz',
+    appKey: 'KNlyr54S3RIstdjHBJUQomdF',
+    placeholder: "支持匿名回复; 支持md语法; 抓紧占座啦!",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '30' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

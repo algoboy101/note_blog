@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="8MClfGIKqlhvS7lCIUORoPlPQW5ZS-acECTz66SI-q0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="...">
+<meta name="keywords" content="深度学习,Caffe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="caffe安装系列——安装cuda和cudnn">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;7e5a.html">
+<meta property="og:site_name" content="张学志">
+<meta property="og:description" content="...">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150922143811428">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20160829100835693">
+<meta property="og:updated_time" content="2021-03-31T04:11:19.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150922143811428">
+
+<link rel="canonical" href="http://blog.xuezhisd.top/7e5a.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>caffe安装系列——安装cuda和cudnn | 张学志</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ce9a310dfefd1aeba54748007375c4d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张学志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">人工智能 | 计算机视觉 | 深度学习</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.xuezhisd.top/7e5a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpg">
+      <meta itemprop="name" content="张学志">
+      <meta itemprop="description" content="从今天开始, 做一个精彩的平凡人！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张学志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          caffe安装系列——安装cuda和cudnn<a href="https://github.com/algoboy101/note_blog/tree/master/source/_posts/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85cuda%E5%92%8Ccudnn.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-09-22 14:22:02" itemprop="dateCreated datePublished" datetime="2015-09-22T14:22:02+08:00">2015-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-31 12:11:19" itemprop="dateModified" datetime="2021-03-31T12:11:19+08:00">2021-03-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/7e5a.html" class="post-meta-item leancloud_visitors" data-flag-title="caffe安装系列——安装cuda和cudnn" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/7e5a.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/7e5a.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+            <div class="post-description">...</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>网上关于caffe的安装教程非常多，但是关于每一步是否操作成功，出现了什么样的错误又该如何处理没有给出说明。因为大家的操作系统的环境千差万别，按照博客中的教程一步步的安装，最后可能失败——这是很常见的哦。有的教程甚至省略了一些细节部分，让小白更不知道如何判断每一步是否操作成功，如何处理出现的错误。</li>
+<li>作者花费了很长时间才成功地将caffe装完，期间遇到好多错误，多次重装操作系统。现在将经验写下来，一方面为了和大家分享，讨论；另一方面是为了记录一下下~~~</li>
+</ul>
+<a id="more"></a>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>操作系统： <strong><em>Ubuntu 14.04(64bit)</em></strong><br>GCC/G++:<strong><em>4.7.x</em></strong><br>OpenCV: <strong><em>2.4.11和3.0.0</em></strong><br>Matlab :<strong><em>R2014b(a)</em></strong><br>Python:   <strong><em>2.7</em></strong><br>显卡：Telsa K40m &amp; Telsa K20xm</p>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><ol>
+<li><a href="http://zhangxuezhi.com/2015/09/24/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E7%BB%BC%E8%BF%B0/" target="_blank" rel="noopener">综述</a></li>
+<li><a href>准备工作</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/22/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85GCC4.7%E5%92%8CG++4.7%E5%B9%B6%E9%99%8D%E7%BA%A7/" target="_blank" rel="noopener">安装GCC4.7和G++4.7并降级</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/24/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85NVIDIA%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/" target="_blank" rel="noopener">安装显卡驱动</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/22/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85cuda%E5%92%8Ccudnn/" target="_blank" rel="noopener">安装cuda和cudnn</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/23/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85Matlab/" target="_blank" rel="noopener">安装Matlab</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/24/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85OpenCV/" target="_blank" rel="noopener">安装OpenCV</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/24/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85python%E4%BE%9D%E8%B5%96%E5%8C%85/" target="_blank" rel="noopener">安装Python依赖包</a></li>
+<li><a href="http://zhangxuezhi.com/2015/10/13/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85caffe/" target="_blank" rel="noopener">安装caffe</a></li>
+</ol>
+<h2 id="安装cuda"><a href="#安装cuda" class="headerlink" title="安装cuda"></a>安装cuda</h2><ul>
+<li>参考<a href="http://blog.csdn.net/xuezhisdc/article/details/47075401" target="_blank" rel="noopener">《Ubuntu-安装-cuda7.0-单显卡-超详细教程》</a> <a href="http://ouxinyu.github.io/Blogs/20140723001.html" target="_blank" rel="noopener">《Caffe + Ubuntu 15.04 + CUDA 7.0 新手安装配置指南》</a></li>
+<li>注意1：安装cuda可以通过二进制安装包安装，也可以通过deb包在线安装。本文使用二进制安装包安装。</li>
+<li>注意2：由于前面已经安装了<strong>显卡驱动</strong>，因此关于显卡驱动的选项，选择<strong>no</strong>，即不再安装显卡驱动。<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 安装依赖库</span></span><br><span class="line">apt-<span class="keyword">get</span> install freeglut3-dev build-essential libx11-dev libxmu-dev libgl1-mesa-dev libglu1-mesa libglu1-mesa-dev libxi-dev </span><br><span class="line"><span class="meta"># 添加执行权限,并安装。注意不要重复安装显卡驱动。</span></span><br><span class="line"><span class="meta"># cuda**run根据自己下载的版本更改名称。</span></span><br><span class="line"><span class="meta"># 选择安装Cuda Samples，后边还会编译它。</span></span><br><span class="line"><span class="meta"># 选择创建软连接。cuda -&gt; cuda7.0</span></span><br><span class="line">stop lightdm</span><br><span class="line">chmod a+x cuda_7<span class="number">.0</span><span class="number">.28</span>_linux.run</span><br><span class="line">sudo ./cuda_7<span class="number">.0</span><span class="number">.28</span>_linux.run</span><br></pre></td></tr></table></figure></li>
+<li>修改/etc/profile文件，将cuda添加到环境变量中。【注：关于这一点，安装完cuda之后，命令行中有提示！！！细心看一下】</li>
+<li>将/usr/local/cuda-7.0/bin添加到环境变量<strong>PATH</strong>路径中，这样一来，就可以在任何路径下调用cuda相关的可执行文件了。</li>
+<li>将/usr/local/cuda7.0/lib64添加环境变量<strong>LD_LIBRARY_PATH </strong>中，作为共享库使用。这样一来，后面编译Cuda Samples 和OpenCV时，就不会提示找不到库的错误了。</li>
+<li>操作1：将以下内容添加到文件<strong>/etc/profile</strong>的最后面，保存后，执行命令<code>source /etc/profile</code>，使配置生效。<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PATH=<span class="regexp">/usr/local</span><span class="regexp">/cuda/bin</span><span class="symbol">:</span><span class="variable">$PATH</span> </span><br><span class="line">export PATH </span><br><span class="line">LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span><span class="symbol">:/usr/local/cuda/lib64</span></span><br><span class="line">export LD_ LIBRARY_PATH</span><br></pre></td></tr></table></figure></li>
+<li>操作2：在目录<code>/etc/ld.so.conf.d/</code>下新建文件 <strong>cuda.conf</strong>，并添加如下内容。然后执行命令<code>sudo ldconfig</code>，使配置生效。</li>
+<li><p>解释：下面第一行是上面提到的cuda库文件路径，后面3行是后来综合调试错误和其它博文总结得到的。所以，最好加上，省的出错哦。。。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/cuda/</span>lib64</span><br><span class="line">/lib</span><br><span class="line"><span class="meta-keyword">/usr/</span>lib</span><br><span class="line"><span class="meta-keyword">/usr/</span>lib32</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检查cuda是否配置好,在命令行中执行以下命令。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#输入以下命令，检查是否配置好。如下图所示，说明安装好。</span></span><br><span class="line">nvcc <span class="comment">--version</span></span><br></pre></td></tr></table></figure>
+<p><img alt="这里写图片描述" data-src="http://img.blog.csdn.net/20150922143811428"></p>
+</li>
+</ul>
+<h2 id="安装CUDA-SAMPLES"><a href="#安装CUDA-SAMPLES" class="headerlink" title="安装CUDA SAMPLES"></a>安装CUDA SAMPLES</h2><ul>
+<li><strong><em>为什么安装cuda samples?</em></strong></li>
+<li><p>一方面为了后面学习cuda使用，另一方面，可以检验cuda是否真的安装成功。如果cuda samples全部编译通过，没有一个Error（Warning忽略），那么就说明成功地安装了cuda。但如果没有通过编译，或者虽然最后一行显示<strong><em>PASS</em></strong>，但是编译过程中有ERROR，请自行GOOGLE解决之后，再向下安装，否则<strong>失之毫厘谬以千里</strong>！！！</p>
+</li>
+<li><p>make时，请使用<code>make -j</code>，可以最大限度的使用cpu编译，加快编译的速度。</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 切换到cuda-samples所在目录</span></span><br><span class="line"><span class="meta"># 注意，换成自己的路径</span></span><br><span class="line">cd /home/xuezhisd/NVIDIA_CUDA<span class="number">-7.0</span>_Samples</span><br><span class="line"><span class="meta"># 编译 make （安装命令 sudo apt-get install cmake)</span></span><br><span class="line">make –j </span><br><span class="line"><span class="meta"># 编译完毕，切换release目录</span></span><br><span class="line">cd ./bin/x86_64/linux/release</span><br><span class="line"><span class="meta"># 检验是否成功</span></span><br><span class="line"><span class="meta"># 运行实例 ./deviceQuery</span></span><br><span class="line">./deviceQuery </span><br><span class="line"><span class="meta"># 可以认真看看自行结果，它显示了你的NVIDIA显卡的相关信息。</span></span><br></pre></td></tr></table></figure></li>
+<li>./deviceQuery执行结果如下图所示：<br><img alt="这里写图片描述" data-src="http://img.blog.csdn.net/20160829100835693"></li>
+<li><strong><em>一个Error例子</em></strong></li>
+<li>安装CUDA SAMPLES的过程中，可能会出现错误“/usr/bin/ld: cannot find –lGL”</li>
+<li>通过Google搜索，找到以下解决方法：<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">locate libGL.so</span><br><span class="line"><span class="comment"># 返回结果</span></span><br><span class="line"><span class="comment">#/usr/lib/i386-linux-gnu/mesa/libGL.so.1</span></span><br><span class="line"><span class="comment">#/usr/lib/i386-linux-gnu/mesa/libGL.so.1.2.0</span></span><br><span class="line">sudo ln -s /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">i386</span>-<span class="title">linux</span>-<span class="title">gnu</span>/<span class="title">mesa</span>/<span class="title">libGL</span>.<span class="title">so</span>.1.2.0 /<span class="title">usr</span>/<span class="title">lib</span>/<span class="title">libGL</span>.<span class="title">so</span></span></span><br></pre></td></tr></table></figure></li>
+<li>但是，依然不能编译通过。忽略进行后面的步骤，依然会提示一些<em>.so文件找不到。最终在OpenCV那里完全无法再安装了，返回卸掉**</em>卸载NVIDIA DRIVER 和cuda，重新安装驱动和cuda<em>*</em>，成功地编译cuda samples。</li>
+<li>安装的驱动的方法是在命令行中执行：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="keyword">stop</span> lightdm </span><br><span class="line">sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> nvidia<span class="number">-346</span></span><br></pre></td></tr></table></figure></li>
+<li>然后将libGLobal.so链接到nvidia提供的libGLobal.so.346.82。后面编译cuda samples和opencv过程中顺利通过。<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln –s /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">nvidia</span>-346-<span class="title">updates</span>/<span class="title">libGL</span>.<span class="title">so</span>.346.82 /<span class="title">usr</span>/<span class="title">lib</span>/<span class="title">libGL</span>.<span class="title">so</span></span></span><br></pre></td></tr></table></figure></li>
+<li><p>即使用NVIDIA提供的libGL.so可以完成编译，不再报错。</p>
+</li>
+<li><p>注意：上面这个错误，就是在先装显卡驱动，后装gcc4.7过程遇到的。所以，请先安装gcc4.7和g++4.7，然后再安装NVDIA显卡驱动，再安装cuda。</p>
+</li>
+</ul>
+<h2 id="安装cudnn"><a href="#安装cudnn" class="headerlink" title="安装cudnn"></a>安装cudnn</h2><ul>
+<li>安装cudnn比较简单，简单地说，就是复制几个文件：库文件和头文件。将cudnn的头文件复制到cuda安装路径的include路径下，将cudnn的库文件复制到cuda安装路径的lib64路径下。<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#解压文件</span></span><br><span class="line">tar -zxvf cudnn-<span class="number">6.5</span>-linux-x64-v2.tgz</span><br><span class="line"><span class="comment">#切换路径</span></span><br><span class="line">cd cudnn-<span class="number">6.5</span>-linux-x64-v2</span><br><span class="line"><span class="comment">#复制lib文件到cuda安装路径下的lib64/</span></span><br><span class="line">sudo cp <span class="class"><span class="keyword">lib</span>* /<span class="title">usr</span>/<span class="title">local</span>/<span class="title">cuda</span>/<span class="title">lib64</span>/</span></span><br><span class="line"><span class="comment">#复制头文件</span></span><br><span class="line">sudo cp cudnn.h /usr/local/cuda/<span class="keyword">include</span>/</span><br><span class="line"></span><br><span class="line"><span class="comment">#更新软连接</span></span><br><span class="line">cd /usr/local/cuda/lib64/ </span><br><span class="line">sudo rm -rf libcudnn.so libcudnn.so.<span class="number">6.5</span> </span><br><span class="line">sudo ln -s libcudnn.so.<span class="number">6.5</span>.<span class="number">48</span> libcudnn.so.<span class="number">6.5</span> </span><br><span class="line">sudo ln -s libcudnn.so.<span class="number">6.5</span> libcudnn.so</span><br></pre></td></tr></table></figure></li>
+<li>到目前为止，cudnn已经安装完了。但是，是否安装成功了呢，还得通过下面的cudnn sample测试。<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#运行cudnn-sample-v2</span></span><br><span class="line">tar –zxvf cudnn-<span class="keyword">sample</span>-v2.tgz</span><br><span class="line">cd cudnn-<span class="keyword">sample</span>-v2</span><br><span class="line">make</span><br><span class="line">./mnistCUDNN</span><br><span class="line"><span class="meta">#改程序运行成功，说明cudnn安装成功。</span></span><br></pre></td></tr></table></figure></li>
+<li>此时可能出现错误：<strong><em>./mnist CUDNN: error while loading shared libraries: libcudart.so.6.5: cannot ope</em></strong></li>
+<li><p>解决方法参考 <a href="https://groups.google.com/forum/#!topic/caffe-users/dcZrE3-60mc" target="_blank" rel="noopener">https://groups.google.com/forum/#!topic/caffe-users/dcZrE3-60mc</a></p>
+</li>
+<li><p>方法1：在命令行中执行<br><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64</code></p>
+</li>
+<li>方法2：在/etc/profile文件最后添加<code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64</code>, 并在命令行中执行<code>source /etc/profile</code>。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/5177.html" rel="bookmark">caffe安装系列——安装caffe</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/51f1.html" rel="bookmark">caffe安装系列——安装OpenCV</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/3aa4.html" rel="bookmark">caffe安装系列——安装python依赖包</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+              <a href="/tags/Caffe/" rel="tag"><i class="fa fa-tag"></i> Caffe</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/5dcf.html" rel="next" title="caffe安装系列——安装GCC4.7和G++4.7并降级">
+                  <i class="fa fa-chevron-left"></i> caffe安装系列——安装GCC4.7和G++4.7并降级
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/3bb1.html" rel="prev" title="caffe安装系列——安装Matlab">
+                  caffe安装系列——安装Matlab <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">GitHub回复</a></li>
+            <li class="tab"><a href="#comment-valine">匿名回复</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="comments"></div>
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = 'gitalk';
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装步骤"><span class="nav-number">3.</span> <span class="nav-text">安装步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装cuda"><span class="nav-number">4.</span> <span class="nav-text">安装cuda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装CUDA-SAMPLES"><span class="nav-number">5.</span> <span class="nav-text">安装CUDA SAMPLES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装cudnn"><span class="nav-number">6.</span> <span class="nav-text">安装cudnn</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张学志"
+      src="/images/avatar1.jpg">
+  <p class="site-author-name" itemprop="name">张学志</p>
+  <div class="site-description" itemprop="description">从今天开始, 做一个精彩的平凡人！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/algoboy101/note_blog" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;algoboy101&#x2F;note_blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.xuezhisd.top/mailto.html" title="E-Mail → https:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;mailto.html"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/xuezhisdc" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;xuezhisdc" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://yongyuan.name/" title="https:&#x2F;&#x2F;yongyuan.name&#x2F;" rel="noopener" target="_blank">袁勇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <!-- 
+      
+           <div>
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=2&id=5276811&auto=1&height=32"></iframe>
+           </div>
+      
+      -->
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张学志</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">325k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:56</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581db2eae126635e" async="async"></script>
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
+  </div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '850px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5d7851a991d55468095a',
+      clientSecret: 'eb16a65b938a0160c3380a324e3a49b0bf5be67a',
+      repo: 'note_blog_comment',
+      owner: 'algoboy101',
+      admin: ['algoboy101'],
+      id: '4db48b9ade3be7ecc5f293a1d38f6703',
+        language: 'zh-CN',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+
+<script>
+NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz',
+    appKey: 'KNlyr54S3RIstdjHBJUQomdF',
+    placeholder: "支持匿名回复; 支持md语法; 抓紧占座啦!",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '30' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

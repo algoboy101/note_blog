@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="8MClfGIKqlhvS7lCIUORoPlPQW5ZS-acECTz66SI-q0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="...">
+<meta name="keywords" content="Linux,深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu-安装-theano+caffe-超详细教程">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;b846.html">
+<meta property="og:site_name" content="张学志">
+<meta property="og:description" content="...">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150731210950383">
+<meta property="og:updated_time" content="2021-03-31T04:11:19.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150731210950383">
+
+<link rel="canonical" href="http://blog.xuezhisd.top/b846.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Ubuntu-安装-theano+caffe-超详细教程 | 张学志</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ce9a310dfefd1aeba54748007375c4d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张学志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">人工智能 | 计算机视觉 | 深度学习</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.xuezhisd.top/b846.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpg">
+      <meta itemprop="name" content="张学志">
+      <meta itemprop="description" content="从今天开始, 做一个精彩的平凡人！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张学志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Ubuntu-安装-theano+caffe-超详细教程<a href="https://github.com/algoboy101/note_blog/tree/master/source/_posts/Ubuntu-%E5%AE%89%E8%A3%85-theano+caffe-%E8%B6%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-09-17 14:24:00" itemprop="dateCreated datePublished" datetime="2015-09-17T14:24:00+08:00">2015-09-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-31 12:11:19" itemprop="dateModified" datetime="2021-03-31T12:11:19+08:00">2021-03-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/b846.html" class="post-meta-item leancloud_visitors" data-flag-title="Ubuntu-安装-theano+caffe-超详细教程" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/b846.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/b846.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+            <div class="post-description">...</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h2><blockquote>
+<p> 本文是继<a href="http://blog.csdn.net/xuezhisdc/article/details/47075401" target="_blank" rel="noopener">《Ubuntu-安装-cuda7.0-单显卡-超详细教程》 </a>之后的续篇。theano和caffe是深度学习库，对运算能力需求很大，最好使用cuda进行加速。所以，请先阅读《Ubuntu-安装-cuda7.0-单显卡-超详细教程》，成功安装cuda之后，再来安装theano和caffe。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="二、安装Theano"><a href="#二、安装Theano" class="headerlink" title="二、安装Theano"></a>二、安装Theano</h2><h3 id="1-安装各种包"><a href="#1-安装各种包" class="headerlink" title="1. 安装各种包"></a>1. 安装各种包</h3><ul>
+<li>安装gfortran, numpy, scipy, sklearn, blas, atlas等包  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装gfortran,后面编译过程中会用到</span></span><br><span class="line">sudo apt-get install gfortran</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装blas,Ubuntu下对应的是libopenblas，其它操作系统可能需要安装其它版本的blas——这是个OS相关的。</span></span><br><span class="line">sudo apt-get install libopenblas-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装lapack，Ubuntu下对应的是liblapack-dev，和OS相关。</span></span><br><span class="line">sudo apt-get install liblapack-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装atlas，Ubuntu下对应的是libatlas-base-dev，和OS相关。</span></span><br><span class="line">sudo apt-get install libatlas-base-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装pip</span></span><br><span class="line">sudo apt-get install python-pip</span><br><span class="line">sudo apt-get install python-dev</span><br><span class="line">sudo apt-get install python-nose</span><br><span class="line">sudo apt-get install g++</span><br><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装numpy和scipy"><a href="#2-安装numpy和scipy" class="headerlink" title="2. 安装numpy和scipy"></a>2. 安装numpy和scipy</h3></li>
+<li><p>安装这两个python库有点问题，如果使用apt-get安装，后面的test不能通过。如果使用pip安装，有得考虑各种依赖关系。</p>
+</li>
+<li><p>所以，先使用apt-get安装，然后再卸载，最后再使用pip安装。这样，既能不考虑依赖关系，又能通过后面的test()测试。</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装numpy和scipy</span></span><br><span class="line">sudo apt-get install python-numpy</span><br><span class="line">sudo apt-get install python-scipy</span><br><span class="line">sudo apt-get install python-sklearn</span><br><span class="line"><span class="comment">#卸载numpy和scipy</span></span><br><span class="line">sudo apt-get remove python-numpy</span><br><span class="line">sudo apt-get remove python-scipy</span><br><span class="line"><span class="comment"># 安装numpy</span></span><br><span class="line">sudo pip install numpy</span><br><span class="line"><span class="comment"># 测试numpy</span></span><br><span class="line"><span class="comment"># 如果没有安装python-nose，测试会出错！</span></span><br><span class="line">python -c <span class="string">"import numpy;numpy.test()"</span></span><br><span class="line"><span class="comment"># 安装scipy</span></span><br><span class="line">sudo pip install scipy</span><br><span class="line"><span class="comment"># 测试scipy</span></span><br><span class="line">python -c <span class="string">"import scipy;scipy.test()"</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-安装Theano"><a href="#3-安装Theano" class="headerlink" title="3. 安装Theano"></a>3. 安装Theano</h3></li>
+<li><p>前面的操作如果没有出现错误，就可以开始安装Theano了。命令如下所示。</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Theano</span></span><br><span class="line">sudo pip install Theano</span><br><span class="line"><span class="comment"># 测试Theano</span></span><br><span class="line">python -c <span class="string">"import theano;theano.test()"</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-安装pyCUDA"><a href="#4-安装pyCUDA" class="headerlink" title="4. 安装pyCUDA"></a>4. 安装pyCUDA</h3></li>
+<li>测试Theano时，提示PyCUDA import错误，因此需要安装pyCUDA。而PyCUDA需要以Boost为基础，所以应该先安装Boost。</li>
+<li><p>使用pip安装pyCUDA。</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装boost</span></span><br><span class="line">sudo apt-get install libboost-all-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果使用pip安装pyCUDA出错，使用下面安装方式。<a href="http://seraphli.insecterswar.com/archives/771" target="_blank" rel="noopener">参考文章：《Ubuntu Theano CUDA》</a></p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --recursive http://git.tiker.net/trees/pycuda.git</span><br><span class="line"><span class="built_in">cd</span> pycuda</span><br><span class="line">sudo ./configure.py --cuda-root=/usr/<span class="built_in">local</span>/cuda --cudadrv-lib-dir=/usr/lib/x86_64-linux-gnu --boost-inc-dir=/usr/include --boost-lib-dir=/usr/lib --boost-python-libname=boost_python --boost-thread-libname=boost_thread --no-use-shipped-boost</span><br><span class="line">make -j 4 <span class="comment">#电脑核数</span></span><br><span class="line">sudo python setup.py install</span><br></pre></td></tr></table></figure>
+<h3 id="5-解决cuda-ndarray-cu错误"><a href="#5-解决cuda-ndarray-cu错误" class="headerlink" title="5. 解决cuda_ndarray.cu错误"></a>5. 解决cuda_ndarray.cu错误</h3></li>
+<li><p>如果出现错误：<strong><em>ERROR (theano.sandbox.cuda): Failed to compile cuda_ndarray.cu: libcublas.so.6.5 cannot open shared object file: No such file or directory</em></strong>，需要运行以下命令：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ldconfig /usr/<span class="built_in">local</span>/cuda-7.0/lib64</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="6-配置Theano"><a href="#6-配置Theano" class="headerlink" title="6. 配置Theano"></a>6. 配置Theano</h3><ul>
+<li><p>在主目录下新建.theanorc文件</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">vi .theanorc</span><br></pre></td></tr></table></figure></li>
+<li><p>在.theanorc中输入下面的内容</p>
+  <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[cuda]</span></span><br><span class="line"><span class="attr">root</span>=/usr/local/cuda/bin/</span><br><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">floatX</span> = float32</span><br><span class="line"><span class="attr">device</span> = gpu0</span><br><span class="line"><span class="section">[nvcc]</span></span><br><span class="line"><span class="attr">fastmath</span> = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="7-测试Theano是否在使用GPU"><a href="#7-测试Theano是否在使用GPU" class="headerlink" title="7. 测试Theano是否在使用GPU"></a>7. 测试Theano是否在使用GPU</h3><ul>
+<li><p>将下列python代码复制到useGPU.py，并运行。</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> theano <span class="keyword">import</span> function, config, shared, sandbox</span><br><span class="line"><span class="keyword">import</span> theano.tensor <span class="keyword">as</span> T</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">vlen = <span class="number">10</span> * <span class="number">30</span> * <span class="number">768</span>  <span class="comment"># 10 x #cores x # threads per core</span></span><br><span class="line">iters = <span class="number">1000</span></span><br><span class="line"></span><br><span class="line">rng = numpy.random.RandomState(<span class="number">22</span>)</span><br><span class="line">x = shared(numpy.asarray(rng.rand(vlen), config.floatX))</span><br><span class="line">f = function([], T.exp(x))</span><br><span class="line"><span class="keyword">print</span> f.maker.fgraph.toposort()</span><br><span class="line">t0 = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(iters):</span><br><span class="line">    r = f()</span><br><span class="line">t1 = time.time()</span><br><span class="line"><span class="keyword">print</span> <span class="string">'Looping %d times took'</span> % iters, t1 - t0, <span class="string">'seconds'</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'Result is'</span>, r</span><br><span class="line"><span class="keyword">if</span> numpy.any([isinstance(x.op, T.Elemwise) <span class="keyword">for</span> x <span class="keyword">in</span> f.maker.fgraph.toposort()]):</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Used the cpu'</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Used the gpu'</span></span><br></pre></td></tr></table></figure></li>
+<li><p>假定上面已经设置文件<code>.theanorc</code>，运行命令如下所示：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python useGPU.py</span><br></pre></td></tr></table></figure></li>
+<li><p>如果出现下面的错误信息，请运行命令<code>sudo ldconfig /usr/local/cuda-7.0/lib64</code><a href="http://seraphli.insecterswar.com/archives/category/dev/code" target="_blank" rel="noopener">参考</a> </p>
+  <figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#错误信息</span><br><span class="line"><span class="keyword">ERROR </span>(theano.sandbox.cuda): Failed to compile cuda_ndarray.cu: libcublas.so.7.0: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
+<h3 id="Theano相关资料"><a href="#Theano相关资料" class="headerlink" title="Theano相关资料"></a>Theano相关资料</h3></li>
+<li>参考：<a href="http://deeplearning.net/software/theano/tutorial/using_gpu.html" target="_blank" rel="noopener">Using the GPU</a> &amp; <a href="http://deeplearning.net/software/theano/library/config.html#envvar-THEANO_FLAGS" target="_blank" rel="noopener">THEANO_FLAGS</a> &amp; <a href="http://deeplearning.net/software/theano/library/config.html#envvar-THEANORC" target="_blank" rel="noopener">THEANORC</a></li>
+<li>CUDA Toolkit默认安装在<code>/usr/local/cuda/</code>，含有bin, lib, include等子文件夹。<code>/usr/local/cuda/bin/</code>文件夹称为cuda root文件夹。 </li>
+<li><p>使用Theano时，必须告诉它CUDA root文件夹，有3种方法：</p>
+<ul>
+<li>定义$CUDA_ROOT环境变量。例如， <code>CUDA_ROOT=/usr/local/cuda/bin/</code></li>
+<li>在THEANO_FLAGS中添加cuda.root标识。例如，<code>THEANO_FLAGS=&#39;cuda.root=/usr/local/cuda/bin/&#39;</code></li>
+<li><p>在.theanorc文件夹中添加[cuda]</p>
+<pre><code>  [cuda]
+  root=/usr/local/cuda/bin/
+</code></pre></li>
+</ul>
+</li>
+<li><p>还需要更改设备选项(<em>gpu</em> or <em>gpu0</em> or <em>gpu1</em>)，设置默认的浮点计算类型(float32)</p>
+<ul>
+<li>方法一：<br>THEANO_FLAGS=’cuda.root=/usr/local/cuda/bin/,device=gpu,floatX=float32’</li>
+<li><p>方法二：<br>设置<code>.theanorc</code>文件的[global]选项:</p>
+<pre><code>  [cuda]
+  root=/usr/local/cuda/bin/
+  [global]
+  device = gpu
+  floatX = float32
+</code></pre></li>
+</ul>
+</li>
+<li>注意：<ul>
+<li>如果电脑有多个GPU，而配置是‘device=gpu’，驱动会选择其中一个使用（一般是 <code>gpu0</code>）。可以使用 nvida-smi 改变这一规则。</li>
+<li>可以通过指定 ‘device=gpuX’来选择一个特定的GPU。</li>
+<li>默认使用GPU计算。如果GPU有问题，Theano会退回使用CPU。可以通过设置标识‘force_device=True’，当GPU不能使用时，弹出错误信息。</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装OpenCV"><a href="#安装OpenCV" class="headerlink" title="安装OpenCV"></a>安装OpenCV</h2><h3 id="下载OpenCV"><a href="#下载OpenCV" class="headerlink" title="下载OpenCV"></a>下载OpenCV</h3><ul>
+<li>下载地址：<a href="https://github.com/jayrambhia/Install-OpenCV，这是根据大神编译过的版本进行安装的。" target="_blank" rel="noopener">https://github.com/jayrambhia/Install-OpenCV，这是根据大神编译过的版本进行安装的。</a></li>
+<li>切换到文件保存的文件夹，然后安装依赖项：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切换路径</span></span><br><span class="line"><span class="built_in">cd</span> ~/Downloads/Install-OpenCV-master/Ubuntu</span><br><span class="line"><span class="comment">#安装OpenCV的依赖项</span></span><br><span class="line">sudo ./dependencies.sh</span><br></pre></td></tr></table></figure></li>
+<li>修改opencv2_4_9.sh</li>
+<li><a href="http://redstarofsleep.iteye.com/blog/2122612" target="_blank" rel="noopener">参考 Ubuntu14.04安装ffmpeg</a>         <a href="https://www.ffmpeg.org/download.html" target="_blank" rel="noopener">ffmpeg下载地址</a></li>
+<li>如果不添加CUDA_GENERATION，编译过程会失败 <a href="http://blog.csdn.net/sysuwuhongpeng/article/details/45485719" target="_blank" rel="noopener">参考文章</a><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#切换路径</span></span><br><span class="line">cd <span class="number">2.4</span></span><br><span class="line"><span class="meta">#修改opencv2_4_9.sh, 添加CUDA_GENERATION</span></span><br><span class="line"><span class="meta">#根据显卡支持Fermi或Kepler做相应的修改。此处以Fermi为例。</span></span><br><span class="line">sudo gedit opencv2_4_9.sh</span><br></pre></td></tr></table></figure></li>
+<li>将以下内容<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -D <span class="attribute">CMAKE_BUILD_TYPE</span>=RELEASE -D <span class="attribute">CMAKE_INSTALL_PREFIX</span>=/usr/local -D <span class="attribute">WITH_TBB</span>=ON -D <span class="attribute">BUILD_NEW_PYTHON_SUPPORT</span>=ON -D <span class="attribute">WITH_V4L</span>=ON -D <span class="attribute">INSTALL_C_EXAMPLES</span>=ON -D <span class="attribute">INSTALL_PYTHON_EXAMPLES</span>=ON -D <span class="attribute">BUILD_EXAMPLES</span>=ON -D <span class="attribute">WITH_QT</span>=ON -D <span class="attribute">WITH_OPENGL</span>=ON -D <span class="built_in">..</span></span><br></pre></td></tr></table></figure></li>
+<li><p>修改为:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -D <span class="attribute">CMAKE_BUILD_TYPE</span>=RELEASE -D <span class="attribute">CMAKE_INSTALL_PREFIX</span>=/usr/local -D <span class="attribute">WITH_TBB</span>=ON -D <span class="attribute">BUILD_NEW_PYTHON_SUPPORT</span>=ON -D <span class="attribute">WITH_V4L</span>=ON -D <span class="attribute">INSTALL_C_EXAMPLES</span>=ON -D <span class="attribute">INSTALL_PYTHON_EXAMPLES</span>=ON -D <span class="attribute">BUILD_EXAMPLES</span>=ON -D <span class="attribute">WITH_QT</span>=ON -D <span class="attribute">WITH_OPENGL</span>=ON -D <span class="attribute">CUDA_GENERATION</span>=Fermi <span class="built_in">..</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>即在最后的<code>..</code>前面添加<strong><em><code>CUDA_GENERATION=Fermi</code></em></strong></p>
+</li>
+<li><p>安装最新版opencv2_4_9</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加执行权限</span></span><br><span class="line"><span class="attr">sudo</span> <span class="string">chmod +x opencv2_4_9.sh</span></span><br><span class="line"><span class="comment">#安装OpenCV</span></span><br><span class="line"><span class="attr">sudo</span> <span class="string">./opencv2_4_9.sh</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>等待…..，直到安装完成。如下图所示。<br><img alt="这里写图片描述" data-src="http://img.blog.csdn.net/20150731210950383"></p>
+</li>
+</ul>
+<h2 id="安装其它依赖项"><a href="#安装其它依赖项" class="headerlink" title="安装其它依赖项"></a>安装其它依赖项</h2><ul>
+<li>执行以下命令，安装其它依赖项<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install libprotobuf-<span class="built_in">dev</span> libleveldb-<span class="built_in">dev</span> libsnappy-<span class="built_in">dev</span> libopencv-<span class="built_in">dev</span> libboost-<span class="built_in">all</span>-<span class="built_in">dev</span> libhdf5-serial-<span class="built_in">dev</span> libgflags-<span class="built_in">dev</span> libgoogle-glog-<span class="built_in">dev</span> liblmdb-<span class="built_in">dev</span> protobuf-compiler protobuf-c-compiler  python-pandas</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装glog"><a href="#安装glog" class="headerlink" title="安装glog"></a>安装glog</h2><ol>
+<li>Google Logging Library（glog），下载地址：<a href="https://code.google.com/p/google-glog/，然后解压安装：" target="_blank" rel="noopener">https://code.google.com/p/google-glog/，然后解压安装：</a><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>tar zxvf glog-0.<span class="number">3.3</span>.tar.gz</span><br><span class="line"><span class="variable">$ </span>./ configure</span><br><span class="line"><span class="variable">$ </span>make</span><br><span class="line"><span class="variable">$ </span>sudo make install</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="安装caffe"><a href="#安装caffe" class="headerlink" title="安装caffe"></a>安装caffe</h2><h3 id="下载caffe"><a href="#下载caffe" class="headerlink" title="下载caffe"></a>下载caffe</h3><ul>
+<li>下载地址：<a href="https://github.com/BVLC/caffe" target="_blank" rel="noopener">https://github.com/BVLC/caffe</a></li>
+</ul>
+<h3 id="编辑Makefile-config"><a href="#编辑Makefile-config" class="headerlink" title="编辑Makefile.config"></a>编辑Makefile.config</h3><ul>
+<li>参考：<br><a href="http://caffe.berkeleyvision.org/installation.html" target="_blank" rel="noopener">http://caffe.berkeleyvision.org/installation.html</a>  <a href="http://ouxinyu.github.io/Blogs/20140723001.html" target="_blank" rel="noopener">http://ouxinyu.github.io/Blogs/20140723001.html</a></li>
+<li>执行以下命令，通过设置Makefile.config文件，来使用CuDNN来加速。<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unzip caffe-<span class="literal">master</span>.zip <span class="comment">#本地解压caffe-master</span></span><br><span class="line">cd /caffe-<span class="keyword">master</span> <span class="title">#切换路径</span></span><br><span class="line"><span class="title">vi</span> Makefile.config <span class="comment">#编辑Makefile.config</span></span><br></pre></td></tr></table></figure></li>
+<li>开始编辑Makefile.config<ul>
+<li>取消第5行的注释，即将 <strong><em>#USE_CUDNN=1</em></strong> 改为 <strong><em>USE_CUDNN=1</em></strong></li>
+<li>将 <strong><em>BLAS=atlas</em></strong> 改为 <strong><em>BLAS=open</em></strong></li>
+</ul>
+</li>
+</ul>
+<p>执行以下命令，</p>
+<h3 id="配置Python相关选项"><a href="#配置Python相关选项" class="headerlink" title="配置Python相关选项"></a>配置Python相关选项</h3><ul>
+<li>安装python依赖库<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd python #切换到./caffe-master/python/路径下</span><br><span class="line">for req <span class="keyword">in</span> <span class="constructor">$(<span class="params">cat</span> <span class="params">requirements</span>.<span class="params">txt</span>)</span>; <span class="keyword">do</span> sudo pip install $req; <span class="keyword">done</span></span><br></pre></td></tr></table></figure></li>
+<li>设置Python环境变量<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc<span class="built_in">/profile </span># 编辑profile文件</span><br><span class="line"><span class="comment">#在最后面添加以下语句，注意将path换成你的系统下的路径</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYTHONPATH</span>=/path/to/caffe/python:$PYTHONPATH</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="安装Matlab"><a href="#安装Matlab" class="headerlink" title="安装Matlab"></a>安装Matlab</h3><ul>
+<li>选择Mathworks.Matlab.R2014a.Unix.iso - 右键 - 使用磁盘映像挂载器打开”</li>
+<li>进入装载的虚拟光盘，拷贝全部文件至home/Matlab 文件夹</li>
+</ul>
+<ol>
+<li>授权安装文件夹<br><code>$ chmod a+x Matlab -R</code></li>
+<li>安装<br><code>$ sudo ./install</code><br>拷贝 libmwservices.so 至 /usr/local/MATLAB/R2014a/bin/glnxa64<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo cp libmwservices.so <span class="regexp">/usr/</span>local<span class="regexp">/MATLAB/</span>R2014a<span class="regexp">/bin/</span>glnxa64/</span><br><span class="line">安装完毕，程序默认启动路径：</span><br><span class="line">$ sh <span class="regexp">/usr/</span>local<span class="regexp">/MATLAB/</span>R2014a<span class="regexp">/bin/</span>matlab</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="http://blog.csdn.net/xuezhisdc/article/details/47065475" target="_blank" rel="noopener">Ubuntu14.04安装Theano详细教程 </a></li>
+<li><a href="http://caffe.berkeleyvision.org/installation.html" target="_blank" rel="noopener">caffe官方安装教程</a></li>
+<li><a href="http://www.cnblogs.com/platero/p/3993877.html" target="_blank" rel="noopener">Caffe + Ubuntu 14.04 64bit + CUDA 6.5 配置说明</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-07/120449.htm" target="_blank" rel="noopener">Caffe在Ubuntu 14.04 64bit 下的安装</a></li>
+<li><a href="http://seraphli.insecterswar.com/archives/category/dev/code" target="_blank" rel="noopener">Ubuntu Theano CUDA</a> </li>
+<li><a href="http://blog.csdn.net/sysuwuhongpeng/article/details/45485719" target="_blank" rel="noopener">Unsupported gpu architecture ‘compute_11’解决方法</a></li>
+<li><a href="https://ouxinyu.github.io/Blogs/20140723001.html" target="_blank" rel="noopener">Caffe + Ubuntu 15.04 + CUDA 7.0 新手安装配置指南(推荐)</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2455.html" rel="bookmark">Ubuntu-安装-cuda7.0-单显卡-超详细教程</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/9582.html" rel="bookmark">Linux shell判断文件和文件夹是否存在</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/eb07.html" rel="bookmark">错误-Ubuntu-no talloc stackframe at ../source3/param/loadparm.c:4864, leaking memory</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/9ef4.html" rel="next" title="Ubuntu 14.04 64bit 安装32位兼容包">
+                  <i class="fa fa-chevron-left"></i> Ubuntu 14.04 64bit 安装32位兼容包
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/d605.html" rel="prev" title="Putty使用设置">
+                  Putty使用设置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">GitHub回复</a></li>
+            <li class="tab"><a href="#comment-valine">匿名回复</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="comments"></div>
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = 'gitalk';
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、说明"><span class="nav-number">1.</span> <span class="nav-text">一、说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装Theano"><span class="nav-number">2.</span> <span class="nav-text">二、安装Theano</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装各种包"><span class="nav-number">2.1.</span> <span class="nav-text">1. 安装各种包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装numpy和scipy"><span class="nav-number">2.2.</span> <span class="nav-text">2. 安装numpy和scipy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-安装Theano"><span class="nav-number">2.3.</span> <span class="nav-text">3. 安装Theano</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-安装pyCUDA"><span class="nav-number">2.4.</span> <span class="nav-text">4. 安装pyCUDA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-解决cuda-ndarray-cu错误"><span class="nav-number">2.5.</span> <span class="nav-text">5. 解决cuda_ndarray.cu错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-配置Theano"><span class="nav-number">2.6.</span> <span class="nav-text">6. 配置Theano</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-测试Theano是否在使用GPU"><span class="nav-number">2.7.</span> <span class="nav-text">7. 测试Theano是否在使用GPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theano相关资料"><span class="nav-number">2.8.</span> <span class="nav-text">Theano相关资料</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装OpenCV"><span class="nav-number">3.</span> <span class="nav-text">安装OpenCV</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载OpenCV"><span class="nav-number">3.1.</span> <span class="nav-text">下载OpenCV</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装其它依赖项"><span class="nav-number">4.</span> <span class="nav-text">安装其它依赖项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装glog"><span class="nav-number">5.</span> <span class="nav-text">安装glog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装caffe"><span class="nav-number">6.</span> <span class="nav-text">安装caffe</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载caffe"><span class="nav-number">6.1.</span> <span class="nav-text">下载caffe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑Makefile-config"><span class="nav-number">6.2.</span> <span class="nav-text">编辑Makefile.config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Python相关选项"><span class="nav-number">6.3.</span> <span class="nav-text">配置Python相关选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Matlab"><span class="nav-number">6.4.</span> <span class="nav-text">安装Matlab</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">7.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张学志"
+      src="/images/avatar1.jpg">
+  <p class="site-author-name" itemprop="name">张学志</p>
+  <div class="site-description" itemprop="description">从今天开始, 做一个精彩的平凡人！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/algoboy101/note_blog" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;algoboy101&#x2F;note_blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.xuezhisd.top/mailto.html" title="E-Mail → https:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;mailto.html"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/xuezhisdc" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;xuezhisdc" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://yongyuan.name/" title="https:&#x2F;&#x2F;yongyuan.name&#x2F;" rel="noopener" target="_blank">袁勇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <!-- 
+      
+           <div>
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=2&id=5276811&auto=1&height=32"></iframe>
+           </div>
+      
+      -->
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张学志</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">325k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:56</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581db2eae126635e" async="async"></script>
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
+  </div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '850px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5d7851a991d55468095a',
+      clientSecret: 'eb16a65b938a0160c3380a324e3a49b0bf5be67a',
+      repo: 'note_blog_comment',
+      owner: 'algoboy101',
+      admin: ['algoboy101'],
+      id: '2ded8969d36cfa51063b8476919b8a18',
+        language: 'zh-CN',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+
+<script>
+NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz',
+    appKey: 'KNlyr54S3RIstdjHBJUQomdF',
+    placeholder: "支持匿名回复; 支持md语法; 抓紧占座啦!",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '30' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

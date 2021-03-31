@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="8MClfGIKqlhvS7lCIUORoPlPQW5ZS-acECTz66SI-q0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="...">
+<meta name="keywords" content="深度学习,Caffe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="caffe安装系列——安装caffe">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;5177.html">
+<meta property="og:site_name" content="张学志">
+<meta property="og:description" content="...">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150924102251050">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150924104443215">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150924102736837">
+<meta property="og:updated_time" content="2021-03-31T04:11:19.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20150924102251050">
+
+<link rel="canonical" href="http://blog.xuezhisd.top/5177.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>caffe安装系列——安装caffe | 张学志</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ce9a310dfefd1aeba54748007375c4d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张学志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">人工智能 | 计算机视觉 | 深度学习</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.xuezhisd.top/5177.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpg">
+      <meta itemprop="name" content="张学志">
+      <meta itemprop="description" content="从今天开始, 做一个精彩的平凡人！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张学志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          caffe安装系列——安装caffe<a href="https://github.com/algoboy101/note_blog/tree/master/source/_posts/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85caffe.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-10-13 21:02:00" itemprop="dateCreated datePublished" datetime="2015-10-13T21:02:00+08:00">2015-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-31 12:11:19" itemprop="dateModified" datetime="2021-03-31T12:11:19+08:00">2021-03-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/5177.html" class="post-meta-item leancloud_visitors" data-flag-title="caffe安装系列——安装caffe" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/5177.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/5177.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+            <div class="post-description">...</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>网上关于caffe的安装教程非常多，但是关于每一步是否操作成功，出现了什么样的错误又该如何处理没有给出说明。因为大家的操作系统的环境千差万别，按照博客中的教程一步步的安装，最后可能失败——这是很常见的哦。有的教程甚至省略了一些细节部分，让小白更不知道如何判断每一步是否操作成功，如何处理出现的错误。</li>
+<li>作者花费了很长时间才成功地将caffe装完，期间遇到好多错误，多次重装操作系统。现在将经验写下来，一方面为了和大家分享，讨论；另一方面是为了记录一下下~~~</li>
+</ul>
+<a id="more"></a>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>操作系统： <strong><em>Ubuntu 14.04</em></strong><br>GCC/G++:<strong><em>4.7.x</em></strong><br>OpenCV: <strong><em>2.4.11和3.0.0</em></strong><br>Matlab :<strong><em>R2014b(a)</em></strong><br>Python:   <strong><em>2.7</em></strong></p>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><ol>
+<li><a href="http://zhangxuezhi.com/2015/09/24/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E7%BB%BC%E8%BF%B0/" target="_blank" rel="noopener">综述</a></li>
+<li><a href>准备工作</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/22/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85GCC4.7%E5%92%8CG++4.7%E5%B9%B6%E9%99%8D%E7%BA%A7/" target="_blank" rel="noopener">安装GCC4.7和G++4.7并降级</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/24/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85NVIDIA%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/" target="_blank" rel="noopener">安装显卡驱动</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/22/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85cuda%E5%92%8Ccudnn/" target="_blank" rel="noopener">安装cuda和cudnn</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/23/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85Matlab/" target="_blank" rel="noopener">安装Matlab</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/24/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85OpenCV/" target="_blank" rel="noopener">安装OpenCV</a></li>
+<li><a href="http://zhangxuezhi.com/2015/09/24/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85python%E4%BE%9D%E8%B5%96%E5%8C%85/" target="_blank" rel="noopener">安装Python依赖包</a></li>
+<li><a href="http://zhangxuezhi.com/2015/10/13/caffe%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85caffe/" target="_blank" rel="noopener">安装caffe</a></li>
+</ol>
+<h2 id="安装caffe"><a href="#安装caffe" class="headerlink" title="安装caffe"></a>安装caffe</h2><ul>
+<li>这已经是caffe安装过程的最后一步了。但是<strong>行百里者，半于九十</strong>，因此还要小心。</li>
+</ul>
+<h3 id="1-安装Google-Logging-Library（glog）"><a href="#1-安装Google-Logging-Library（glog）" class="headerlink" title="1. 安装Google Logging Library（glog）"></a>1. 安装Google Logging Library（glog）</h3><ul>
+<li><a href="https://code.google.com/p/google-glog/" target="_blank" rel="noopener">glog 下载地址</a></li>
+<li>安装命令如下所示<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line"><span class="attr">tar</span> <span class="string">-zxvf glog-0.3.3.tar.gz</span></span><br><span class="line"><span class="comment"># 切换路径</span></span><br><span class="line"><span class="attr">cd</span> <span class="string">glog-0.3.3</span></span><br><span class="line"><span class="attr">sudo</span> <span class="string">./configure</span></span><br><span class="line"><span class="attr">sudo</span> <span class="string">make –j</span></span><br><span class="line"><span class="attr">sudo</span> <span class="string">make install</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-安装其它依赖"><a href="#2-安装其它依赖" class="headerlink" title="2. 安装其它依赖"></a>2. 安装其它依赖</h3><ul>
+<li>执行以下命令即可。<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install -y libprotobuf-<span class="built_in">dev</span> libleveldb-<span class="built_in">dev</span> libsnappy-<span class="built_in">dev</span> libopencv-<span class="built_in">dev</span> libboost-<span class="built_in">all</span>-<span class="built_in">dev</span> libhdf5-serial-<span class="built_in">dev</span> </span><br><span class="line"></span><br><span class="line">sudo apt-<span class="built_in">get</span> install -y libgflags-<span class="built_in">dev</span> libgoogle-glog-<span class="built_in">dev</span> liblmdb-<span class="built_in">dev</span> protobuf-compiler protobuf-c-compiler python-pandas</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-编辑Makefile-config文件"><a href="#3-编辑Makefile-config文件" class="headerlink" title="3. 编辑Makefile.config文件"></a>3. 编辑Makefile.config文件</h3><ul>
+<li>操作命令如下所示。<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">unzip caffe-master.zip #本地解压caffe-master</span><br><span class="line">#切换路径</span><br><span class="line">cd /caffe-master </span><br><span class="line">#caffe源文件中没有<span class="module-access"><span class="module"><span class="identifier">Makefile</span>.</span></span>config，需要复制<span class="module-access"><span class="module"><span class="identifier">Makefile</span>.</span></span>config.example</span><br><span class="line">cp <span class="module-access"><span class="module"><span class="identifier">Makefile</span>.</span></span>config.example <span class="module-access"><span class="module"><span class="identifier">Makefile</span>.</span></span>config</span><br><span class="line">#编辑<span class="module-access"><span class="module"><span class="identifier">Makefile</span>.</span></span>config</span><br><span class="line">vi <span class="module-access"><span class="module"><span class="identifier">Makefile</span>.</span></span>config</span><br></pre></td></tr></table></figure></li>
+<li><p>修改Makefile.config</p>
+<ul>
+<li>取消第5行的注释，即将 <code>#USE_CUDNN=1 改为 USE_CUDNN=1</code>；</li>
+<li>如果使用本教程系列安装的，就不需要修改<code>BLAS=atlas</code>，如果是参考欧新宇的教程，安装了MKL，需要改成<code>BLAS=mkl</code>；</li>
+<li>启用CUDNN，加注释: <code>CPU_ONLY:=1 改成 # CPU_ONLY:=1</code>；</li>
+<li><p>配置路径，实现caffe对Python和Matlab接口的支持：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">PYTHON_LIB :</span>= <span class="regexp">/usr/</span>local/lib</span><br><span class="line"><span class="string">MATLAB_DIR :</span>= <span class="regexp">/usr/</span>local<span class="regexp">/MATLAB/</span>R2014a</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-编辑Makefile文件"><a href="#4-编辑Makefile文件" class="headerlink" title="4. 编辑Makefile文件"></a>4. 编辑Makefile文件</h3><ul>
+<li>如果openCV版本是2.4.x，此小节可以不再阅读</li>
+<li>如果openCV版本3.0，还需要修改Makefile文件，实现对OpenCV 3.x的支持。</li>
+<li>在Makefile文件中查找“Derive include and lib directories”一节，修改“LIBRARIES +=”的最后一行，增加<strong>opencv_imgcodecs</strong>，修改之后为：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIBRARIES += opencv_core opencv_highgui opencv_imgproc opencv_imgcodecs</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5-编译caffe-master"><a href="#5-编译caffe-master" class="headerlink" title="5.  编译caffe-master"></a>5.  编译caffe-master</h3><ul>
+<li>依次执行下面的命令，编译caffe：<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">make</span> <span class="keyword">all</span> -<span class="keyword">j</span></span><br><span class="line"><span class="keyword">make</span> test -<span class="keyword">j</span></span><br><span class="line"><span class="keyword">make</span> runtest -<span class="keyword">j</span></span><br></pre></td></tr></table></figure></li>
+<li><p>runtest执行结束之后，如下图所示。这样子就说明安装成功了。<br><img alt="这里写图片描述" data-src="http://img.blog.csdn.net/20150924102251050"></p>
+</li>
+<li><p>编译Python和Matlab用到的caffe文件</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span> pycaffe -j</span><br><span class="line"><span class="built_in">make</span> matcaffe -j</span><br></pre></td></tr></table></figure></li>
+<li>pycaffe和matcaffe编译完成后，如下图所示：<br><img alt="这里写图片描述" data-src="http://img.blog.csdn.net/20150924104443215"></li>
+<li>编译过程中可能会遇到错误，比如<strong><em>./include/caffe/util/cudnn.hpp:8:34: fatal error: caffe/proto/caffe.pb.h: No such file or director</em></strong>，这是因为protobuf和pillow没有安装，或者是通过apt-get安装的。使用pip重新安装一遍即可解决问题。删除caffe-mast（提前保存Makefile.config和Makefile），解压，解压重新编译。<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install protobuf --upgrade -i <span class="string">http:</span><span class="comment">//pypi.douban.com/simple </span></span><br><span class="line">pip install pillow --upgrade -i <span class="string">http:</span><span class="comment">//pypi.douban.com/simple</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="6-设置Python环境变量"><a href="#6-设置Python环境变量" class="headerlink" title="6.设置Python环境变量"></a>6.设置Python环境变量</h3><ul>
+<li>此时虽然编译完成，但是python还不能使用caffe，需要设置python的环境变量，将其caffe/python路径添加到python环境变量中。</li>
+<li>操作命令如下所示：<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc<span class="built_in">/profile </span># 编辑profile文件</span><br><span class="line"><span class="comment">#在最后面添加以下语句，注意将path换成你的系统下的路径</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PYTHONPATH</span>=/path/to/caffe/python:$PYTHONPATH</span><br></pre></td></tr></table></figure></li>
+<li>在caffe安装整个过程中，我么修改/etc/profile三次，如下图所示。<br><img alt="这里写图片描述" data-src="http://img.blog.csdn.net/20150924102736837"></li>
+</ul>
+<h3 id="7-使用MNIST数据集进行测试"><a href="#7-使用MNIST数据集进行测试" class="headerlink" title="7.使用MNIST数据集进行测试"></a>7.使用MNIST数据集进行测试</h3><ul>
+<li>参考<a href="http://ouxinyu.github.io/Blogs/20140723001.html" target="_blank" rel="noopener">欧新宇的教程</a>即可。</li>
+<li>操作命令如下所示：<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 1. 数据预处理</span></span><br><span class="line">sh data/mnist/get_mnist.sh</span><br><span class="line"><span class="meta"># 2. 重建lmdb文件。Caffe支持三种数据格式输入网络，包括Image(.jpg, .png等)，leveldb，lmdb，根据自己需要选择不同输入吧。</span></span><br><span class="line"><span class="meta">#生成mnist-train-lmdb 和 mnist-train-lmdb文件夹，这里包含了lmdb格式的数据集</span></span><br><span class="line">sh examples/mnist/create_mnist.sh</span><br><span class="line"></span><br><span class="line"><span class="meta"># 3. 训练mnist</span></span><br><span class="line">sh examples/mnist/train_lenet.sh</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>注意：</strong>如果在使用过程中出现检测不到NVIDIA显卡的情况，重装显卡驱动和cuda即可。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>至此，ubuntu下安装caffe的工作已经结束了。如果你完全按照本教程操作，相信你一定已经成功安装caffe了，并且对caffe有了一定的了解。</li>
+<li><strong><em>世上无难事只怕有坚持</em></strong>，安装过程虽然很复杂，但是只要坚持，不断的Google解决它，caffe就一定能安装。</li>
+<li>错误不可怕，它是成功的障碍，同时也为我们成长提供了阶梯——所谓的能力，很大一部分是通过不断解决问题来获取的。</li>
+<li>下面开始学习如何使用caffe做深度学习的研究喽，祝大家学习愉快。。。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/51f1.html" rel="bookmark">caffe安装系列——安装OpenCV</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/3aa4.html" rel="bookmark">caffe安装系列——安装python依赖包</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/b95.html" rel="bookmark">caffe安装系列——综述</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+              <a href="/tags/Caffe/" rel="tag"><i class="fa fa-tag"></i> Caffe</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/51f1.html" rel="next" title="caffe安装系列——安装OpenCV">
+                  <i class="fa fa-chevron-left"></i> caffe安装系列——安装OpenCV
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/8c26.html" rel="prev" title="服务器安装并配置Ubuntu Server 14.04">
+                  服务器安装并配置Ubuntu Server 14.04 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">GitHub回复</a></li>
+            <li class="tab"><a href="#comment-valine">匿名回复</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="comments"></div>
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = 'gitalk';
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装步骤"><span class="nav-number">3.</span> <span class="nav-text">安装步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装caffe"><span class="nav-number">4.</span> <span class="nav-text">安装caffe</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装Google-Logging-Library（glog）"><span class="nav-number">4.1.</span> <span class="nav-text">1. 安装Google Logging Library（glog）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装其它依赖"><span class="nav-number">4.2.</span> <span class="nav-text">2. 安装其它依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-编辑Makefile-config文件"><span class="nav-number">4.3.</span> <span class="nav-text">3. 编辑Makefile.config文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-编辑Makefile文件"><span class="nav-number">4.4.</span> <span class="nav-text">4. 编辑Makefile文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-编译caffe-master"><span class="nav-number">4.5.</span> <span class="nav-text">5.  编译caffe-master</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-设置Python环境变量"><span class="nav-number">4.6.</span> <span class="nav-text">6.设置Python环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-使用MNIST数据集进行测试"><span class="nav-number">4.7.</span> <span class="nav-text">7.使用MNIST数据集进行测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张学志"
+      src="/images/avatar1.jpg">
+  <p class="site-author-name" itemprop="name">张学志</p>
+  <div class="site-description" itemprop="description">从今天开始, 做一个精彩的平凡人！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/algoboy101/note_blog" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;algoboy101&#x2F;note_blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.xuezhisd.top/mailto.html" title="E-Mail → https:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;mailto.html"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/xuezhisdc" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;xuezhisdc" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://yongyuan.name/" title="https:&#x2F;&#x2F;yongyuan.name&#x2F;" rel="noopener" target="_blank">袁勇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <!-- 
+      
+           <div>
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=2&id=5276811&auto=1&height=32"></iframe>
+           </div>
+      
+      -->
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张学志</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">325k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:56</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581db2eae126635e" async="async"></script>
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
+  </div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '850px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5d7851a991d55468095a',
+      clientSecret: 'eb16a65b938a0160c3380a324e3a49b0bf5be67a',
+      repo: 'note_blog_comment',
+      owner: 'algoboy101',
+      admin: ['algoboy101'],
+      id: '0cefefaff4b7a4f564862d73354d236b',
+        language: 'zh-CN',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+
+<script>
+NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz',
+    appKey: 'KNlyr54S3RIstdjHBJUQomdF',
+    placeholder: "支持匿名回复; 支持md语法; 抓紧占座啦!",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '30' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="8MClfGIKqlhvS7lCIUORoPlPQW5ZS-acECTz66SI-q0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="...">
+<meta name="keywords" content="编程,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记——Java">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;5a2b.html">
+<meta property="og:site_name" content="张学志">
+<meta property="og:description" content="...">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20160809133521483">
+<meta property="og:updated_time" content="2021-03-31T04:11:19.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20160809133521483">
+
+<link rel="canonical" href="http://blog.xuezhisd.top/5a2b.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>学习笔记——Java | 张学志</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ce9a310dfefd1aeba54748007375c4d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张学志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">人工智能 | 计算机视觉 | 深度学习</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.xuezhisd.top/5a2b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpg">
+      <meta itemprop="name" content="张学志">
+      <meta itemprop="description" content="从今天开始, 做一个精彩的平凡人！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张学志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          学习笔记——Java<a href="https://github.com/algoboy101/note_blog/tree/master/source/_posts/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Java.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-09 13:14:00" itemprop="dateCreated datePublished" datetime="2016-08-09T13:14:00+08:00">2016-08-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-31 12:11:19" itemprop="dateModified" datetime="2021-03-31T12:11:19+08:00">2021-03-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/5a2b.html" class="post-meta-item leancloud_visitors" data-flag-title="学习笔记——Java" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/5a2b.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/5a2b.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+            <div class="post-description">...</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Java基础语法"><a href="#Java基础语法" class="headerlink" title="Java基础语法"></a>Java基础语法</h2><ul>
+<li>第一个Java程序（HelloWorld.java）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123; <span class="comment">// 公开类 </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String []args)</span> </span>&#123; <span class="comment">// 程序入口</span></span><br><span class="line">       System.out.println(<span class="string">"Hello World"</span>);    <span class="comment">// 标准输出</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>一个Java程序可以认为是一系列对象的集合，而这些对象通过调用彼此的方法来协同工作。</li>
+<li>类、对象、方法和实例<ul>
+<li>类：类是一个模板，它描述一类对象的行为和状态。</li>
+<li>对象：对象是类的一个实例，有状态和行为。</li>
+<li>方法：方法就是行为。</li>
+<li>实例变量：每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。</li>
+</ul>
+</li>
+<li>基本语法<ul>
+<li>大小写敏感</li>
+<li>类名大写</li>
+<li>方法名小写</li>
+<li>源文件名必须和类名相同</li>
+<li>主方法入口：所有的Java 程序由<code>public static void main(String []args)</code>方法开始执行</li>
+</ul>
+</li>
+<li><p>标识符</p>
+<ul>
+<li>字母、美元符和下划线开始</li>
+<li>首字符之后可以是任何字符的组合</li>
+<li>不能使用关键字</li>
+<li>大小写敏感</li>
+</ul>
+</li>
+<li><p>修饰符</p>
+<ul>
+<li>可访问：default, public , protected, private</li>
+<li>不可访问：final, abstract, strictfp</li>
+</ul>
+</li>
+<li><p>变量</p>
+<ul>
+<li>局部变量</li>
+<li>类变量（静态变量）</li>
+<li>成员变量（非静态变量）</li>
+</ul>
+</li>
+<li><p>数组</p>
+<ul>
+<li>数组可以存储多个同类型的变量。</li>
+</ul>
+</li>
+<li><p>枚举</p>
+<ul>
+<li>枚举限制变量只能是预先设定好的值。使用枚举可以减少代码中的bug。</li>
+</ul>
+</li>
+<li><p>注释</p>
+<ul>
+<li>单行注释：<code>//</code></li>
+<li>多行注释：<code>/*....*/</code></li>
+</ul>
+</li>
+<li><p>继承</p>
+<ul>
+<li>一个类可以由其他类派生。利用继承的方法，可以重用已存在类的方法和属性，而不用重写这些代码。超类→子类。</li>
+</ul>
+</li>
+<li><p>接口</p>
+<ul>
+<li>对象间相互通信的协议。</li>
+<li>接口只定义派生要用到的方法，但是方法的具体实现完全取决于派生类。</li>
+</ul>
+</li>
+<li><p>关键字</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abstract</td>
+<td style="text-align:left">抽象方法，抽象类的修饰符</td>
+</tr>
+<tr>
+<td>assert</td>
+<td style="text-align:left">断言条件是否满足</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td style="text-align:left">布尔数据类型</td>
+</tr>
+<tr>
+<td>break</td>
+<td style="text-align:left">跳出循环或者label代码段</td>
+</tr>
+<tr>
+<td>byte</td>
+<td style="text-align:left">8-bit 有符号数据类型</td>
+</tr>
+<tr>
+<td>case</td>
+<td style="text-align:left">switch语句的一个条件</td>
+</tr>
+<tr>
+<td>catch</td>
+<td style="text-align:left">和try搭配扑捉异常信息</td>
+</tr>
+<tr>
+<td>char</td>
+<td style="text-align:left">16-bit Unicode字符数据类型</td>
+</tr>
+<tr>
+<td>class</td>
+<td style="text-align:left">定义类</td>
+</tr>
+<tr>
+<td>const</td>
+<td style="text-align:left">未使用</td>
+</tr>
+<tr>
+<td>continue</td>
+<td style="text-align:left">不执行循环体剩余部分</td>
+</tr>
+<tr>
+<td>default</td>
+<td style="text-align:left">switch语句中的默认分支</td>
+</tr>
+<tr>
+<td>do</td>
+<td style="text-align:left">循环语句，循环体至少会执行一次</td>
+</tr>
+<tr>
+<td>double</td>
+<td style="text-align:left">64-bit双精度浮点数</td>
+</tr>
+<tr>
+<td>else</td>
+<td style="text-align:left">if条件不成立时执行的分支</td>
+</tr>
+<tr>
+<td>enum</td>
+<td style="text-align:left">枚举类型</td>
+</tr>
+<tr>
+<td>extends</td>
+<td style="text-align:left">表示一个类是另一个类的子类</td>
+</tr>
+<tr>
+<td>final</td>
+<td style="text-align:left">表示一个值在初始化之后就不能再改变了。表示方法不能被重写，或者一个类不能有子类</td>
+</tr>
+<tr>
+<td>finally</td>
+<td style="text-align:left">为了完成执行的代码而设计的，主要是为了程序的健壮性和完整性，无论有没有异常发生都执行代码。</td>
+</tr>
+<tr>
+<td>float</td>
+<td style="text-align:left">32-bit单精度浮点数</td>
+</tr>
+<tr>
+<td>for</td>
+<td style="text-align:left">for循环语句</td>
+</tr>
+<tr>
+<td>goto</td>
+<td style="text-align:left">未使用</td>
+</tr>
+<tr>
+<td>if</td>
+<td style="text-align:left">条件语句</td>
+</tr>
+<tr>
+<td>implements</td>
+<td style="text-align:left">表示一个类实现了接口</td>
+</tr>
+<tr>
+<td>import</td>
+<td style="text-align:left">导入类</td>
+</tr>
+<tr>
+<td>instanceof</td>
+<td style="text-align:left">测试一个对象是否是某个类的实例</td>
+</tr>
+<tr>
+<td>int</td>
+<td style="text-align:left">32位整型数</td>
+</tr>
+<tr>
+<td>interface</td>
+<td style="text-align:left">接口，一种抽象的类型，仅有方法和常量的定义</td>
+</tr>
+<tr>
+<td>long</td>
+<td style="text-align:left">64位整型数</td>
+</tr>
+<tr>
+<td>native</td>
+<td style="text-align:left">表示方法用非java代码实现</td>
+</tr>
+<tr>
+<td>new</td>
+<td style="text-align:left">分配新的类实例</td>
+</tr>
+<tr>
+<td>package</td>
+<td style="text-align:left">一系列相关类组成一个包</td>
+</tr>
+<tr>
+<td>private</td>
+<td style="text-align:left">表示私有字段，或者方法等，只能从类内部访问</td>
+</tr>
+<tr>
+<td>protected</td>
+<td style="text-align:left">表示字段只能通过类或者其子类访问。子类或者在同一个包内的其他类</td>
+</tr>
+<tr>
+<td>public</td>
+<td style="text-align:left">表示共有属性或者方法</td>
+</tr>
+<tr>
+<td>return</td>
+<td style="text-align:left">方法返回值</td>
+</tr>
+<tr>
+<td>short</td>
+<td style="text-align:left">16位数字</td>
+</tr>
+<tr>
+<td>static</td>
+<td style="text-align:left">表示在类级别定义，所有实例共享的</td>
+</tr>
+<tr>
+<td>strictfp</td>
+<td style="text-align:left">浮点数比较使用严格的规则</td>
+</tr>
+<tr>
+<td>super</td>
+<td style="text-align:left">表示基类</td>
+</tr>
+<tr>
+<td>switch</td>
+<td style="text-align:left">选择语句</td>
+</tr>
+<tr>
+<td>synchronized</td>
+<td style="text-align:left">表示同一时间只能由一个线程访问的代码块</td>
+</tr>
+<tr>
+<td>this</td>
+<td style="text-align:left">表示调用当前实例，或者调用另一个构造函数</td>
+</tr>
+<tr>
+<td>throw    抛出异常</td>
+</tr>
+<tr>
+<td>throws</td>
+<td style="text-align:left">定义方法可能抛出的异常</td>
+</tr>
+<tr>
+<td>transient</td>
+<td style="text-align:left">修饰不要序列化的字段</td>
+</tr>
+<tr>
+<td>try</td>
+<td style="text-align:left">表示代码块要做异常处理或者和finally配合表示是否抛出异常都执行finally中的代码</td>
+</tr>
+<tr>
+<td>void</td>
+<td style="text-align:left">标记方法不返回任何值</td>
+</tr>
+<tr>
+<td>volatile</td>
+<td style="text-align:left">标记字段可能会被多个线程同时访问，而不做同步</td>
+</tr>
+<tr>
+<td>while</td>
+<td style="text-align:left">while循环</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Java对象和类"><a href="#Java对象和类" class="headerlink" title="Java对象和类"></a>Java对象和类</h2><ul>
+<li><p>Java支持以下概念：</p>
+<ul>
+<li>多态</li>
+<li>继承</li>
+<li>封装</li>
+<li>抽象</li>
+<li>类：类是一个模板，它描述一类对象的行为和状态。</li>
+<li>对象：对象是类的一个实例，有状态和行为。</li>
+<li>实例</li>
+<li>方法</li>
+<li>重载</li>
+</ul>
+</li>
+<li><p>举例：定义类</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span></span>&#123; <span class="comment">// Dog类（模板）</span></span><br><span class="line">   String breed;  <span class="comment">// 实例变量（属性）</span></span><br><span class="line">   <span class="keyword">int</span> age;</span><br><span class="line">   String color;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">barking</span><span class="params">()</span></span>&#123;<span class="comment">// 方法</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>类变量：</p>
+<ul>
+<li><strong>局部变量</strong>：<strong>在方法、构造方法或者语句块中</strong>定义的变量被称为局部变量。变量声明和初始化都是在方法中，方法结束后，变量就会自动销毁。</li>
+<li><strong>成员变量</strong>：成员变量是<strong>定义在类中，方法体之外</strong>的变量。这种变量在创建对象的时候实例化。成员变量可以被类中方法、构造方法和特定类的语句块访问。</li>
+<li><strong>类变量</strong>：类变量也<strong>声明在类中，方法体之外</strong>，但必须声明为<strong>static类型</strong>。</li>
+</ul>
+</li>
+<li><p>构造方法</p>
+<ul>
+<li>构造方法的名称必须与类同名。</li>
+<li>一个类可以有多个构造方法。</li>
+<li>如果没有显式地为类定义构造方法，Java编译器将会为该类提供一个默认构造方法。</li>
+</ul>
+</li>
+<li><p>创建对象</p>
+<ul>
+<li>使用关键字<strong>new</strong>来创建一个新的对象。</li>
+<li>创建对象的步骤：<ul>
+<li>声明：包括名称和类型。</li>
+<li>实例化：用<strong>new</strong>创建对象。</li>
+<li>初始化：调用构造方法初始化对象。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>访问实例的<strong>变量和方法</strong></p>
+<ul>
+<li>运算符：<strong>.</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 实例化对象 */</span></span><br><span class="line">ObjectReference = <span class="keyword">new</span> <span class="constructor">Constructor()</span>;</span><br><span class="line"><span class="comment">/* 访问其中的变量 */</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">ObjectReference</span>.</span></span>variableName;</span><br><span class="line"><span class="comment">/* 访问类中的方法 */</span></span><br><span class="line">ObjectReference.<span class="constructor">MethodName()</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>源文件声明规则</p>
+<ul>
+<li>一个源文件中只能有一个public类</li>
+<li>一个源文件可以有多个非public类</li>
+<li>源文件的名称应该和public类的类名保持</li>
+<li>如果一个类定义在某个包中，那么package语句应该在源文件的首行。</li>
+<li>mport语句放在package语句和类定义之间。</li>
+<li>import语句和package语句对源文件中定义的所有类都有效。</li>
+</ul>
+</li>
+<li><p>Java包：用于对类和接口分类。</p>
+</li>
+<li>Import语句是用来提供一个合理的路径，使得编译器可以找到某个类。</li>
+</ul>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><ul>
+<li><p>Java两大数据类型：</p>
+<ul>
+<li><strong>内置</strong>数据类型</li>
+<li><strong>引用</strong>数据类型</li>
+</ul>
+</li>
+<li><p>内置数据类型</p>
+<ul>
+<li>Java语言提供了<strong>八种基本类型</strong>。六种数字类型（四个整数型，两个浮点型），一种字符类型，还有一种布尔型。</li>
+<li>四种整数类型：byte、short、int、long。</li>
+<li>两种浮点型：float、double。</li>
+<li>一个布尔型：boolean (true、false)</li>
+<li>一个字符型：char (16 bits Unicode字符)</li>
+</ul>
+</li>
+<li><p>引用类型</p>
+<ul>
+<li>类似于C++指针。</li>
+<li>引用类型指向一个对象，指向对象的变量是引用变量。</li>
+<li>对象、数组都是引用数据类型。</li>
+<li>所有引用类型的默认值都是null。</li>
+<li>一个引用变量可以用来引用与任何与之兼容的类型。</li>
+<li>例子：<code>Site site = new Site(&quot;Runoob&quot;)</code></li>
+</ul>
+</li>
+<li><p>常量</p>
+<ul>
+<li>使用<strong>final</strong>关键字修饰常量。</li>
+<li>一般用<strong>大写字母</strong>表示。</li>
+<li>常量前缀：八进制（0）和十六进制（0x）。</li>
+<li>字符串常量：<code>&quot;....&quot;</code></li>
+<li>字符串常量和字符常量都可以包含任何Unicode字符。<code>String a = &quot;\u0001&quot;;</code>。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java变量类型"><a href="#Java变量类型" class="headerlink" title="Java变量类型"></a>Java变量类型</h2><ul>
+<li>声明变量格式：<code>type identifier [ = value][, identifier [= value] ...] ;</code>。</li>
+<li>Java变量类型：<ul>
+<li>局部变量<ul>
+<li>声明在方法、构造方法或者语句块中；</li>
+<li>用完即毁；</li>
+<li>只在声明它的方法、构造方法或者语句块中可见；</li>
+<li>在<strong>栈</strong>上分配；</li>
+<li>没有默认值，需要初始化。</li>
+</ul>
+</li>
+<li>成员变量（实例变量）<ul>
+<li>声明在一个类中，但在方法、构造方法和语句块之外；</li>
+<li>可以声明在使用前或者使用后；</li>
+<li>在对象创建的时候创建，在对象被销毁的时候销毁；</li>
+<li>访问修饰符可以修饰实例变量；</li>
+<li>实例变量对于类中的方法、构造方法或者语句块是可见的。一般情况下应该把实例变量设为私有。</li>
+<li>实例变量具有默认值。数值型变量的默认值是0，布尔型变量的默认值是false，引用类型变量的默认值是null。</li>
+<li>实例变量可以直接通过变量名访问。但在静态方法以及其他类中，就应该使用完全限定名：ObejectReference.VariableName。</li>
+</ul>
+</li>
+<li>类变量（静态变量）<ul>
+<li>在类中以static关键字声明，但必须在方法构造方法和语句块之外。</li>
+<li>类只拥有类变量的一份拷贝。</li>
+<li>静态变量储存在静态存储区。</li>
+<li>静态变量在程序开始时创建，在程序结束时销毁。</li>
+<li>静态变量具有默认值。</li>
+<li>类变量被声明为public static final类型时，类变量名称必须使用大写字母。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java修饰符"><a href="#Java修饰符" class="headerlink" title="Java修饰符"></a>Java修饰符</h2><ul>
+<li><p>分为2类：</p>
+<ul>
+<li>访问修饰符</li>
+<li>非访问修饰符</li>
+</ul>
+</li>
+<li><p>访问修饰符</p>
+<ul>
+<li>default，默认的，同一包内可见，不使用修饰符。</li>
+<li>private，私有的，同一类内可见。</li>
+<li>public，公有的，对所有类可见。</li>
+<li>protected，受保护的，同一包和所有子类可见。</li>
+</ul>
+</li>
+<li><p>基本知识</p>
+<ul>
+<li>类和接口不能声明为private。</li>
+<li>Private访问修饰符的使用主要用来隐藏类的实现细节和保护类的数据。</li>
+<li>私有访问类型的变量只能通过类中公共的getter方法被外部类访问。</li>
+<li>public的类、方法、构造方法和接口能够被任何其他类访问。</li>
+<li>如果几个相互访问的public类分布在不同的包中，则需要导入相应public类所在的包。</li>
+<li>Java程序的main() 方法必须设置成公有的，否则，Java解释器将不能运行该类。</li>
+<li>protected的变量、方法和构造器能被同一个包中的任何其他类访问，也能够被不同包中的子类访问。</li>
+</ul>
+</li>
+<li><p>方法继承规则：</p>
+<ul>
+<li>父类中声明为public的方法在子类中也必须为public。</li>
+<li>父类中声明为protected的方法在子类中要么声明为protected，要么声明为public。不能声明为private。</li>
+<li>父类中声明为private的方法，不能够被继承。</li>
+</ul>
+</li>
+<li><p>非访问修饰符</p>
+<ul>
+<li>static，创建类方法和类变量。</li>
+<li>final，inal修饰的类不能够被继承，修饰的方法不能被继承类重新定义，修饰的变量为常量，是不可修改的。</li>
+<li>abstract，创建抽象类和抽象方法。</li>
+<li>synchronized和volatile，用于线程编程。</li>
+</ul>
+</li>
+<li><p>基本知识：</p>
+<ul>
+<li>抽象类不能用来实例化对象，声明抽象类的唯一目的是为了将来对该类进行扩充。</li>
+<li>如果一个类包含抽象方法，那么该类一定要声明为抽象类，否则将出现编译错误。</li>
+<li>抽象类可以包含抽象方法和非抽象方法。</li>
+<li>抽象方法是一种没有任何实现的方法，该方法的的具体实现由子类提供。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java运算符"><a href="#Java运算符" class="headerlink" title="Java运算符"></a>Java运算符</h2><ul>
+<li><p>运算符分类：</p>
+<ul>
+<li>算术运算符</li>
+<li>关系运算符</li>
+<li>位运算符</li>
+<li>逻辑运算符</li>
+<li>赋值运算符</li>
+<li>其他运算符</li>
+</ul>
+</li>
+<li><p>算术运算符</p>
+<ul>
+<li><code>+、-、*、/、%、++、--</code></li>
+</ul>
+</li>
+<li>关系运算符<ul>
+<li><code>==/!=、&gt;、&lt;、&gt;=、&lt;=</code></li>
+</ul>
+</li>
+<li><p>位运算符</p>
+<ul>
+<li>应用对象：字节型（byte）、字符型（char）、短整型（short）、整型、长整型。</li>
+<li>&amp;，按位与</li>
+<li>|，按位或</li>
+<li>^，按位异或</li>
+<li>~，按位补，翻转每一位</li>
+<li>&lt;&lt;，按位左移</li>
+<li><blockquote>
+<blockquote>
+<p>，按位右移</p>
+</blockquote>
+</blockquote>
+</li>
+<li><blockquote>
+<blockquote>
+<blockquote>
+<p>，按位右移补零</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>逻辑运算符</p>
+<ul>
+<li><code>&amp;&amp;、||、!</code></li>
+</ul>
+</li>
+<li><p>赋值运算符</p>
+<ul>
+<li><code>=、+=、-=、*=、/=、%=、&lt;&lt;=、&gt;&gt;=、&amp;=、^=、|=</code></li>
+</ul>
+</li>
+<li><p>条件运算符（?:）</p>
+<ul>
+<li><code>variable x = (expression) ? value if true : value if false</code></li>
+</ul>
+</li>
+<li><p>instanceOf</p>
+<ul>
+<li>检查该对象是否是一个特定类型（类类型或接口类型）</li>
+</ul>
+</li>
+<li><p>运算符优先级<br><img alt="这里写图片描述" data-src="http://img.blog.csdn.net/20160809133521483"></p>
+</li>
+</ul>
+<h2 id="Java循环结构"><a href="#Java循环结构" class="headerlink" title="Java循环结构"></a>Java循环结构</h2><ul>
+<li>三种循环结构：<ul>
+<li>while</li>
+<li>do…while</li>
+<li>for（主要用于数组）</li>
+</ul>
+</li>
+<li>while<ul>
+<li>最基本循环</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">while</span><span class="params">( 布尔表达式 )</span></span> &#123;</span><br><span class="line">    <span class="comment">//循环内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>do…while<ul>
+<li>至少执行一次</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">       <span class="comment">//代码语句</span></span><br><span class="line">&#125;<span class="keyword">while</span>(布尔表达式);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>for<ul>
+<li>for循环执行的次数是在执行前就确定的</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">for</span><span class="params">(初始化; 布尔表达式; 更新)</span></span> &#123;</span><br><span class="line">    <span class="comment">//代码语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>增强for循环<ul>
+<li>主要用于数组</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">for</span><span class="params">(声明语句 : 表达式)</span></span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">//代码句子</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>break</p>
+<ul>
+<li>跳出一层循环和switch语句块</li>
+</ul>
+</li>
+<li><p>continue</p>
+<ul>
+<li>跳过一次循环</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java分支结构"><a href="#Java分支结构" class="headerlink" title="Java分支结构"></a>Java分支结构</h2><ul>
+<li><p>2种分支结构:</p>
+<ul>
+<li>if…else…</li>
+<li>switch</li>
+</ul>
+</li>
+<li><p>if</p>
+</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">if</span><span class="params">(布尔表达式)</span></span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">//如果布尔表达式为true将执行的语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>if…else…</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">if</span><span class="params">(布尔表达式)</span></span>&#123;</span><br><span class="line">   <span class="comment">//如果布尔表达式的值为true</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">   <span class="comment">//如果布尔表达式的值为false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>if…else if…else</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(布尔表达式 <span class="number">1</span>)&#123;</span><br><span class="line">   /<span class="regexp">/如果布尔表达式 1的值为true执行代码</span></span><br><span class="line"><span class="regexp">&#125;else if(布尔表达式 2)&#123;</span></span><br><span class="line"><span class="regexp">   /</span><span class="regexp">/如果布尔表达式 2的值为true执行代码</span></span><br><span class="line"><span class="regexp">&#125;else if(布尔表达式 3)&#123;</span></span><br><span class="line"><span class="regexp">   /</span><span class="regexp">/如果布尔表达式 3的值为true执行代码</span></span><br><span class="line"><span class="regexp">&#125;else &#123;</span></span><br><span class="line"><span class="regexp">   /</span><span class="regexp">/如果以上布尔表达式都不为true执行代码</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>嵌套的if…else</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(布尔表达式 <span class="number">1</span>)&#123;</span><br><span class="line">   /<span class="regexp">//</span><span class="regexp">/如果布尔表达式 1的值为true执行代码</span></span><br><span class="line"><span class="regexp">   if(布尔表达式 2)&#123;</span></span><br><span class="line"><span class="regexp">      /</span><span class="regexp">//</span><span class="regexp">/如果布尔表达式 2的值为true执行代码</span></span><br><span class="line"><span class="regexp">   &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>switch<ul>
+<li>判断一个变量与一系列值中某个值是否相等，每个值称为一个分支。</li>
+<li>switch语句中的变量类型只能为byte、short、int或者char。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(expression)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">value</span> :</span><br><span class="line">       <span class="comment">//语句</span></span><br><span class="line">       <span class="keyword">break</span>; <span class="comment">//可选</span></span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">value</span> :</span><br><span class="line">       <span class="comment">//语句</span></span><br><span class="line">       <span class="keyword">break</span>; <span class="comment">//可选</span></span><br><span class="line">    <span class="comment">//你可以有任意数量的case语句</span></span><br><span class="line">    <span class="keyword">default</span> : <span class="comment">//可选</span></span><br><span class="line">       <span class="comment">//语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Number类"><a href="#Number类" class="headerlink" title="Number类"></a>Number类</h2><ul>
+<li>Java语言为每一个内置数据类型提供了对应的包装类。</li>
+<li>所有的包装类（Integer、Long、Byte、Double、Float、Short）都是抽象类Number的子类。</li>
+<li>由编译器特别支持的包装称为<strong>装箱</strong>，所以当内置数据类型被当作对象使用的时候，编译器会把内置类型装箱为<strong>包装类</strong>。相似的，编译器也可以把一个对象<strong>拆箱</strong>为内置类型。Number类属于java.lang包。</li>
+<li>区分：内置数据类型和对象？</li>
+</ul>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Integer x</span> = 5;</span><br></pre></td></tr></table></figure>
+<h2 id="Character类"><a href="#Character类" class="headerlink" title="Character类"></a>Character类</h2><ul>
+<li>用于对单个字符进行操作。</li>
+<li>Character 类在对象中包装一个基本类型 char 的值。</li>
+<li>需要使用对象，而不是内置数据类型的情况。</li>
+<li>注意:String类是不可改变的，所以你一旦创建了String对象，那它的值就无法改变了。 如果需要对字符串做很多修改，那么应该选择使用StringBuffer &amp; StringBuilder 类。</li>
+<li>用于获取有关对象的信息的方法称为访问器方法。</li>
+</ul>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Character ch</span> = <span class="string">'a'</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h2><ul>
+<li>在Java中，String属于对象。</li>
+<li>创建字符串：<code>String greeting = &quot;Hello world!&quot;;</code></li>
+<li>方法：<ul>
+<li>字符串长度：str.length()</li>
+<li>连接字符串：str.concat()、str1+str2</li>
+<li>创建格式化字符串<ul>
+<li>printf()</li>
+<li>format()</li>
+<li>String类的静态方法format()能用来创建可复用的格式化字符串，而不仅仅是用于一次打印输出。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(<span class="string">"浮点型变量的的值为 "</span> +</span><br><span class="line">                  <span class="string">"%f, 整型变量的值为 "</span> +</span><br><span class="line">                  <span class="string">" %d, 字符串变量的值为 "</span> +</span><br><span class="line">                  <span class="string">"is %s"</span>, floatVar, intVar, stringVar);</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">String fs;</span><br><span class="line">fs = String.format(<span class="string">"浮点型变量的的值为 "</span> +</span><br><span class="line">                   <span class="string">"%f, 整型变量的值为 "</span> +</span><br><span class="line">                   <span class="string">" %d, 字符串变量的值为 "</span> +</span><br><span class="line">                   <span class="string">" %s"</span>, floatVar, intVar, stringVar);</span><br><span class="line">System.out.println(fs);</span><br></pre></td></tr></table></figure>
+<h2 id="StringBuffer和StringBuilder"><a href="#StringBuffer和StringBuilder" class="headerlink" title="StringBuffer和StringBuilder"></a>StringBuffer和StringBuilder</h2><ul>
+<li>当对字符串进行修改的时候，需要使用StringBuffer和StringBuilder类。</li>
+<li>StringBuilder的方法不是线程安全的（不能同步访问），这一点和StringBuffer不同。</li>
+<li>StringBuilder有速度优势，一般使用它。当程序要求线程安全时，必须使用StringBuffer。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">       StringBuffer sBuffer = <span class="keyword">new</span> StringBuffer(<span class="string">" test"</span>);</span><br><span class="line">       sBuffer.append(<span class="string">" String Buffer"</span>);</span><br><span class="line">       System.out.println(sBuffer);  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Java数组"><a href="#Java数组" class="headerlink" title="Java数组"></a>Java数组</h2><ul>
+<li>Java数组是用来存储固定大小的同类型元素。</li>
+<li>声明数组变量：</li>
+</ul>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dataType[] <span class="built_in">array</span>RefVar;   <span class="comment">// 首选的方法</span></span><br><span class="line"><span class="comment">//或</span></span><br><span class="line">dataType <span class="built_in">array</span>RefVar[];  <span class="comment">// 效果相同，但不是首选方法</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建数组（new）</li>
+</ul>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">array</span>RefVar = new dataType[<span class="built_in">array</span>Size];</span><br><span class="line"><span class="comment">// 1. 使用dataType[arraySize]创建了一个数组。</span></span><br><span class="line"><span class="comment">// 2. 把新创建的数组的引用赋值给变量 arrayRefVar。</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建数组和声明数组变量</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dataType[] arrayRefVar = <span class="keyword">new</span> dataType[arraySize];</span><br><span class="line">dataType[] arrayRefVar = &#123;value0, value1, ..., valuek&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>处理数组<ul>
+<li>数组元素类型和大小都是确定的，通常使用基本循环或foreach循环。</li>
+<li>foreach循环或者加强型循环，它能在不使用下标的情况下遍历数组。</li>
+<li>数组可以作为参数传递给方法。</li>
+<li>数组作为函数的返回值。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java日期时间"><a href="#Java日期时间" class="headerlink" title="Java日期时间"></a>Java日期时间</h2><ul>
+<li>java.util包提供了Date类来封装当前的日期和时间。 </li>
+<li>Date类提供两个构造函数来实例化Date对象。<ul>
+<li>第一个构造函数使用当前日期和时间来初始化对象。</li>
+<li>第二个构造函数接收一个参数，该参数是从1970年1月1日起的毫秒数。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java正则表达式"><a href="#Java正则表达式" class="headerlink" title="Java正则表达式"></a>Java正则表达式</h2><ul>
+<li><p>Java正则表达式</p>
+<ul>
+<li>正则表达式定义了字符串的模式。</li>
+<li>正则表达式可以用来搜索、编辑或处理文本。</li>
+<li>Java正则表达式和Perl的是最为相似的。</li>
+<li>java.util.regex包主要包括以下三个类：<ul>
+<li>Pattern类：pattern对象是一个正则表达式的编译表示。</li>
+<li>Matcher类：Matcher对象是对输入字符串进行解释和匹配操作的引擎。</li>
+<li>PatternSyntaxException类：PatternSyntaxException是一个非强制异常类，它表示一个正则表达式模式中的语法错误。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>捕获组</p>
+<ul>
+<li>捕获组是把多个字符当一个单独单元进行处理的方法，它通过对括号内的字符分组来创建。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java方法"><a href="#Java方法" class="headerlink" title="Java方法"></a>Java方法</h2><ul>
+<li>System.out.println()<ul>
+<li>System：系统类</li>
+<li>out：标准输出对象</li>
+<li>println()：方法</li>
+</ul>
+</li>
+<li>方法的定义：</li>
+</ul>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">修饰符 返回值类型 方法名 (参数类型 参数名)&#123;</span><br><span class="line">    <span class="params">...</span></span><br><span class="line">    方法体</span><br><span class="line">    <span class="params">...</span></span><br><span class="line">    <span class="keyword">return</span> 返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法调用：<ul>
+<li>根据是否返回值，分为2种：<ul>
+<li>方法返回一个值的时候，方法调用通常被当做一个值。</li>
+<li>如果方法返回值是void，方法调用一定是一条语句。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java-Stream、File、IO"><a href="#Java-Stream、File、IO" class="headerlink" title="Java Stream、File、IO"></a>Java Stream、File、IO</h2><ul>
+<li>Java.io包几乎包含了所有操作输入、输出需要的类。所有这些流类代表了输入源和输出目标。</li>
+<li>Java.io包中的流支持很多种格式。</li>
+<li>一个流可以理解为一个数据的序列。</li>
+<li>读取控制台输入</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> </span><br><span class="line">                      InputStreamReader(System.in));</span><br><span class="line"><span class="comment">//从控制台读取单字符</span></span><br><span class="line"><span class="keyword">char</span> c = br.read();</span><br><span class="line"><span class="comment">//从控制台读取字符串</span></span><br><span class="line">String str = br.readLine();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>控制台输出<ul>
+<li>控制台的输出由 print( ) 和println( )完成。这些方法都由类PrintStream 定义，System.out是该类对象的一个引用。</li>
+<li>PrintStream 继承了OutputStream类，并且实现了方法write()。这样，write()也可以用来往控制台写操作。</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><ul>
+<li><a href="http://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener">Java教程</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/8297.html" rel="bookmark">编码练习——Java-6-类的高级特性</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/61ef.html" rel="bookmark">编码练习——Java-7-集合类</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/dd33.html" rel="bookmark">编码练习——Java-String-API-练习</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> 编程</a>
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/6c52.html" rel="next" title="剑指Offer——Python答案">
+                  <i class="fa fa-chevron-left"></i> 剑指Offer——Python答案
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/572.html" rel="prev" title="编码练习——Java-1-基础">
+                  编码练习——Java-1-基础 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">GitHub回复</a></li>
+            <li class="tab"><a href="#comment-valine">匿名回复</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="comments"></div>
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = 'gitalk';
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java基础语法"><span class="nav-number">1.</span> <span class="nav-text">Java基础语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java对象和类"><span class="nav-number">2.</span> <span class="nav-text">Java对象和类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">3.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java变量类型"><span class="nav-number">4.</span> <span class="nav-text">Java变量类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java修饰符"><span class="nav-number">5.</span> <span class="nav-text">Java修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java运算符"><span class="nav-number">6.</span> <span class="nav-text">Java运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java循环结构"><span class="nav-number">7.</span> <span class="nav-text">Java循环结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java分支结构"><span class="nav-number">8.</span> <span class="nav-text">Java分支结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Number类"><span class="nav-number">9.</span> <span class="nav-text">Number类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Character类"><span class="nav-number">10.</span> <span class="nav-text">Character类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String类"><span class="nav-number">11.</span> <span class="nav-text">String类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StringBuffer和StringBuilder"><span class="nav-number">12.</span> <span class="nav-text">StringBuffer和StringBuilder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java数组"><span class="nav-number">13.</span> <span class="nav-text">Java数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java日期时间"><span class="nav-number">14.</span> <span class="nav-text">Java日期时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java正则表达式"><span class="nav-number">15.</span> <span class="nav-text">Java正则表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java方法"><span class="nav-number">16.</span> <span class="nav-text">Java方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-Stream、File、IO"><span class="nav-number">17.</span> <span class="nav-text">Java Stream、File、IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考："><span class="nav-number">18.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张学志"
+      src="/images/avatar1.jpg">
+  <p class="site-author-name" itemprop="name">张学志</p>
+  <div class="site-description" itemprop="description">从今天开始, 做一个精彩的平凡人！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/algoboy101/note_blog" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;algoboy101&#x2F;note_blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.xuezhisd.top/mailto.html" title="E-Mail → https:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;mailto.html"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/xuezhisdc" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;xuezhisdc" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://yongyuan.name/" title="https:&#x2F;&#x2F;yongyuan.name&#x2F;" rel="noopener" target="_blank">袁勇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <!-- 
+      
+           <div>
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=2&id=5276811&auto=1&height=32"></iframe>
+           </div>
+      
+      -->
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张学志</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">325k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:56</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581db2eae126635e" async="async"></script>
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
+  </div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '850px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5d7851a991d55468095a',
+      clientSecret: 'eb16a65b938a0160c3380a324e3a49b0bf5be67a',
+      repo: 'note_blog_comment',
+      owner: 'algoboy101',
+      admin: ['algoboy101'],
+      id: 'ef9b6caee34b0805b72eab9a8b8c1d4f',
+        language: 'zh-CN',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+
+<script>
+NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz',
+    appKey: 'KNlyr54S3RIstdjHBJUQomdF',
+    placeholder: "支持匿名回复; 支持md语法; 抓紧占座啦!",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '30' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

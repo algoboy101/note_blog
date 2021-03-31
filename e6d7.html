@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="8MClfGIKqlhvS7lCIUORoPlPQW5ZS-acECTz66SI-q0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="...">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何安装Hadoop 2.6.0完全分布式？">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;e6d7.html">
+<meta property="og:site_name" content="张学志">
+<meta property="og:description" content="...">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20160731101242857">
+<meta property="og:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20160731095102565">
+<meta property="og:updated_time" content="2021-03-31T04:11:19.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;img.blog.csdn.net&#x2F;20160731101242857">
+
+<link rel="canonical" href="http://blog.xuezhisd.top/e6d7.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>如何安装Hadoop 2.6.0完全分布式？ | 张学志</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ce9a310dfefd1aeba54748007375c4d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张学志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">人工智能 | 计算机视觉 | 深度学习</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+
+
+      
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.xuezhisd.top/e6d7.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpg">
+      <meta itemprop="name" content="张学志">
+      <meta itemprop="description" content="从今天开始, 做一个精彩的平凡人！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张学志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          如何安装Hadoop 2.6.0完全分布式？<a href="https://github.com/algoboy101/note_blog/tree/master/source/_posts/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Hadoop%202.6.0%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-07-31 13:20:00" itemprop="dateCreated datePublished" datetime="2016-07-31T13:20:00+08:00">2016-07-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-31 12:11:19" itemprop="dateModified" datetime="2021-03-31T12:11:19+08:00">2021-03-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/e6d7.html" class="post-meta-item leancloud_visitors" data-flag-title="如何安装Hadoop 2.6.0完全分布式？" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/e6d7.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/e6d7.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+            <div class="post-description">...</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>本教程是关于如何在Ubuntu中搭建完全分布式Hadoop2.6.*环境的完整教程。</p>
+</blockquote>
+<h2 id="一、环境说明"><a href="#一、环境说明" class="headerlink" title="一、环境说明"></a>一、环境说明</h2><ul>
+<li>操作系统：Ubuntu 14.04<br>  注：其它版本的Ubuntu安装过程一样</li>
+<li>虚拟机：VMware Workstation或VirtualBox<br>  注：VMware Workstation的功能更强大，但是软件体积也比较大；而且在Ubuntu中我没有安装成功。VirtualBox软件体积小，更加灵活好用，而且可以跨平台使用。但是VirtualBox有些功能不支持，比如Linux版本的VirtualBox不支持文件拖拽和共享粘贴板功能。另外，Ubuntu版VirtualBox5.1存在问题，安装增强工具包之后无法启动。建议安装VirtualBox5.0。</li>
+<li>JDK：Java 1.8</li>
+<li>集群节点：2个（master, slave1）</li>
+</ul>
+<a id="more"></a>
+<h2 id="二、安装虚拟机"><a href="#二、安装虚拟机" class="headerlink" title="二、安装虚拟机"></a>二、安装虚拟机</h2><ul>
+<li>此处考虑到跨平台的因素，选择使用VirtualBox</li>
+<li>存在两种安装方式，下载deb包和添加路径，使用apt-get命令安装。</li>
+<li>请点击下面的链接自行安装<br>参考：<br><a href="http://jingyan.baidu.com/article/870c6fc3092aedb03fe4be28.html" target="_blank" rel="noopener">Ubuntu15.04系统安装Virtualbox虚拟机</a></li>
+</ul>
+<h2 id="三、准备工作"><a href="#三、准备工作" class="headerlink" title="三、准备工作"></a>三、准备工作</h2><h3 id="安装Java"><a href="#安装Java" class="headerlink" title="安装Java"></a>安装Java</h3><h4 id="下载JDK"><a href="#下载JDK" class="headerlink" title="下载JDK"></a>下载JDK</h4><ul>
+<li>JDK下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">官网下载地址，点此下载</a></li>
+</ul>
+<h4 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h4><ul>
+<li>安装方法很简单，简单的说就2步：<ul>
+<li>第一步：解压，并复制文件到指定路径。如<code>/usr/local/jdk</code></li>
+<li>第二部：添加路径，修改配置文件。如修改<code>/etc/profile</code>或<code>~/.bashrc</code>。</li>
+</ul>
+</li>
+<li>参考：<a href="http://jingyan.baidu.com/article/86fae346b696633c49121a30.html" target="_blank" rel="noopener">Ubuntu下搭建JAVA开发环境</a></li>
+</ul>
+<h3 id="创建hadoop账号"><a href="#创建hadoop账号" class="headerlink" title="创建hadoop账号"></a>创建hadoop账号</h3><ul>
+<li>注：不一定非得创建hadoop账号，这一项可选。</li>
+<li>但是，对于新手来说，最好创建hadoop账号，并且为它添加超级用户权限。</li>
+<li>后面的操作都在hadoop账号下进行。</li>
+<li>参考：<a href="http://blog.csdn.net/xuezhisdc/article/details/49642573" target="_blank" rel="noopener">Linux命令——adduser</a></li>
+<li>添加超级用户权限。使用命令<code>sudo visudo</code>修改sudoers文件，添加一行。如下图所示。<br><img alt="这里写图片描述" data-src="http://img.blog.csdn.net/20160731101242857"> </li>
+</ul>
+<h3 id="复制虚拟机"><a href="#复制虚拟机" class="headerlink" title="复制虚拟机"></a>复制虚拟机</h3><ul>
+<li>网上教程很多，自己搜索。</li>
+<li>现在有2台虚拟机，一台做NameNode，另一台做DataNode。</li>
+</ul>
+<h2 id="四、修改配置文件"><a href="#四、修改配置文件" class="headerlink" title="四、修改配置文件"></a>四、修改配置文件</h2><h3 id="设置静态IP地址"><a href="#设置静态IP地址" class="headerlink" title="设置静态IP地址"></a>设置静态IP地址</h3><ul>
+<li>因为Hadoop集群中的不同节点之间是基于TCP/IP进行通信的。如果使用DHCP方式动态分配IP，就无法定位到网络中的节点。所以，此处使用静态IP。</li>
+<li>设置过程：</li>
+</ul>
+<ol>
+<li>查看本机IP网段。比如我的网址是<code>192.168.36.15</code>,局域网的网段是：<code>192.168.36.0</code>~<code>192.168.36.255</code>。</li>
+<li>设置虚拟机的网络连接方式为<strong>桥接网卡</strong>。如下图所示。</li>
+<li>修改配置文件。修改<code>/etc/network/interfaces</code>文件。</li>
+<li>重启计算机，使配置生效。</li>
+</ol>
+<ul>
+<li><p>网络连接方式图如下所示。<br><img alt="这里写图片描述" data-src="http://img.blog.csdn.net/20160731095102565"></p>
+</li>
+<li><p>第一台虚拟机的<code>/etc/network/interfaces</code>文件内容如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">auto eth0</span><br><span class="line"><span class="comment">#iface eth0 inet dhcp</span></span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.36.100</span><br><span class="line">gateway 192.168.36.254</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">iface eth0 inet6 auto</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二台虚拟机的<code>/etc/network/interfaces</code>文件内容如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">auto eth0</span><br><span class="line"><span class="comment">#iface eth0 inet dhcp</span></span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.36.101</span><br><span class="line">gateway 192.168.36.254</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">iface eth0 inet6 auto</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意：因为我们学校有IPv6网络，因此也配置了<code>inet6</code>，如果没有的话可以忽略这一项。</p>
+</li>
+</ul>
+<h3 id="修改hostname"><a href="#修改hostname" class="headerlink" title="修改hostname"></a>修改hostname</h3><ul>
+<li>Hadoop集群中的各个节点通过主机名互相通信，同时为了好区分主节点和数据节点。此处需要重新设置主机名。</li>
+<li>将第一台虚拟机的主机名设置为<code>master</code>，第一台虚拟机的主机名设置为<code>slave1</code>。</li>
+<li><p>使用下面的命令设置。</p>
+  <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="keyword">vi</span> /etc/<span class="built_in">hostname</span></span><br></pre></td></tr></table></figure></li>
+<li><p>第一台虚拟机的<code>/etc/hostname</code>内容是：</p>
+  <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">master</span></span><br></pre></td></tr></table></figure></li>
+<li><p>第二台虚拟机的<code>/etc/hostname</code>内容是：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slave1</span><br></pre></td></tr></table></figure></li>
+<li>重启计算机，使用命令<code>hostname</code>确认是否修改成功。</li>
+</ul>
+<h3 id="修改hosts文件"><a href="#修改hosts文件" class="headerlink" title="修改hosts文件"></a>修改hosts文件</h3><ul>
+<li>修改命令：<code>sudo vi /etc/hosts</code></li>
+<li><p>在master和slave1主机的<code>/etc/hosts</code>文件中添加如下内容：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.36.100 	master</span><br><span class="line">192.168.36.101	slave1</span><br></pre></td></tr></table></figure></li>
+<li><p>重启计算机，测试是否成功。</p>
+  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ping master</span><br><span class="line">ping slave1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="配置ssh免密码登录"><a href="#配置ssh免密码登录" class="headerlink" title="配置ssh免密码登录"></a>配置ssh免密码登录</h3><ul>
+<li><p>master 和 slave1共同操作</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果没有ssh，先安装</span></span><br><span class="line">sudo apt-get install openssh-server</span><br><span class="line"><span class="comment"># 生成密匙（不断按回车键，默认即可）</span></span><br><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></li>
+<li>在~/.ssh/下生成了两个文件id_rsa,id_rsa.pub。第一个是私匙，第二个是公匙。</li>
+<li><p>在slave1中的操作</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp id_rsa.pub hadoop@192.168.36.100:~/.ssh/id_rsa.pub_slave1</span><br></pre></td></tr></table></figure></li>
+<li><p>在master中的操作</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将公匙都存储到authorized_keys文件中</span></span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br><span class="line">cat id_rsa.pub_slave1 &gt;&gt; authorized_keys</span><br><span class="line"><span class="comment"># 将authorized_keys文件分发到slave1中</span></span><br><span class="line">scp authorized_keys hadoop@192.168.36.101:~/.ssh/</span><br></pre></td></tr></table></figure></li>
+<li><p>测试是否成功</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># master中测试</span></span><br><span class="line">ssh slave1</span><br><span class="line"><span class="comment"># slave1中测试</span></span><br><span class="line">ssh master</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="五、安装hadoop"><a href="#五、安装hadoop" class="headerlink" title="五、安装hadoop"></a>五、安装hadoop</h2><ul>
+<li>注：如未其它说明，以下操作都是在<strong>master节点</strong>上进行的。</li>
+<li>原来教程将Hadoop安装在<code>/usr/local/</code>目录下，但是后面会遇到问题：无法启动NameNode或DataNode。这种问题归根结底都是由于权限造成的。所以，我修改了教程，将Hadoop安装在hadoop用户自己目录下：<code>/home/hadoop/software/</code>。</li>
+</ul>
+<h3 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h3><ul>
+<li>下载地址：<a href="http://hadoop.apache.org/releases.html" target="_blank" rel="noopener">通用地址</a> or <a href="http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-2.6.0/" target="_blank" rel="noopener">Hadoop 2.6.0下载地址</a></li>
+<li>注意：下载二进制版本就可以，不要下载源码。</li>
+<li>如果是在主机上下载的，请使用Xftp等其他工具将其上传到客户机master和slave1中。</li>
+<li>假定hadoop存储位置：<code>~/hadoop-2.6.0.tar.gz</code></li>
+</ul>
+<h3 id="解压拷贝文件"><a href="#解压拷贝文件" class="headerlink" title="解压拷贝文件"></a>解压拷贝文件</h3><ul>
+<li><p>先解压，然后重命名，再复制到指定目录，最后创建tmp目录。</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf hadoop-2.6.0.tar.gz</span><br><span class="line"><span class="comment"># 重命名</span></span><br><span class="line">mv hadoop-2.6.0 hadoop</span><br><span class="line"><span class="comment"># 移动（我安装在/usr/local/下）</span></span><br><span class="line">sudo mv hadoop ~/software/</span><br><span class="line"><span class="comment"># 创建tmp目录，后面会用到</span></span><br><span class="line"><span class="built_in">cd</span> ~/software/hadoop</span><br><span class="line">mkdir -p tmp/dfs/data</span><br><span class="line">mkdir -p tmp/dfs/name</span><br></pre></td></tr></table></figure></li>
+<li>注意：不要安装在<code>/usr/local</code>目录下。防止权限问题造成后面无法启动NameNode或DataNOde问题。</li>
+</ul>
+<h3 id="修改hadoop配置文件"><a href="#修改hadoop配置文件" class="headerlink" title="修改hadoop配置文件"></a>修改hadoop配置文件</h3><ul>
+<li>此处需要修改<strong>7个</strong>配置文件，全部在<code>/usr/local/hadoop/etc/hadoop/</code>目录下。</li>
+<li><p>7个配置文件的名字分别是：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hadoop-env.sh <span class="comment"># hadoop的环境变量</span></span><br><span class="line">yarn-env.sh   <span class="comment"># yarn的环境变量</span></span><br><span class="line">slaves        <span class="comment"># 数据节点名字列表</span></span><br><span class="line">core-site.xml   <span class="comment"># </span></span><br><span class="line">hdfs-site.xml   <span class="comment"># HDFS配置文件</span></span><br><span class="line">mapred-site.xml <span class="comment"># MapReduce配置文件</span></span><br><span class="line">yarn-site.xml   <span class="comment"># yarn配置文件</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="修改hadoop-env-sh"><a href="#修改hadoop-env-sh" class="headerlink" title="修改hadoop-env.sh"></a>修改hadoop-env.sh</h4><ul>
+<li><p>修改JAVA_HOME环境变量。在<code>hadoop-env.sh</code>文件中添加一行：</p>
+  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/local/jdk</span><br></pre></td></tr></table></figure></li>
+<li>注意：我的JDK安装位置时<code>/usr/local/jdk</code>。你的不一定相同。所以，这个需要根据自己的JDK位置来设定。</li>
+</ul>
+<h4 id="修改yarn-env-sh"><a href="#修改yarn-env-sh" class="headerlink" title="修改yarn-env.sh"></a>修改yarn-env.sh</h4><ul>
+<li><p>修改JAVA_HOME环境变量。在<code>yarn-env.sh</code>文件中添加一行：</p>
+  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/local/jdk</span><br></pre></td></tr></table></figure></li>
+<li>注意：我的JDK安装位置时<code>/usr/local/jdk</code>。你的不一定相同。所以，这个需要根据自己的JDK位置来设定。</li>
+</ul>
+<h4 id="配置slave节点"><a href="#配置slave节点" class="headerlink" title="配置slave节点"></a>配置slave节点</h4><ul>
+<li>需要修改slaves文件</li>
+<li>因为此教程只创建了两个虚拟机：master和slave1。master用作NameNode节点，slave1用作DataNode节点。所以，slaves文件仅需要添加slave1即可</li>
+<li><p>在slaves文件中添加一行：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slave1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="配置core-site-xml"><a href="#配置core-site-xml" class="headerlink" title="配置core-site.xml"></a>配置core-site.xml</h4><ul>
+<li><p>在core-site.xml文件中增加以下内容： </p>
+  <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;configuration&gt;</span></span><br><span class="line">    <span class="params">&lt;property&gt;</span></span><br><span class="line">        <span class="params">&lt;name&gt;</span>hadoop.tmp.dir<span class="params">&lt;/name&gt;</span></span><br><span class="line">        <span class="params">&lt;value&gt;</span>file:<span class="meta-keyword">/home/</span>hadoop<span class="meta-keyword">/software/</span>hadoop/tmp<span class="params">&lt;/value&gt;</span></span><br><span class="line">        <span class="params">&lt;description&gt;</span>Abase for other temporary directories.<span class="params">&lt;/description&gt;</span></span><br><span class="line">    <span class="params">&lt;/property&gt;</span></span><br><span class="line">    <span class="params">&lt;property&gt;</span></span><br><span class="line">        <span class="params">&lt;name&gt;</span>fs.defaultFS<span class="params">&lt;/name&gt;</span></span><br><span class="line">        <span class="params">&lt;value&gt;</span>hdfs:<span class="comment">//master:9000&lt;/value&gt;</span></span><br><span class="line">    <span class="params">&lt;/property&gt;</span></span><br><span class="line"><span class="params">&lt;/configuration&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>注意：<code>hadoop.tmp.dir</code>的值需要和前面创建的tmp路径对应。</li>
+</ul>
+<h4 id="配置hdfs-site-xml"><a href="#配置hdfs-site-xml" class="headerlink" title="配置hdfs-site.xml"></a>配置hdfs-site.xml</h4><ul>
+<li><p>在hdfs-site.xml文件中增加以下内容： </p>
+  <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;configuration&gt;</span></span><br><span class="line">    <span class="params">&lt;property&gt;</span></span><br><span class="line">        <span class="params">&lt;name&gt;</span>dfs.namenode.secondary.http-address<span class="params">&lt;/name&gt;</span></span><br><span class="line">        <span class="params">&lt;value&gt;</span>master:<span class="number">9001</span><span class="params">&lt;/value&gt;</span></span><br><span class="line">    <span class="params">&lt;/property&gt;</span></span><br><span class="line">    <span class="params">&lt;property&gt;</span></span><br><span class="line">        <span class="params">&lt;name&gt;</span>dfs.replication<span class="params">&lt;/name&gt;</span></span><br><span class="line">        <span class="params">&lt;value&gt;</span><span class="number">2</span><span class="params">&lt;/value&gt;</span></span><br><span class="line">    <span class="params">&lt;/property&gt;</span></span><br><span class="line">    <span class="params">&lt;property&gt;</span></span><br><span class="line">        <span class="params">&lt;name&gt;</span>dfs.namenode.name.dir<span class="params">&lt;/name&gt;</span></span><br><span class="line">        <span class="params">&lt;value&gt;</span>file:<span class="meta-keyword">/home/</span>hadoop<span class="meta-keyword">/software/</span>hadoop<span class="meta-keyword">/tmp/</span>dfs/name<span class="params">&lt;/value&gt;</span></span><br><span class="line">    <span class="params">&lt;/property&gt;</span></span><br><span class="line">    <span class="params">&lt;property&gt;</span></span><br><span class="line">        <span class="params">&lt;name&gt;</span>dfs.datanode.data.dir<span class="params">&lt;/name&gt;</span></span><br><span class="line">        <span class="params">&lt;value&gt;</span>file:<span class="meta-keyword">/home/</span>hadoop<span class="meta-keyword">/software/</span>hadoop<span class="meta-keyword">/tmp/</span>dfs/data<span class="params">&lt;/value&gt;</span></span><br><span class="line">    <span class="params">&lt;/property&gt;</span></span><br><span class="line">    <span class="params">&lt;property&gt;</span> </span><br><span class="line">            <span class="params">&lt;name&gt;</span>dfs.permissions<span class="params">&lt;/name&gt;</span>  </span><br><span class="line">            <span class="params">&lt;value&gt;</span>false<span class="params">&lt;/value&gt;</span>  </span><br><span class="line">     <span class="params">&lt;/property&gt;</span></span><br><span class="line">    <span class="params">&lt;property&gt;</span></span><br><span class="line">        <span class="params">&lt;name&gt;</span>dfs.webhdfs.enabled<span class="params">&lt;/name&gt;</span></span><br><span class="line">        <span class="params">&lt;value&gt;</span>true<span class="params">&lt;/value&gt;</span></span><br><span class="line">    <span class="params">&lt;/property&gt;</span></span><br><span class="line"><span class="params">&lt;/configuration&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="配置mapred-site-xml"><a href="#配置mapred-site-xml" class="headerlink" title="配置mapred-site.xml"></a>配置mapred-site.xml</h4><ul>
+<li><p>在mapred-site.xml文件中增加以下内容：</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:10020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:19888<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="配置yarn-site-xml"><a href="#配置yarn-site-xml" class="headerlink" title="配置yarn-site.xml"></a>配置yarn-site.xml</h4><ul>
+<li><p>在yarn-site.xml文件中增加以下内容：</p>
+  <figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services.mapreduce.shuffle.class<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>org.apache.hadoop.mapred.ShuffleHandler<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">property</span>&gt;</span>  </span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>master<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:8032<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.scheduler.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:8030<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.resource-tracker.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:8035<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.admin.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:8033<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:8088<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">property</span>&gt;</span>  </span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.webapp.https.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>$</span><span class="template-variable">&#123;yarn.resourcemanager.hostname&#125;</span><span class="xml">:8090<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="复制修改后的hadoop文件夹到其它节点"><a href="#复制修改后的hadoop文件夹到其它节点" class="headerlink" title="复制修改后的hadoop文件夹到其它节点"></a>复制修改后的hadoop文件夹到其它节点</h3><ul>
+<li><p>注意：因为<code>/usr/local</code>为系统目录，所以先复制到slave1中hadoop的Home路径，再复制到<code>/usr/local/</code>下。</p>
+  <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从master传输到slave1中</span></span><br><span class="line">scp -r /home/hadoop/software/hadoop hadoop<span class="variable">@slave1</span><span class="symbol">:~/software/</span></span><br></pre></td></tr></table></figure>
+<h3 id="修改配置文件profile或-bashrc"><a href="#修改配置文件profile或-bashrc" class="headerlink" title="修改配置文件profile或.bashrc"></a>修改配置文件profile或.bashrc</h3></li>
+<li>注意：此操作在<strong>master和slave1</strong>中都要进行。</li>
+<li>修改<code>/etc/profile</code>文件，对所有用户生效；修改<code>~/.bashrc</code>文件，仅对自己有效。</li>
+<li><p>在<code>.bashrc</code>中添加如下内容：</p>
+  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># added by xuezhi zhang</span></span><br><span class="line"><span class="attribute">PS1</span>=<span class="string">'[\[\e[33;40m\]\u@\w]\$\[\e[m\]'</span></span><br><span class="line"><span class="comment"># java</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/local/jdk</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JRE_HOME</span>=/usr/local/jdk/jre</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">CLASSPATH</span>=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=.:$JAVA_HOME/bin:$JRE_HOME/bin:$PATH</span><br><span class="line"><span class="comment"># Hadoop enviroment var.</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HADOOP_INSTALL</span>=/home/hadoop/software/hadoop</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$HADOOP_INSTALL/bin</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$HADOOP_INSTALL/sbin</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HADOOP_MAPRED_HOME</span>=<span class="variable">$HADOOP_INSTALL</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HADOOP_COMMON_HOME</span>=<span class="variable">$HADOOP_INSTALL</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HADOOP_HDFS_HOME</span>=<span class="variable">$HADOOP_INSTALL</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">YARN_HOME</span>=<span class="variable">$HADOOP_INSTALL</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HADOOP_COMMON_LIB_NATIVE_DIR</span>=<span class="variable">$HADOOP_INSTALL</span>/lib/native</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HADOOP_OPTS</span>=<span class="string">"-Djava.library.path=<span class="variable">$HADOOP_INSTALL</span>/lib"</span></span><br></pre></td></tr></table></figure></li>
+<li><p>使配置生效</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><strong>至此，Hadoop已经配置完成了。</strong></li>
+</ul>
+<h2 id="六、测试hadoop"><a href="#六、测试hadoop" class="headerlink" title="六、测试hadoop"></a>六、测试hadoop</h2><ul>
+<li>下面开始测试一下hadoop<h3 id="开启hadoop"><a href="#开启hadoop" class="headerlink" title="开启hadoop"></a>开启hadoop</h3></li>
+<li><p>注意：在<strong>master</strong>节点上操作</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 格式化HDFS</span></span><br><span class="line">hdfs namenode -format</span><br><span class="line"><span class="comment"># 启动HDFS</span></span><br><span class="line">start-dfs.sh</span><br><span class="line"><span class="comment"># 查看Java进程</span></span><br><span class="line">jps</span><br><span class="line"><span class="comment"># 启动Yarn</span></span><br><span class="line">start-yarn.sh</span><br><span class="line">jps</span><br><span class="line"><span class="comment"># 查看集群状态</span></span><br><span class="line">hdfs dfsadmin -report</span><br><span class="line"><span class="comment"># 或者访问：http://master:8088/</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="关闭hadoop"><a href="#关闭hadoop" class="headerlink" title="关闭hadoop"></a>关闭hadoop</h3><ul>
+<li><p>注意：在<strong>master</strong>节点上操作</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭HDFS</span></span><br><span class="line">stop-dfs.sh</span><br><span class="line"><span class="comment"># 查看Java进程</span></span><br><span class="line">jps</span><br><span class="line"><span class="comment"># 关闭Yarn</span></span><br><span class="line">stop-yarn.sh</span><br><span class="line">jps</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>至此，整个教程已完，谢谢阅读！</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/c517.html" rel="bookmark">系统运维学习笔记</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2729.html" rel="bookmark">Ubuntu18.04部署django-sspanel</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/eb07.html" rel="bookmark">错误-Ubuntu-no talloc stackframe at ../source3/param/loadparm.c:4864, leaking memory</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/9089.html" rel="next" title="健康系列——如何增强免疫力">
+                  <i class="fa fa-chevron-left"></i> 健康系列——如何增强免疫力
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/777a.html" rel="prev" title="如何在ipython或python中使用Spark">
+                  如何在ipython或python中使用Spark <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">GitHub回复</a></li>
+            <li class="tab"><a href="#comment-valine">匿名回复</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="comments"></div>
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = 'gitalk';
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、环境说明"><span class="nav-number">1.</span> <span class="nav-text">一、环境说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装虚拟机"><span class="nav-number">2.</span> <span class="nav-text">二、安装虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、准备工作"><span class="nav-number">3.</span> <span class="nav-text">三、准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Java"><span class="nav-number">3.1.</span> <span class="nav-text">安装Java</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载JDK"><span class="nav-number">3.1.1.</span> <span class="nav-text">下载JDK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装JDK"><span class="nav-number">3.1.2.</span> <span class="nav-text">安装JDK</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建hadoop账号"><span class="nav-number">3.2.</span> <span class="nav-text">创建hadoop账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制虚拟机"><span class="nav-number">3.3.</span> <span class="nav-text">复制虚拟机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、修改配置文件"><span class="nav-number">4.</span> <span class="nav-text">四、修改配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置静态IP地址"><span class="nav-number">4.1.</span> <span class="nav-text">设置静态IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改hostname"><span class="nav-number">4.2.</span> <span class="nav-text">修改hostname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改hosts文件"><span class="nav-number">4.3.</span> <span class="nav-text">修改hosts文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置ssh免密码登录"><span class="nav-number">4.4.</span> <span class="nav-text">配置ssh免密码登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、安装hadoop"><span class="nav-number">5.</span> <span class="nav-text">五、安装hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载安装包"><span class="nav-number">5.1.</span> <span class="nav-text">下载安装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压拷贝文件"><span class="nav-number">5.2.</span> <span class="nav-text">解压拷贝文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改hadoop配置文件"><span class="nav-number">5.3.</span> <span class="nav-text">修改hadoop配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改hadoop-env-sh"><span class="nav-number">5.3.1.</span> <span class="nav-text">修改hadoop-env.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改yarn-env-sh"><span class="nav-number">5.3.2.</span> <span class="nav-text">修改yarn-env.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置slave节点"><span class="nav-number">5.3.3.</span> <span class="nav-text">配置slave节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置core-site-xml"><span class="nav-number">5.3.4.</span> <span class="nav-text">配置core-site.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置hdfs-site-xml"><span class="nav-number">5.3.5.</span> <span class="nav-text">配置hdfs-site.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置mapred-site-xml"><span class="nav-number">5.3.6.</span> <span class="nav-text">配置mapred-site.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置yarn-site-xml"><span class="nav-number">5.3.7.</span> <span class="nav-text">配置yarn-site.xml</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制修改后的hadoop文件夹到其它节点"><span class="nav-number">5.4.</span> <span class="nav-text">复制修改后的hadoop文件夹到其它节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件profile或-bashrc"><span class="nav-number">5.5.</span> <span class="nav-text">修改配置文件profile或.bashrc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、测试hadoop"><span class="nav-number">6.</span> <span class="nav-text">六、测试hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启hadoop"><span class="nav-number">6.1.</span> <span class="nav-text">开启hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭hadoop"><span class="nav-number">6.2.</span> <span class="nav-text">关闭hadoop</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="张学志"
+      src="/images/avatar1.jpg">
+  <p class="site-author-name" itemprop="name">张学志</p>
+  <div class="site-description" itemprop="description">从今天开始, 做一个精彩的平凡人！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/algoboy101/note_blog" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;algoboy101&#x2F;note_blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.xuezhisd.top/mailto.html" title="E-Mail → https:&#x2F;&#x2F;blog.xuezhisd.top&#x2F;mailto.html"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/xuezhisdc" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;xuezhisdc" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://yongyuan.name/" title="https:&#x2F;&#x2F;yongyuan.name&#x2F;" rel="noopener" target="_blank">袁勇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <!-- 
+      
+           <div>
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=2&id=5276811&auto=1&height=32"></iframe>
+           </div>
+      
+      -->
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张学志</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">325k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:56</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-581db2eae126635e" async="async"></script>
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273432675&web_id=1273432675"></script>
+  </div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '850px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5d7851a991d55468095a',
+      clientSecret: 'eb16a65b938a0160c3380a324e3a49b0bf5be67a',
+      repo: 'note_blog_comment',
+      owner: 'algoboy101',
+      admin: ['algoboy101'],
+      id: 'fcb326bbce65f3f875e7172548d51f18',
+        language: 'zh-CN',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+
+<script>
+NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vMy88UvzvCXU3eL8uf8IU9Q8-gzGzoHsz',
+    appKey: 'KNlyr54S3RIstdjHBJUQomdF',
+    placeholder: "支持匿名回复; 支持md语法; 抓紧占座啦!",
+    avatar: 'wavatar',
+    meta: guest,
+    pageSize: '30' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
